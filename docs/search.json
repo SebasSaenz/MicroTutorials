@@ -28,11 +28,25 @@
     "text": "My mental imagery\nMy mental imagery is like…"
   },
   {
+    "objectID": "posts/functions/functions.html",
+    "href": "posts/functions/functions.html",
+    "title": "R functions",
+    "section": "",
+    "text": "R has multiple options that are useful for the analysis of microbiome data."
+  },
+  {
+    "objectID": "posts/functions/functions.html#set-up-functions",
+    "href": "posts/functions/functions.html#set-up-functions",
+    "title": "R functions",
+    "section": "Set up functions",
+    "text": "Set up functions\n\nGet or Set Working Directory\nsetwd()"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "quartoCourseBlog",
     "section": "",
-    "text": "goals\n\n\ngeneral\n\n\n\n\n\n\n\n\n\n\n\nOct 21, 2022\n\n\nMatt Crump\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\ngoals\n\n\ngeneral\n\n\n\n\n\n\n\n\n\n\n\nOct 21, 2022\n\n\nMatt Crump\n\n\n\n\n\n\nNo matching items"
+    "text": "R\n\n\nfunctions\n\n\n\n\n\n\n\n\n\n\n\nJan 5, 2023\n\n\nJohan Sáenz\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\ngoals\n\n\ngeneral\n\n\n\n\n\n\n\n\n\n\n\nOct 21, 2022\n\n\nMatt Crump\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\ngoals\n\n\ngeneral\n\n\n\n\n\n\n\n\n\n\n\nOct 21, 2022\n\n\nMatt Crump\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "readme.html",

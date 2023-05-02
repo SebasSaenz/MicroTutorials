@@ -1,0 +1,14 @@
+---
+title: "R functions"
+author: "Johan Sáenz"
+date: "01-05-2023"
+categories: [R, functions]
+---
+
+R has multiple options that are useful for the analysis of microbiome data.
+
+## **Set up functions**
+
+### Get or Set Working Directory
+
+`setwd()`
