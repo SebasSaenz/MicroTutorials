@@ -8,9 +8,9 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/CrumpLab/quartoCourseBlog
+        href: https://github.com/SebasSaenz
       - icon: twitter
-        href: https://twitter.com/MattCrumpLab
+        href: https://twitter.com/SaenzJohanS
 format:
   html:
     theme: minty
