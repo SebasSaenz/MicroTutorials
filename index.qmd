@@ -1,5 +1,5 @@
 ---
-title: "quartoCourseBlog"
+title: "MicroTutorials"
 listing:
   contents: posts
   sort: "date desc"

@@ -1,14 +1,24 @@
 ---
 title: "R functions"
 author: "Johan Sáenz"
-date: "01-05-2023"
+date: "05-10-2023"
 categories: [R, functions]
 ---
 
+# **Functions in R**
+
 R has multiple options that are useful for the analysis of microbiome data.
 
-## **Set up functions**
+1.  **Set up functions**
 
-### Get or Set Working Directory
+[Get or Set Working Directory]{.underline}
 
-`setwd()`
+`setwd(dir)` is used to set the working directory to `dir`. `dir` would be consider the root folder.
+
+Example: `setwd("documents/project")`
+
+[Install and load libraries]{.underline}
+
+`install.packages()` Download and install packages from CRAN-like repositories or from local files. This function must be use once if the require package is not installed.
+
+`libraries()` Load pre-install packages. This function must be use every time a new session starts

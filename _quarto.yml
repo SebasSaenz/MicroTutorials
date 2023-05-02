@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "quartoCourseBlog"
+  title: "Microtutorials"
   navbar:
     right:
       - about.qmd
@@ -13,7 +13,7 @@ website:
         href: https://twitter.com/SaenzJohanS
 format:
   html:
-    theme: minty
+    theme: sketchy
     css: styles.css
 
 editor: visual

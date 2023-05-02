@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Johan Sáenz">
-<meta name="dcterms.date" content="2023-01-05">
+<meta name="dcterms.date" content="2023-05-10">
 
-<title>quartoCourseBlog - R functions</title>
+<title>Microtutorials - R functions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">quartoCourseBlog</span>
+    <span class="navbar-title">Microtutorials</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -125,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 5, 2023</p>
+        <p class="date">May 10, 2023</p>
       </div>
     </div>
       
@@ -142,15 +142,20 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="functions-in-r" class="level1">
+<h1><strong>Functions in R</strong></h1>
 <p>R has multiple options that are useful for the analysis of microbiome data.</p>
-<section id="set-up-functions" class="level2">
-<h2 class="anchored" data-anchor-id="set-up-functions"><strong>Set up functions</strong></h2>
-<section id="get-or-set-working-directory" class="level3">
-<h3 class="anchored" data-anchor-id="get-or-set-working-directory">Get or Set Working Directory</h3>
-<p><code>setwd()</code></p>
+<ol type="1">
+<li><strong>Set up functions</strong></li>
+</ol>
+<p><u>Get or Set Working Directory</u></p>
+<p><code>setwd(dir)</code> is used to set the working directory to <code>dir</code>. <code>dir</code> would be consider the root folder.</p>
+<p>Example: <code>setwd("documents/project")</code></p>
+<p><u>Install and load libraries</u></p>
+<p><code>install.packages()</code> Download and install packages from CRAN-like repositories or from local files. This function must be use once if the require package is not installed.</p>
+<p><code>libraries()</code> Load pre-install packages. This function must be use every time a new session starts</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
