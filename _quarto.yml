@@ -13,7 +13,7 @@ website:
         href: https://twitter.com/SaenzJohanS
 format:
   html:
-    theme: sketchy
+    theme: cyborg
     css: styles.css
 
 editor: visual

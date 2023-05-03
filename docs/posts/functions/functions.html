@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -65,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -101,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">R functions</h1>
@@ -134,8 +134,25 @@ ul.task-list li input[type="checkbox"] {
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#functions-in-r" id="toc-functions-in-r" class="nav-link active" data-scroll-target="#functions-in-r"><strong>Functions in R</strong></a>
+  <ul class="collapse">
+  <li><a href="#set-up-functions" id="toc-set-up-functions" class="nav-link" data-scroll-target="#set-up-functions">Set up functions</a></li>
+  <li><a href="#load-files-functions" id="toc-load-files-functions" class="nav-link" data-scroll-target="#load-files-functions">Load files functions</a></li>
+  <li><a href="#arithmetic-functions" id="toc-arithmetic-functions" class="nav-link" data-scroll-target="#arithmetic-functions">Arithmetic functions</a></li>
+  <li><a href="#ggplot-functions" id="toc-ggplot-functions" class="nav-link" data-scroll-target="#ggplot-functions">ggplot functions</a></li>
+  <li><a href="#tidyverse-functions" id="toc-tidyverse-functions" class="nav-link" data-scroll-target="#tidyverse-functions">Tidyverse functions</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -145,17 +162,61 @@ ul.task-list li input[type="checkbox"] {
 <section id="functions-in-r" class="level1">
 <h1><strong>Functions in R</strong></h1>
 <p>R has multiple options that are useful for the analysis of microbiome data.</p>
-<ol type="1">
-<li><strong>Set up functions</strong></li>
-</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="r-function-types.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+<section id="set-up-functions" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-functions">Set up functions</h2>
 <p><u>Get or Set Working Directory</u></p>
 <p><code>setwd(dir)</code> is used to set the working directory to <code>dir</code>. <code>dir</code> would be consider the root folder.</p>
 <p>Example: <code>setwd("documents/project")</code></p>
 <p><u>Install and load libraries</u></p>
 <p><code>install.packages()</code> Download and install packages from CRAN-like repositories or from local files. This function must be use once if the require package is not installed.</p>
-<p><code>libraries()</code> Load pre-install packages. This function must be use every time a new session starts</p>
+<p><code>library()</code> Load pre-install packages. This function must be use every time a new session starts</p>
+</section>
+<section id="load-files-functions" class="level2">
+<h2 class="anchored" data-anchor-id="load-files-functions">Load files functions</h2>
+<p><code>read.table()</code>Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.</p>
+<p><code>read_tsv()</code> and <code>read_csv()</code> are special cases of the more general <code>read_delim()</code>. They’re useful for reading the most common types of flat file data, comma separated values and tab separated values, respectively.</p>
+</section>
+<section id="arithmetic-functions" class="level2">
+<h2 class="anchored" data-anchor-id="arithmetic-functions">Arithmetic functions</h2>
+<p>mean()</p>
+<p>sum()</p>
+<p>sd()</p>
+<p>max()</p>
+<p>min()</p>
+</section>
+<section id="ggplot-functions" class="level2">
+<h2 class="anchored" data-anchor-id="ggplot-functions">ggplot functions</h2>
+<p><code>ggplot()</code> initializes a ggplot object. It can be used to declare the input data frame for a graphic and to specify the set of plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden.</p>
+<p><u>geom functions</u></p>
+<p>There are different functions to represent geometric figures or more specifically types of graphs. The most common type of figures are: <code>geom_bar()</code>, <code>geom_boxplot()</code>, <code>geom_line()</code>, <code>geom_point().</code> You can check all types here <a href="https://ggplot2.tidyverse.org">ggplot2</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="barplot.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Lets take barplots as examples. There are two types of bar charts: <code>geom_bar()</code> and <code>geom_col()</code>. <code>geom_bar()</code> makes the height of the bar proportional to the number of cases in each group (or if the <code>weight</code> aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use <code>geom_col()</code> instead.</p>
+<p><u>Scale functions</u></p>
+<p>There are different functions to represent the scales of the data in the plots using R. Those functions can be applied to the x or y axis. The most common type of scales are: <code>scale_x_continuous()</code>, <code>scale_y_continuous()</code>, <code>scale_x_discrete()</code>, <code>scale_y_discrete()</code>, <code>scale_x_log10()</code>, <code>scale_y_log10()</code>.</p>
+<p>The function <code>scale_y_continuous()</code> can be use to format the y-axis of a continuous variable. For example you can introduce <code>breaks</code> and <code>limits</code>.</p>
+<p><code>labs()</code> Modify axis, legend, and plot labels. Good labels are critical for making your plots accessible to a wider audience. Always ensure the axis and legend labels display the full variable name. Use the plot <code>title</code> and <code>subtitle</code> to explain the main findings. It’s common to use the <code>caption</code> to provide information about the data source. <code>tag</code> can be used for adding identification tags to differentiate between multiple plots.</p>
+<p><u>Themes</u></p>
+</section>
+<section id="tidyverse-functions" class="level2">
+<h2 class="anchored" data-anchor-id="tidyverse-functions">Tidyverse functions</h2>
+<p>rename()</p>
+<p>pivot_longer()</p>
+<p>pivot_wider()</p>
+<p>group_by()</p>
+<p>summarize()</p>
+<p>mutate()</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
