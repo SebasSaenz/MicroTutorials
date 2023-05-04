@@ -1,7 +1,9 @@
 ---
 title: "R functions"
-author: "Johan Sáenz"
-date: "05-10-2023"
+author: 
+  - name: Johan S. Sáenz 
+    affiliations: University of Hohenheim
+date: "05-01-2023"
 categories: [R, functions]
 format:
   html:
