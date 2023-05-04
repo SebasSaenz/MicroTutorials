@@ -3,7 +3,8 @@
     "listing": "/index.html",
     "items": [
       "/posts/setup/setup.html",
-      "/posts/functions/functions.html"
+      "/posts/functions/functions.html",
+      "/posts/installation/installation.html"
     ]
   }
 ]

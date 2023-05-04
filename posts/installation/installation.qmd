@@ -1,0 +1,64 @@
+---
+title: "R Installation"
+author: 
+  - name: Johan S. Sáenz 
+    affiliations: University of Hohenheim
+date: "04-30-2023"
+categories: [R, Installation]
+format:
+   pdf:
+    toc: true
+    keep-tex: true
+    number-sections: true
+    colorlinks: true
+    fig-pos: 'h'
+   html:
+    toc: true
+    toc-location: left
+---
+
+# **What is R?**
+
+R is a free programming language and software environment that is broadly use for data wrangling, statistical computing and graphical representation. It can be run on a wide variety of UNIX platforms, Windows and MacOS.
+
+[The R project](https://www.r-project.org) is a collaborative effort between the R developers and its community. Every R user can develop its own packages to run in the R environment and solve different problems or necessities. R is quite powerful but it can be challenging to use. Because of that we used [R-studio](https://posit.co/download/rstudio-desktop/), which is an integrated development environment (IDE). This IDE includes a console, syntax-highlighting editor that supports direct code execution, and tools for plotting, history, debugging, and workspace management.
+
+Please follow the following guide to install R and R-studio.
+
+## Installing R
+
+1.  Go to [The R project](https://www.r-project.org) website and click on download R.
+
+![](FIG1.png){fig-align="center" fig-pos="H" width="650"}
+
+2.  Next, select a repository that is preferably located in the country that you are currently residing.
+
+![](FIG2.png){fig-align="center" fig-pos="H" width="650"}
+
+3.  After, select the the operating system (OS) that you have in your machine. For the following example, I will show the steps for the windows OS, however the instructions for the other OS are quite similar.
+
+![](Fig3.png){fig-align="center" fig-pos="H" width="650"}
+
+4.  Here you can click on "install R for the first time" or "base".
+
+![](fig4.png){fig-align="center" fig-pos="H" width="650"}
+
+5.  I usually do not install the last version available, in this case R-4.3.0. I prefer to to install a previous version, which would not have compatibility issues with some of the libraries or packages that I currently use. Go and click on "Previous releases"
+
+![](fig5.png){fig-align="center" fig-pos="H" width="650"}
+
+6.  Select the version R-4-2.2, which have been stable during the last year. Go ahead and download the .exe file and install it. After, follow the basic installation. **I recommend you to install R in English not in German**. If you are in a MacOS machine be aware that there are different versions for the intel-based Macs and arm-based macs.
+
+![](Fig6.png){fig-align="center" fig-pos="H" width="650"}
+
+## R-studio installation
+
+1.  After a successful R installation, we need to install the RStudio IDE. Go to [R-studio](https://posit.co/download/rstudio-desktop/) website and click on "Donwlad RStudio desktop". You can download the last version available of RStuio, follow the basic installation. **I recommend you to install RStudio in English not in German**.
+
+![](fig7.png){fig-align="center" fig-pos="H" width="650"}
+
+2.  Finally, open RStudio and check in the console that the correct version of R is running under the hood.
+
+Now Enjoy!!!!!!!!! 😀
+
+![](Fig8.png){fig-align="center" fig-pos="H" width="650"}
