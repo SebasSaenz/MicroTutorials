@@ -1,0 +1,674 @@
+Probenname	Abschnitt
+9.1	Stomach Digesta
+9.3	Stomach Mucosa 1
+9.4	Stomach Mucosa 2
+9.5	Stomach Mucosa 3
+9.6	Duodenum Digesta
+9.8	Duodenum Mucosa
+9.9	Jejunum Digesta
+9.11	Jejunum Mucosa
+9.12	Ileum Digesta
+9.14	Ileum Mucosa
+9.15	Colon Digesta
+9.17	Colon Mucosa
+9.18	Caecum Digesta
+9.20	Caecum Mucosa
+10.1	Stomach Digesta
+10.3	Stomach Mucosa 1
+10.4	Stomach Mucosa 2
+10.5	Stomach Mucosa 3
+10.6	Duodenum Digesta
+10.8	Duodenum Mucosa
+10.9	Jejunum Digesta
+10.11	Jejunum Mucosa
+10.12	Ileum Digesta
+10.14	Ileum Mucosa
+10.15	Colon Digesta
+10.17	Colon Mucosa
+10.18	Caecum Digesta
+10.20	Caecum Mucosa
+11.1	Stomach Digesta
+11.3	Stomach Mucosa 1
+11.4	Stomach Mucosa 2
+11.5	Stomach Mucosa 3
+11.6	Duodenum Digesta
+11.8	Duodenum Mucosa
+11.9	Jejunum Digesta
+11.11	Jejunum Mucosa
+11.12	Ileum Digesta
+11.14	Ileum Mucosa
+11.15	Colon Digesta
+11.17	Colon Mucosa
+11.18	Caecum Digesta
+11.20	Caecum Mucosa
+12.1	Stomach Digesta
+12.3	Stomach Mucosa 1
+12.4	Stomach Mucosa 2
+12.5	Stomach Mucosa 3
+12.6	Duodenum Digesta
+12.8	Duodenum Mucosa
+12.9	Jejunum Digesta
+12.11	Jejunum Mucosa
+12.12	Ileum Digesta
+12.14	Ileum Mucosa
+12.15	Colon Digesta
+12.17	Colon Mucosa
+12.18	Caecum Digesta
+12.20	Caecum Mucosa
+13.1	Stomach Digesta
+13.3	Stomach Mucosa 1
+13.4	Stomach Mucosa 2
+13.5	Stomach Mucosa 3
+13.6	Duodenum Digesta
+13.8	Duodenum Mucosa
+13.9	Jejunum Digesta
+13.11	Jejunum Mucosa
+13.12	Ileum Digesta
+13.14	Ileum Mucosa
+13.15	Colon Digesta
+13.17	Colon Mucosa
+13.18	Caecum Digesta
+13.20	Caecum Mucosa
+14.1	Stomach Digesta
+14.3	Stomach Mucosa 1
+14.4	Stomach Mucosa 2
+14.5	Stomach Mucosa 3
+14.6	Duodenum Digesta
+14.8	Duodenum Mucosa
+14.9	Jejunum Digesta
+14.11	Jejunum Mucosa
+14.12	Ileum Digesta
+14.14	Ileum Mucosa
+14.15	Colon Digesta
+14.17	Colon Mucosa
+14.18	Caecum Digesta
+14.20	Caecum Mucosa
+15.1	Stomach Digesta
+15.3	Stomach Mucosa 1
+15.4	Stomach Mucosa 2
+15.5	Stomach Mucosa 3
+15.6	Duodenum Digesta
+15.8	Duodenum Mucosa
+15.9	Jejunum Digesta
+15.11	Jejunum Mucosa
+15.12	Ileum Digesta
+15.14	Ileum Mucosa
+15.15	Colon Digesta
+15.17	Colon Mucosa
+15.18	Caecum Digesta
+15.20	Caecum Mucosa
+16.1	Stomach Digesta
+16.3	Stomach Mucosa 1
+16.4	Stomach Mucosa 2
+16.5	Stomach Mucosa 3
+16.6	Duodenum Digesta
+16.8	Duodenum Mucosa
+16.9	Jejunum Digesta
+16.11	Jejunum Mucosa
+16.12	Ileum Digesta
+16.14	Ileum Mucosa
+16.15	Colon Digesta
+16.17	Caecum Mucosa
+16.18	Caecum Digesta
+16.20	Colon Mucosa
+17.1	Stomach Digesta
+17.3	Stomach Mucosa 1
+17.4	Stomach Mucosa 2
+17.5	Stomach Mucosa 3
+17.6	Duodenum Digesta
+17.8	Duodenum Mucosa
+17.9	Jejunum Digesta
+17.11	Jejunum Mucosa
+17.12	Ileum Digesta
+17.14	Ileum Mucosa
+17.15	Colon Digesta
+17.17	Colon Mucosa
+17.18	Caecum Digesta
+17.20	Caecum Mucosa
+18.1	Stomach Digesta
+18.3	Stomach Mucosa 1
+18.4	Stomach Mucosa 2
+18.5	Stomach Mucosa 3
+18.6	Duodenum Digesta
+18.8	Duodenum Mucosa
+18.9	Jejunum Digesta
+18.11	Jejunum Mucosa
+18.12	Ileum Digesta
+18.14	Ileum Mucosa
+18.15	Colon Digesta
+18.17	Colon Mucosa
+18.18	Caecum Digesta
+18.20	Caecum Mucosa
+19.1	Stomach Digesta
+19.3	Stomach Mucosa 1
+19.4	Stomach Mucosa 2
+19.5	Stomach Mucosa 3
+19.6	Duodenum Digesta
+19.8	Duodenum Mucosa
+19.9	Jejunum Digesta
+19.11	Jejunum Mucosa
+19.12	Ileum Digesta
+19.14	Ileum Mucosa
+19.15	Colon Digesta
+19.17	Colon Mucosa
+19.18	Caecum Digesta
+19.20	Caecum Mucosa
+20.1	Stomach Digesta
+20.3	Stomach Mucosa 1
+20.4	Stomach Mucosa 2
+20.5	Stomach Mucosa 3
+20.6	Duodenum Digesta
+20.8	Duodenum Mucosa
+20.9	Jejunum Digesta
+20.11	Jejunum Mucosa
+20.12	Ileum Digesta
+20.14	Ileum Mucosa
+20.15	Colon Digesta
+20.17	Colon Mucosa
+20.18	Caecum Digesta
+20.20	Caecum Mucosa
+21.1	Stomach Digesta
+21.3	Stomach Mucosa 1
+21.4	Stomach Mucosa 2
+21.5	Stomach Mucosa 3
+21.6	Duodenum Digesta
+21.8	Duodenum Mucosa
+21.9	Jejunum Digesta
+21.11	Jejunum Mucosa
+21.12	Ileum Digesta
+21.14	Ileum Mucosa
+21.15	Colon Digesta
+21.17	Colon Mucosa
+21.18	Caecum Digesta
+21.20	Caecum Mucosa
+22.1	Stomach Digesta
+22.3	Stomach Mucosa 1
+22.4	Stomach Mucosa 2
+22.5	Stomach Mucosa 3
+22.6	Duodenum Digesta
+22.8	Duodenum Mucosa
+22.9	Jejunum Digesta
+22.11	Jejunum Mucosa
+22.12	Ileum Digesta
+22.14	Ileum Mucosa
+22.15	Colon Digesta
+22.17	Colon Mucosa
+22.18	Caecum Digesta
+22.20	Caecum Mucosa
+22.21	Duodenum Mucosa
+23.1	Stomach Digesta
+23.3	Stomach Mucosa 1
+23.4	Stomach Mucosa 2
+23.5	Stomach Mucosa 3
+23.6	Duodenum Digesta
+23.8	Duodenum Mucosa
+23.9	Jejunum Digesta
+23.11	Jejunum Mucosa
+23.12	Ileum Digesta
+23.14	Ileum Mucosa
+23.15	Colon Digesta
+23.17	Colon Mucosa
+23.18	Caecum Digesta
+23.20	Caecum Mucosa
+24.1	Stomach Digesta
+24.3	Stomach Mucosa 1
+24.4	Stomach Mucosa 2
+24.5	Stomach Mucosa 3
+24.6	Duodenum Digesta
+24.8	Duodenum Mucosa
+24.9	Jejunum Digesta
+24.11	Jejunum Mucosa
+24.12	Ileum Digesta
+24.14	Ileum Mucosa
+24.15	Colon Digesta
+24.17	Colon Mucosa
+24.18	Caecum Digesta
+24.20	Caecum Mucosa
+25.1	Stomach Digesta
+25.3	Stomach Mucosa 1
+25.4	Stomach Mucosa 2
+25.5	Stomach Mucosa 3
+25.6	Duodenum Digesta
+25.8	Duodenum Mucosa
+25.9	Jejunum Digesta
+25.11	Jejunum Mucosa
+25.12	Ileum Digesta
+25.14	Ileum Mucosa
+25.15	Colon Digesta
+25.17	Colon Mucosa
+25.18	Caecum Digesta
+25.20	Caecum Mucosa
+26.1	Stomach Digesta
+26.3	Stomach Mucosa 1
+26.4	Stomach Mucosa 2
+26.5	Stomach Mucosa 3
+26.6	Duodenum Digesta
+26.8	Duodenum Mucosa
+26.9	Jejunum Digesta
+26.11	Jejunum Mucosa
+26.12	Ileum Digesta
+26.14	Ileum Mucosa
+26.15	Colon Digesta
+26.17	Colon Mucosa
+26.18	Caecum Digesta
+26.20	Caecum Mucosa
+27.1	Stomach Digesta
+27.3	Stomach Mucosa 1
+27.4	Stomach Mucosa 2
+27.5	Stomach Mucosa 3
+27.6	Duodenum Digesta
+27.8	Duodenum Mucosa
+27.9	Jejunum Digesta
+27.11	Jejunum Mucosa
+27.12	Ileum Digesta
+27.14	Ileum Mucosa
+27.15	Colon Digesta
+27.17	Colon Mucosa
+27.18	Caecum Digesta
+27.20	Caecum Mucosa
+28.1	Stomach Digesta
+28.3	Stomach Mucosa 1
+28.4	Stomach Mucosa 2
+28.5	Stomach Mucosa 3
+28.6	Duodenum Digesta
+28.8	Duodenum Mucosa
+28.9	Jejunum Digesta
+28.11	Jejunum Mucosa
+28.12	Ileum Digesta
+28.14	Ileum Mucosa
+28.15	Colon Digesta
+28.17	Colon Mucosa
+28.18	Caecum Digesta
+28.20	Caecum Mucosa
+29.1	Stomach Digesta
+29.3	Stomach Mucosa 1
+29.4	Stomach Mucosa 2
+29.5	Stomach Mucosa 3
+29.6	Duodenum Digesta
+29.8	Duodenum Mucosa
+29.9	Jejunum Digesta
+29.11	Jejunum Mucosa
+29.12	Ileum Digesta
+29.14	Ileum Mucosa
+29.15	Colon Digesta
+29.17	Colon Mucosa
+29.18	Caecum Digesta
+29.20	Caecum Mucosa
+30.1	Stomach Digesta
+30.3	Stomach Mucosa 1
+30.4	Stomach Mucosa 2
+30.5	Stomach Mucosa 3
+30.6	Duodenum Digesta
+30.8	Duodenum Mucosa
+30.9	Jejunum Digesta
+30.11	Jejunum Mucosa
+30.12	Ileum Digesta
+30.14	Ileum Mucosa
+30.15	Colon Digesta
+30.17	Colon Mucosa
+30.18	Caecum Digesta
+30.20	Caecum Mucosa
+31.1	Stomach Digesta
+31.3	Stomach Mucosa 1
+31.4	Stomach Mucosa 2
+31.5	Stomach Mucosa 3
+31.6	Duodenum Digesta
+31.8	Duodenum Mucosa
+31.9	Jejunum Digesta
+31.11	Jejunum Mucosa
+31.12	Ileum Digesta
+31.14	Ileum Mucosa
+31.15	Colon Digesta
+31.17	Colon Mucosa
+31.18	Caecum Digesta
+31.20	Caecum Mucosa
+32.1	Stomach Digesta
+32.3	Stomach Mucosa 1
+32.4	Stomach Mucosa 2
+32.5	Stomach Mucosa 3
+32.6	Duodenum Digesta
+32.8	Duodenum Mucosa
+32.9	Jejunum Digesta
+32.11	Jejunum Mucosa
+32.12	Ileum Digesta
+32.14	Ileum Mucosa
+32.15	Colon Digesta
+32.17	Colon Mucosa
+32.18	Caecum Digesta
+32.20	Caecum Mucosa
+33.1	Stomach Digesta
+33.3	Stomach Mucosa 1
+33.4	Stomach Mucosa 2
+33.5	Stomach Mucosa 3
+33.6	Duodenum Digesta
+33.8	Duodenum Mucosa
+33.9	Jejunum Digesta
+33.11	Jejunum Mucosa
+33.12	Ileum Digesta
+33.14	Ileum Mucosa
+33.15	Colon Digesta
+33.17	Colon Mucosa
+33.18	Caecum Digesta
+33.20	Caecum Mucosa
+34.1	Stomach Digesta
+34.3	Stomach Mucosa 1
+34.4	Stomach Mucosa 2
+34.5	Stomach Mucosa 3
+34.6	Duodenum Digesta
+34.8	Duodenum Mucosa
+34.9	Jejunum Digesta
+34.11	Jejunum Mucosa
+34.12	Ileum Digesta
+34.14	Ileum Mucosa
+34.15	Colon Digesta
+34.17	Colon Mucosa
+34.18	Caecum Digesta
+34.20	Caecum Mucosa
+35.1	Stomach Digesta
+35.3	Stomach Mucosa 1
+35.4	Stomach Mucosa 2
+35.5	Stomach Mucosa 3
+35.6	Duodenum Digesta
+35.8	Duodenum Mucosa
+35.9	Jejunum Digesta
+35.11	Jejunum Mucosa
+35.12	Ileum Digesta
+35.14	Ileum Mucosa
+35.15	Colon Digesta
+35.17	Colon Mucosa
+35.18	Caecum Digesta
+35.20	Caecum Mucosa
+36.1	Stomach Digesta
+36.3	Stomach Mucosa 1
+36.4	Stomach Mucosa 2
+36.5	Stomach Mucosa 3
+36.6	Duodenum Digesta
+36.8	Duodenum Mucosa
+36.9	Jejunum Digesta
+36.11	Jejunum Mucosa
+36.12	Ileum Digesta
+36.14	Ileum Mucosa
+36.15	Colon Digesta
+36.17	Colon Mucosa
+36.18	Caecum Digesta
+36.20	Caecum Mucosa
+37.1	Stomach Digesta
+37.3	Stomach Mucosa 1
+37.4	Stomach Mucosa 2
+37.5	Stomach Mucosa 3
+37.6	Duodenum Digesta
+37.8	Duodenum Mucosa
+37.9	Jejunum Digesta
+37.11	Jejunum Mucosa
+37.12	Ileum Digesta
+37.14	Ileum Mucosa
+37.15	Colon Digesta
+37.17	Colon Mucosa
+37.18	Caecum Digesta
+37.20	Caecum Mucosa
+38.1	Stomach Digesta
+38.3	Stomach Mucosa 1
+38.4	Stomach Mucosa 2
+38.5	Stomach Mucosa 3
+38.6	Duodenum Digesta
+38.8	Duodenum Mucosa
+38.9	Jejunum Digesta
+38.11	Jejunum Mucosa
+38.12	Ileum Digesta
+38.14	Ileum Mucosa
+38.15	Colon Digesta
+38.17	Colon Mucosa
+38.18	Caecum Digesta
+38.20	Caecum Mucosa
+39.1	Stomach Digesta
+39.3	Stomach Mucosa 1
+39.4	Stomach Mucosa 2
+39.5	Stomach Mucosa 3
+39.6	Duodenum Digesta
+39.8	Duodenum Mucosa
+39.9	Jejunum Digesta
+39.11	Jejunum Mucosa
+39.12	Ileum Digesta
+39.14	Ileum Mucosa
+39.15	Colon Digesta
+39.17	Colon Mucosa
+39.18	Caecum Digesta
+39.20	Caecum Mucosa
+40.1	Stomach Digesta
+40.3	Stomach Mucosa 1
+40.4	Stomach Mucosa 2
+40.5	Stomach Mucosa 3
+40.6	Duodenum Digesta
+40.8	Duodenum Mucosa
+40.9	Jejunum Digesta
+40.11	Jejunum Mucosa
+40.12	Ileum Digesta
+40.14	Ileum Mucosa
+40.15	Colon Digesta
+40.17	Colon Mucosa
+40.18	Caecum Digesta
+40.20	Caecum Mucosa
+41.1	Stomach Digesta
+41.3	Stomach Mucosa 1
+41.4	Stomach Mucosa 2
+41.5	Stomach Mucosa 3
+41.6	Duodenum Digesta
+41.8	Duodenum Mucosa
+41.9	Jejunum Digesta
+41.11	Jejunum Mucosa
+41.12	Ileum Digesta
+41.14	Ileum Mucosa
+41.15	Colon Digesta
+41.17	Colon Mucosa
+41.18	Caecum Digesta
+41.20	Caecum Mucosa
+42.1	Stomach Digesta
+42.3	Stomach Mucosa 1
+42.4	Stomach Mucosa 2
+42.5	Stomach Mucosa 3
+42.6	Duodenum Digesta
+42.8	Duodenum Mucosa
+42.9	Jejunum Digesta
+42.11	Jejunum Mucosa
+42.12	Ileum Digesta
+42.14	Ileum Mucosa
+42.15	Colon Digesta
+42.17	Colon Mucosa
+42.18	Caecum Digesta
+42.20	Caecum Mucosa
+43.1	Stomach Digesta
+43.3	Stomach Mucosa 1
+43.4	Stomach Mucosa 2
+43.5	Stomach Mucosa 3
+43.6	Duodenum Digesta
+43.8	Duodenum Mucosa
+43.9	Jejunum Digesta
+43.11	Jejunum Mucosa
+43.12	Ileum Digesta
+43.14	Ileum Mucosa
+43.15	Colon Digesta
+43.17	Colon Mucosa
+43.18	Caecum Digesta
+43.20	Caecum Mucosa
+44.1	Stomach Digesta
+44.3	Stomach Mucosa 1
+44.4	Stomach Mucosa 2
+44.5	Stomach Mucosa 3
+44.6	Duodenum Digesta
+44.8	Duodenum Mucosa
+44.9	Jejunum Digesta
+44.11	Jejunum Mucosa
+44.12	Ileum Digesta
+44.14	Ileum Mucosa
+44.15	Colon Digesta
+44.17	Colon Mucosa
+44.18	Caecum Digesta
+44.20	Caecum Mucosa
+45.1	Stomach Digesta
+45.3	Stomach Mucosa 1
+45.4	Stomach Mucosa 2
+45.5	Stomach Mucosa 3
+45.6	Duodenum Digesta
+45.8	Duodenum Mucosa
+45.9	Jejunum Digesta
+45.11	Jejunum Mucosa
+45.12	Ileum Digesta
+45.14	Ileum Mucosa
+45.15	Colon Digesta
+45.17	Colon Mucosa
+45.18	Caecum Digesta
+45.20	Caecum Mucosa
+46.1	Stomach Digesta
+46.3	Stomach Mucosa 1
+46.4	Stomach Mucosa 2
+46.5	Stomach Mucosa 3
+46.6	Duodenum Digesta
+46.8	Duodenum Mucosa
+46.9	Jejunum Digesta
+46.11	Jejunum Mucosa
+46.12	Ileum Digesta
+46.14	Ileum Mucosa
+46.15	Colon Digesta
+46.17	Colon Mucosa
+46.18	Caecum Digesta
+46.20	Caecum Mucosa
+47.1	Stomach Digesta
+47.3	Stomach Mucosa 1
+47.4	Stomach Mucosa 2
+47.5	Stomach Mucosa 3
+47.6	Duodenum Digesta
+47.8	Duodenum Mucosa
+47.9	Jejunum Digesta
+47.11	Jejunum Mucosa
+47.12	Ileum Digesta
+47.14	Ileum Mucosa
+47.15	Colon Digesta
+47.17	Colon Mucosa
+47.18	Caecum Digesta
+47.20	Caecum Mucosa
+48.1	Stomach Digesta
+48.3	Stomach Mucosa 1
+48.4	Stomach Mucosa 2
+48.5	Stomach Mucosa 3
+48.6	Duodenum Digesta
+48.8	Duodenum Mucosa
+48.9	Jejunum Digesta
+48.11	Jejunum Mucosa
+48.12	Ileum Digesta
+48.14	Ileum Mucosa
+48.15	Colon Digesta
+48.17	Colon Mucosa
+48.18	Caecum Digesta
+48.20	Caecum Mucosa
+49.1	Stomach Digesta
+49.3	Stomach Mucosa 1
+49.4	Stomach Mucosa 2
+49.5	Stomach Mucosa 3
+49.6	Duodenum Digesta
+49.8	Duodenum Mucosa
+49.9	Jejunum Digesta
+49.11	Jejunum Mucosa
+49.12	Ileum Digesta
+49.14	Ileum Mucosa
+49.15	Colon Digesta
+49.17	Colon Mucosa
+49.18	Caecum Digesta
+49.20	Caecum Mucosa
+50.1	Stomach Digesta
+50.3	Stomach Mucosa 1
+50.4	Stomach Mucosa 2
+50.5	Stomach Mucosa 3
+50.6	Duodenum Digesta
+50.8	Duodenum Mucosa
+50.9	Jejunum Digesta
+50.11	Jejunum Mucosa
+50.12	Ileum Digesta
+50.14	Ileum Mucosa
+50.15	Colon Digesta
+50.17	Colon Mucosa
+50.18	Caecum Digesta
+50.20	Caecum Mucosa
+51.1	Stomach Digesta
+51.3	Stomach Mucosa 1
+51.4	Stomach Mucosa 2
+51.5	Stomach Mucosa 3
+51.6	Duodenum Digesta
+51.8	Duodenum Mucosa
+51.9	Jejunum Digesta
+51.11	Jejunum Mucosa
+51.12	Ileum Digesta
+51.14	Ileum Mucosa
+51.15	Colon Digesta
+51.17	Colon Mucosa
+51.18	Caecum Digesta
+51.20	Caecum Mucosa
+52.1	Stomach Digesta
+52.3	Stomach Mucosa 1
+52.4	Stomach Mucosa 2
+52.5	Stomach Mucosa 3
+52.6	Duodenum Digesta
+52.8	Duodenum Mucosa
+52.9	Jejunum Digesta
+52.11	Jejunum Mucosa
+52.12	Ileum Digesta
+52.14	Ileum Mucosa
+52.15	Colon Digesta
+52.17	Colon Mucosa
+52.18	Caecum Digesta
+52.20	Caecum Mucosa
+53.1	Stomach Digesta
+53.3	Stomach Mucosa 1
+53.4	Stomach Mucosa 2
+53.5	Stomach Mucosa 3
+53.6	Duodenum Digesta
+53.8	Duodenum Mucosa
+53.9	Jejunum Digesta
+53.11	Jejunum Mucosa
+53.12	Ileum Digesta
+53.14	Ileum Mucosa
+53.15	Colon Digesta
+53.17	Colon Mucosa
+53.18	Caecum Digesta
+53.20	Caecum Mucosa
+54.1	Stomach Digesta
+54.3	Stomach Mucosa 1
+54.4	Stomach Mucosa 2
+54.5	Stomach Mucosa 3
+54.6	Duodenum Digesta
+54.8	Duodenum Mucosa
+54.9	Jejunum Digesta
+54.11	Jejunum Mucosa
+54.12	Ileum Digesta
+54.14	Ileum Mucosa
+54.15	Colon Digesta
+54.17	Colon Mucosa
+54.18	Caecum Digesta
+54.20	Caecum Mucosa
+55.1	Stomach Digesta
+55.3	Stomach Mucosa 1
+55.4	Stomach Mucosa 2
+55.5	Stomach Mucosa 3
+55.6	Duodenum Digesta
+55.8	Duodenum Mucosa
+55.9	Jejunum Digesta
+55.11	Jejunum Mucosa
+55.12	Ileum Digesta
+55.14	Ileum Mucosa
+55.15	Colon Digesta
+55.17	Colon Mucosa
+55.18	Caecum Digesta
+55.20	Caecum Mucosa
+56.1	Stomach Digesta
+56.3	Stomach Mucosa 1
+56.4	Stomach Mucosa 2
+56.5	Stomach Mucosa 3
+56.6	Duodenum Digesta
+56.8	Duodenum Mucosa
+56.9	Jejunum Digesta
+56.11	Jejunum Mucosa
+56.12	Ileum Digesta
+56.14	Ileum Mucosa
+56.15	Colon Digesta
+56.17	Colon Mucosa
+56.18	Caecum Digesta
+56.20	Caecum Mucosa

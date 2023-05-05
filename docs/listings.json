@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/qc_metaproteomics/qc_metaproteomics.html",
       "/posts/setup/setup.html",
       "/posts/functions/functions.html",
       "/posts/installation/installation.html"

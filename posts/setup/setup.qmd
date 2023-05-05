@@ -7,6 +7,10 @@ format:
   html:
     toc: true
     toc-location: left
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
 ---
 
 # **Working space set-up**

@@ -1,0 +1,45 @@
+---
+title: "Quality control metaproteomics"
+author: 
+  - name: Johan S. Sáenz 
+    affiliations: University of Hohenheim
+date: "05-05-2023"
+categories: [R, metaproteomics]
+format:
+   pdf:
+    toc: true
+    keep-tex: true
+    number-sections: true
+    colorlinks: true
+    fig-pos: 'h'
+    code-block-bg: true
+   html:
+    toc: true
+    toc-location: left
+---
+
+```{r}
+##libraries
+library(tidyverse)
+library(here)
+
+## input data
+df_qc <- read.table(here::here("rawdata/summary.txt"),
+                   header = TRUE,
+                   sep="\t",
+                   check.names = FALSE)
+
+colnames(df_qc)
+```
+
+```{r}
+metadata <-read.table(here::here("rawdata/metadata_metapro.txt"),
+           header = TRUE,
+           sep="\t") %>%
+  rename(sample=Probenname) %>%
+  mutate(sample=str_replace_all(sample, "\\.", "_"))%>%
+  separate(Abschnitt,
+           into=c("region", "source",
+           sep=" "))
+
+```
