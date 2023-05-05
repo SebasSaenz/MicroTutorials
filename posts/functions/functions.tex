@@ -9,7 +9,6 @@
   numbers=noendperiod]{scrartcl}
 
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -19,6 +18,10 @@
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -37,7 +40,7 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\usepackage[normalem]{ulem}
+\usepackage{soul}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
@@ -161,10 +164,12 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 \makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
 \makeatother
 \makeatletter
 \@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
 \makeatother
 \makeatletter
 \makeatother
@@ -186,11 +191,11 @@
 
 \title{R functions}
 \author{Johan S. Sáenz}
-\date{05-01-2023}
+\date{2023-05-01}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[colback={shadecolor}, boxrule=0pt, frame hidden, breakable, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, frame hidden, boxrule=0pt, interior hidden, breakable, sharp corners]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -249,7 +254,7 @@ the microbiome data wrangling.
 \hypertarget{set-up-functions}{%
 \subsection{Set up functions}\label{set-up-functions}}
 
-\uline{Get or Set Working Directory}
+\ul{Get or Set Working Directory}
 
 \textbf{\texttt{setwd()}} is used to set the working directory for the
 current R session. The selected directory would be consider the root
@@ -259,7 +264,7 @@ Example:
 
 \textbf{\texttt{setwd("documents/project")}}
 
-\uline{Install and load libraries}
+\ul{Install and load libraries}
 
 \textbf{\texttt{install.packages()}} Download and install packages from
 CRAN-like repositories or from local files. This function must be use
@@ -299,48 +304,51 @@ can used arithmetic operators like +, -, *, to perform arithmetic
 calculations.
 
 \begin{longtable}[]{@{}lll@{}}
-\toprule()
+\toprule\noalign{}
 \textbf{Operator} & \textbf{Operation} & \textbf{Output} \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 x+y & Addition & 15 \\
 x -- y & Subtraction & 5 \\
 x * y & Multiplication & 50 \\
 x / y & Division & 2 \\
 x \^{} y & Exponent & 10\^{}5 \\
 x \%\% y & Modulus & 0 \\
-\bottomrule()
 \end{longtable}
 
 You can also use logical operators to perform boolean operation.
 
 \begin{longtable}[]{@{}lll@{}}
-\toprule()
+\toprule\noalign{}
 ! & -- & NOT \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \& & -- & AND (Element wise) \\
 \&\& & -- & AND \\
 \textbar{} & -- & OR (Element wise) \\
 \textbar\textbar{} & -- & OR \\
 ! & -- & NOT \\
-\bottomrule()
 \end{longtable}
 
 Additional, relational operators can be used to compare two values or
 variables.
 
 \begin{longtable}[]{@{}lll@{}}
-\toprule()
+\toprule\noalign{}
 Greater than & x\textgreater y & Output: TRUE \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Less than & x\textless y & Output: FALSE \\
 Greater than and equal to & x\textgreater=y & Output: TRUE \\
 Less than and equal to & x\textless=y & Output: FALSE \\
 Equal to & x==y & Output: FALSE \\
 Not equal to & x!=y & Output: TRUE \\
-\bottomrule()
 \end{longtable}
 
 However, R also has more complex pre-build function that you can use to
@@ -373,7 +381,7 @@ to declare the input data frame for a graphic and to specify the set of
 plot aesthetics intended to be common throughout all subsequent layers
 unless specifically overridden.
 
-\uline{geom functions}
+\ul{geom functions}
 
 There are different functions to represent geometric figures or more
 specifically types of graphs. The most common type of figures are:
@@ -397,7 +405,7 @@ aesthetic is supplied, the sum of the weights). If you want the heights
 of the bars to represent values in the data, use
 \textbf{\texttt{geom\_col()}} instead.
 
-\uline{Scale functions}
+\ul{Scale functions}
 
 There are different functions to represent the scales of the data in the
 plots using R. Those functions can be applied to the x or y axis. The
@@ -421,7 +429,7 @@ explain the main findings. It's common to use the \texttt{caption} to
 provide information about the data source. \texttt{tag} can be used for
 adding identification tags to differentiate between multiple plots.
 
-\uline{Themes}
+\ul{Themes}
 
 \textbf{\texttt{theme()}} is a powerful way to customize the non-data
 components of your plots: i.e.~titles, labels, fonts, background,

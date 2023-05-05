@@ -19,6 +19,7 @@ format:
 ---
 
 ```{r}
+#| warning: false
 ##libraries
 library(tidyverse)
 library(here)
@@ -33,6 +34,7 @@ colnames(df_qc)
 ```
 
 ```{r}
+#| warning: false
 metadata <-read.table(here::here("rawdata/metadata_metapro.txt"),
            header = TRUE,
            sep="\t") %>%
@@ -41,5 +43,5 @@ metadata <-read.table(here::here("rawdata/metadata_metapro.txt"),
   separate(Abschnitt,
            into=c("region", "source",
            sep=" "))
-
+ metadata
 ```

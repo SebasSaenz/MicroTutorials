@@ -9,7 +9,6 @@
   numbers=noendperiod]{scrartcl}
 
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -19,6 +18,10 @@
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -160,10 +163,12 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 \makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
 \makeatother
 \makeatletter
 \@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
 \makeatother
 \makeatletter
 \makeatother
@@ -185,11 +190,11 @@
 
 \title{Quality control metaproteomics}
 \author{Johan S. Sáenz}
-\date{05-05-2023}
+\date{2023-05-05}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, colback={shadecolor}, enhanced, frame hidden, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, breakable, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, sharp corners, frame hidden, enhanced]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -201,32 +206,8 @@
 \begin{Highlighting}[]
 \DocumentationTok{\#\#libraries}
 \FunctionTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
--- Attaching packages --------------------------------------- tidyverse 1.3.2 --
-v ggplot2 3.4.0      v purrr   1.0.1 
-v tibble  3.1.8      v dplyr   1.0.10
-v tidyr   1.2.1      v stringr 1.5.0 
-v readr   2.1.3      v forcats 0.5.2 
--- Conflicts ------------------------------------------ tidyverse_conflicts() --
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(here)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-here() starts at /Users/sebastiansaenz/Documents/github/MicroTutorials
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \DocumentationTok{\#\# input data}
 \NormalTok{df\_qc }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"rawdata/summary.txt"}\NormalTok{),}
                    \AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{,}
@@ -291,6 +272,697 @@ here() starts at /Users/sebastiansaenz/Documents/github/MicroTutorials
 [51] "Av. Absolute Mass Deviation [mDa]"        
 [52] "Mass Standard Deviation [mDa]"            
 [53] "Label free norm param"                    
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{metadata }\OtherTok{\textless{}{-}}\FunctionTok{read.table}\NormalTok{(here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"rawdata/metadata\_metapro.txt"}\NormalTok{),}
+           \AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{,}
+           \AttributeTok{sep=}\StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{sample=}\NormalTok{Probenname) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{sample=}\FunctionTok{str\_replace\_all}\NormalTok{(sample, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{, }\StringTok{"\_"}\NormalTok{))}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{separate}\NormalTok{(Abschnitt,}
+           \AttributeTok{into=}\FunctionTok{c}\NormalTok{(}\StringTok{"region"}\NormalTok{, }\StringTok{"source"}\NormalTok{,}
+           \AttributeTok{sep=}\StringTok{" "}\NormalTok{))}
+\NormalTok{ metadata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    sample   region  source     
+1      9_1  Stomach Digesta <NA>
+2      9_3  Stomach  Mucosa    1
+3      9_4  Stomach  Mucosa    2
+4      9_5  Stomach  Mucosa    3
+5      9_6 Duodenum Digesta <NA>
+6      9_8 Duodenum  Mucosa <NA>
+7      9_9  Jejunum Digesta <NA>
+8     9_11  Jejunum  Mucosa <NA>
+9     9_12    Ileum Digesta <NA>
+10    9_14    Ileum  Mucosa <NA>
+11    9_15    Colon Digesta <NA>
+12    9_17    Colon  Mucosa <NA>
+13    9_18   Caecum Digesta <NA>
+14     9_2   Caecum  Mucosa <NA>
+15    10_1  Stomach Digesta <NA>
+16    10_3  Stomach  Mucosa    1
+17    10_4  Stomach  Mucosa    2
+18    10_5  Stomach  Mucosa    3
+19    10_6 Duodenum Digesta <NA>
+20    10_8 Duodenum  Mucosa <NA>
+21    10_9  Jejunum Digesta <NA>
+22   10_11  Jejunum  Mucosa <NA>
+23   10_12    Ileum Digesta <NA>
+24   10_14    Ileum  Mucosa <NA>
+25   10_15    Colon Digesta <NA>
+26   10_17    Colon  Mucosa <NA>
+27   10_18   Caecum Digesta <NA>
+28    10_2   Caecum  Mucosa <NA>
+29    11_1  Stomach Digesta <NA>
+30    11_3  Stomach  Mucosa    1
+31    11_4  Stomach  Mucosa    2
+32    11_5  Stomach  Mucosa    3
+33    11_6 Duodenum Digesta <NA>
+34    11_8 Duodenum  Mucosa <NA>
+35    11_9  Jejunum Digesta <NA>
+36   11_11  Jejunum  Mucosa <NA>
+37   11_12    Ileum Digesta <NA>
+38   11_14    Ileum  Mucosa <NA>
+39   11_15    Colon Digesta <NA>
+40   11_17    Colon  Mucosa <NA>
+41   11_18   Caecum Digesta <NA>
+42    11_2   Caecum  Mucosa <NA>
+43    12_1  Stomach Digesta <NA>
+44    12_3  Stomach  Mucosa    1
+45    12_4  Stomach  Mucosa    2
+46    12_5  Stomach  Mucosa    3
+47    12_6 Duodenum Digesta <NA>
+48    12_8 Duodenum  Mucosa <NA>
+49    12_9  Jejunum Digesta <NA>
+50   12_11  Jejunum  Mucosa <NA>
+51   12_12    Ileum Digesta <NA>
+52   12_14    Ileum  Mucosa <NA>
+53   12_15    Colon Digesta <NA>
+54   12_17    Colon  Mucosa <NA>
+55   12_18   Caecum Digesta <NA>
+56    12_2   Caecum  Mucosa <NA>
+57    13_1  Stomach Digesta <NA>
+58    13_3  Stomach  Mucosa    1
+59    13_4  Stomach  Mucosa    2
+60    13_5  Stomach  Mucosa    3
+61    13_6 Duodenum Digesta <NA>
+62    13_8 Duodenum  Mucosa <NA>
+63    13_9  Jejunum Digesta <NA>
+64   13_11  Jejunum  Mucosa <NA>
+65   13_12    Ileum Digesta <NA>
+66   13_14    Ileum  Mucosa <NA>
+67   13_15    Colon Digesta <NA>
+68   13_17    Colon  Mucosa <NA>
+69   13_18   Caecum Digesta <NA>
+70    13_2   Caecum  Mucosa <NA>
+71    14_1  Stomach Digesta <NA>
+72    14_3  Stomach  Mucosa    1
+73    14_4  Stomach  Mucosa    2
+74    14_5  Stomach  Mucosa    3
+75    14_6 Duodenum Digesta <NA>
+76    14_8 Duodenum  Mucosa <NA>
+77    14_9  Jejunum Digesta <NA>
+78   14_11  Jejunum  Mucosa <NA>
+79   14_12    Ileum Digesta <NA>
+80   14_14    Ileum  Mucosa <NA>
+81   14_15    Colon Digesta <NA>
+82   14_17    Colon  Mucosa <NA>
+83   14_18   Caecum Digesta <NA>
+84    14_2   Caecum  Mucosa <NA>
+85    15_1  Stomach Digesta <NA>
+86    15_3  Stomach  Mucosa    1
+87    15_4  Stomach  Mucosa    2
+88    15_5  Stomach  Mucosa    3
+89    15_6 Duodenum Digesta <NA>
+90    15_8 Duodenum  Mucosa <NA>
+91    15_9  Jejunum Digesta <NA>
+92   15_11  Jejunum  Mucosa <NA>
+93   15_12    Ileum Digesta <NA>
+94   15_14    Ileum  Mucosa <NA>
+95   15_15    Colon Digesta <NA>
+96   15_17    Colon  Mucosa <NA>
+97   15_18   Caecum Digesta <NA>
+98    15_2   Caecum  Mucosa <NA>
+99    16_1  Stomach Digesta <NA>
+100   16_3  Stomach  Mucosa    1
+101   16_4  Stomach  Mucosa    2
+102   16_5  Stomach  Mucosa    3
+103   16_6 Duodenum Digesta <NA>
+104   16_8 Duodenum  Mucosa <NA>
+105   16_9  Jejunum Digesta <NA>
+106  16_11  Jejunum  Mucosa <NA>
+107  16_12    Ileum Digesta <NA>
+108  16_14    Ileum  Mucosa <NA>
+109  16_15    Colon Digesta <NA>
+110  16_17   Caecum  Mucosa <NA>
+111  16_18   Caecum Digesta <NA>
+112   16_2    Colon  Mucosa <NA>
+113   17_1  Stomach Digesta <NA>
+114   17_3  Stomach  Mucosa    1
+115   17_4  Stomach  Mucosa    2
+116   17_5  Stomach  Mucosa    3
+117   17_6 Duodenum Digesta <NA>
+118   17_8 Duodenum  Mucosa <NA>
+119   17_9  Jejunum Digesta <NA>
+120  17_11  Jejunum  Mucosa <NA>
+121  17_12    Ileum Digesta <NA>
+122  17_14    Ileum  Mucosa <NA>
+123  17_15    Colon Digesta <NA>
+124  17_17    Colon  Mucosa <NA>
+125  17_18   Caecum Digesta <NA>
+126   17_2   Caecum  Mucosa <NA>
+127   18_1  Stomach Digesta <NA>
+128   18_3  Stomach  Mucosa    1
+129   18_4  Stomach  Mucosa    2
+130   18_5  Stomach  Mucosa    3
+131   18_6 Duodenum Digesta <NA>
+132   18_8 Duodenum  Mucosa <NA>
+133   18_9  Jejunum Digesta <NA>
+134  18_11  Jejunum  Mucosa <NA>
+135  18_12    Ileum Digesta <NA>
+136  18_14    Ileum  Mucosa <NA>
+137  18_15    Colon Digesta <NA>
+138  18_17    Colon  Mucosa <NA>
+139  18_18   Caecum Digesta <NA>
+140   18_2   Caecum  Mucosa <NA>
+141   19_1  Stomach Digesta <NA>
+142   19_3  Stomach  Mucosa    1
+143   19_4  Stomach  Mucosa    2
+144   19_5  Stomach  Mucosa    3
+145   19_6 Duodenum Digesta <NA>
+146   19_8 Duodenum  Mucosa <NA>
+147   19_9  Jejunum Digesta <NA>
+148  19_11  Jejunum  Mucosa <NA>
+149  19_12    Ileum Digesta <NA>
+150  19_14    Ileum  Mucosa <NA>
+151  19_15    Colon Digesta <NA>
+152  19_17    Colon  Mucosa <NA>
+153  19_18   Caecum Digesta <NA>
+154   19_2   Caecum  Mucosa <NA>
+155   20_1  Stomach Digesta <NA>
+156   20_3  Stomach  Mucosa    1
+157   20_4  Stomach  Mucosa    2
+158   20_5  Stomach  Mucosa    3
+159   20_6 Duodenum Digesta <NA>
+160   20_8 Duodenum  Mucosa <NA>
+161   20_9  Jejunum Digesta <NA>
+162  20_11  Jejunum  Mucosa <NA>
+163  20_12    Ileum Digesta <NA>
+164  20_14    Ileum  Mucosa <NA>
+165  20_15    Colon Digesta <NA>
+166  20_17    Colon  Mucosa <NA>
+167  20_18   Caecum Digesta <NA>
+168   20_2   Caecum  Mucosa <NA>
+169   21_1  Stomach Digesta <NA>
+170   21_3  Stomach  Mucosa    1
+171   21_4  Stomach  Mucosa    2
+172   21_5  Stomach  Mucosa    3
+173   21_6 Duodenum Digesta <NA>
+174   21_8 Duodenum  Mucosa <NA>
+175   21_9  Jejunum Digesta <NA>
+176  21_11  Jejunum  Mucosa <NA>
+177  21_12    Ileum Digesta <NA>
+178  21_14    Ileum  Mucosa <NA>
+179  21_15    Colon Digesta <NA>
+180  21_17    Colon  Mucosa <NA>
+181  21_18   Caecum Digesta <NA>
+182   21_2   Caecum  Mucosa <NA>
+183   22_1  Stomach Digesta <NA>
+184   22_3  Stomach  Mucosa    1
+185   22_4  Stomach  Mucosa    2
+186   22_5  Stomach  Mucosa    3
+187   22_6 Duodenum Digesta <NA>
+188   22_8 Duodenum  Mucosa <NA>
+189   22_9  Jejunum Digesta <NA>
+190  22_11  Jejunum  Mucosa <NA>
+191  22_12    Ileum Digesta <NA>
+192  22_14    Ileum  Mucosa <NA>
+193  22_15    Colon Digesta <NA>
+194  22_17    Colon  Mucosa <NA>
+195  22_18   Caecum Digesta <NA>
+196   22_2   Caecum  Mucosa <NA>
+197  22_21 Duodenum  Mucosa <NA>
+198   23_1  Stomach Digesta <NA>
+199   23_3  Stomach  Mucosa    1
+200   23_4  Stomach  Mucosa    2
+201   23_5  Stomach  Mucosa    3
+202   23_6 Duodenum Digesta <NA>
+203   23_8 Duodenum  Mucosa <NA>
+204   23_9  Jejunum Digesta <NA>
+205  23_11  Jejunum  Mucosa <NA>
+206  23_12    Ileum Digesta <NA>
+207  23_14    Ileum  Mucosa <NA>
+208  23_15    Colon Digesta <NA>
+209  23_17    Colon  Mucosa <NA>
+210  23_18   Caecum Digesta <NA>
+211   23_2   Caecum  Mucosa <NA>
+212   24_1  Stomach Digesta <NA>
+213   24_3  Stomach  Mucosa    1
+214   24_4  Stomach  Mucosa    2
+215   24_5  Stomach  Mucosa    3
+216   24_6 Duodenum Digesta <NA>
+217   24_8 Duodenum  Mucosa <NA>
+218   24_9  Jejunum Digesta <NA>
+219  24_11  Jejunum  Mucosa <NA>
+220  24_12    Ileum Digesta <NA>
+221  24_14    Ileum  Mucosa <NA>
+222  24_15    Colon Digesta <NA>
+223  24_17    Colon  Mucosa <NA>
+224  24_18   Caecum Digesta <NA>
+225   24_2   Caecum  Mucosa <NA>
+226   25_1  Stomach Digesta <NA>
+227   25_3  Stomach  Mucosa    1
+228   25_4  Stomach  Mucosa    2
+229   25_5  Stomach  Mucosa    3
+230   25_6 Duodenum Digesta <NA>
+231   25_8 Duodenum  Mucosa <NA>
+232   25_9  Jejunum Digesta <NA>
+233  25_11  Jejunum  Mucosa <NA>
+234  25_12    Ileum Digesta <NA>
+235  25_14    Ileum  Mucosa <NA>
+236  25_15    Colon Digesta <NA>
+237  25_17    Colon  Mucosa <NA>
+238  25_18   Caecum Digesta <NA>
+239   25_2   Caecum  Mucosa <NA>
+240   26_1  Stomach Digesta <NA>
+241   26_3  Stomach  Mucosa    1
+242   26_4  Stomach  Mucosa    2
+243   26_5  Stomach  Mucosa    3
+244   26_6 Duodenum Digesta <NA>
+245   26_8 Duodenum  Mucosa <NA>
+246   26_9  Jejunum Digesta <NA>
+247  26_11  Jejunum  Mucosa <NA>
+248  26_12    Ileum Digesta <NA>
+249  26_14    Ileum  Mucosa <NA>
+250  26_15    Colon Digesta <NA>
+251  26_17    Colon  Mucosa <NA>
+252  26_18   Caecum Digesta <NA>
+253   26_2   Caecum  Mucosa <NA>
+254   27_1  Stomach Digesta <NA>
+255   27_3  Stomach  Mucosa    1
+256   27_4  Stomach  Mucosa    2
+257   27_5  Stomach  Mucosa    3
+258   27_6 Duodenum Digesta <NA>
+259   27_8 Duodenum  Mucosa <NA>
+260   27_9  Jejunum Digesta <NA>
+261  27_11  Jejunum  Mucosa <NA>
+262  27_12    Ileum Digesta <NA>
+263  27_14    Ileum  Mucosa <NA>
+264  27_15    Colon Digesta <NA>
+265  27_17    Colon  Mucosa <NA>
+266  27_18   Caecum Digesta <NA>
+267   27_2   Caecum  Mucosa <NA>
+268   28_1  Stomach Digesta <NA>
+269   28_3  Stomach  Mucosa    1
+270   28_4  Stomach  Mucosa    2
+271   28_5  Stomach  Mucosa    3
+272   28_6 Duodenum Digesta <NA>
+273   28_8 Duodenum  Mucosa <NA>
+274   28_9  Jejunum Digesta <NA>
+275  28_11  Jejunum  Mucosa <NA>
+276  28_12    Ileum Digesta <NA>
+277  28_14    Ileum  Mucosa <NA>
+278  28_15    Colon Digesta <NA>
+279  28_17    Colon  Mucosa <NA>
+280  28_18   Caecum Digesta <NA>
+281   28_2   Caecum  Mucosa <NA>
+282   29_1  Stomach Digesta <NA>
+283   29_3  Stomach  Mucosa    1
+284   29_4  Stomach  Mucosa    2
+285   29_5  Stomach  Mucosa    3
+286   29_6 Duodenum Digesta <NA>
+287   29_8 Duodenum  Mucosa <NA>
+288   29_9  Jejunum Digesta <NA>
+289  29_11  Jejunum  Mucosa <NA>
+290  29_12    Ileum Digesta <NA>
+291  29_14    Ileum  Mucosa <NA>
+292  29_15    Colon Digesta <NA>
+293  29_17    Colon  Mucosa <NA>
+294  29_18   Caecum Digesta <NA>
+295   29_2   Caecum  Mucosa <NA>
+296   30_1  Stomach Digesta <NA>
+297   30_3  Stomach  Mucosa    1
+298   30_4  Stomach  Mucosa    2
+299   30_5  Stomach  Mucosa    3
+300   30_6 Duodenum Digesta <NA>
+301   30_8 Duodenum  Mucosa <NA>
+302   30_9  Jejunum Digesta <NA>
+303  30_11  Jejunum  Mucosa <NA>
+304  30_12    Ileum Digesta <NA>
+305  30_14    Ileum  Mucosa <NA>
+306  30_15    Colon Digesta <NA>
+307  30_17    Colon  Mucosa <NA>
+308  30_18   Caecum Digesta <NA>
+309   30_2   Caecum  Mucosa <NA>
+310   31_1  Stomach Digesta <NA>
+311   31_3  Stomach  Mucosa    1
+312   31_4  Stomach  Mucosa    2
+313   31_5  Stomach  Mucosa    3
+314   31_6 Duodenum Digesta <NA>
+315   31_8 Duodenum  Mucosa <NA>
+316   31_9  Jejunum Digesta <NA>
+317  31_11  Jejunum  Mucosa <NA>
+318  31_12    Ileum Digesta <NA>
+319  31_14    Ileum  Mucosa <NA>
+320  31_15    Colon Digesta <NA>
+321  31_17    Colon  Mucosa <NA>
+322  31_18   Caecum Digesta <NA>
+323   31_2   Caecum  Mucosa <NA>
+324   32_1  Stomach Digesta <NA>
+325   32_3  Stomach  Mucosa    1
+326   32_4  Stomach  Mucosa    2
+327   32_5  Stomach  Mucosa    3
+328   32_6 Duodenum Digesta <NA>
+329   32_8 Duodenum  Mucosa <NA>
+330   32_9  Jejunum Digesta <NA>
+331  32_11  Jejunum  Mucosa <NA>
+332  32_12    Ileum Digesta <NA>
+333  32_14    Ileum  Mucosa <NA>
+334  32_15    Colon Digesta <NA>
+335  32_17    Colon  Mucosa <NA>
+336  32_18   Caecum Digesta <NA>
+337   32_2   Caecum  Mucosa <NA>
+338   33_1  Stomach Digesta <NA>
+339   33_3  Stomach  Mucosa    1
+340   33_4  Stomach  Mucosa    2
+341   33_5  Stomach  Mucosa    3
+342   33_6 Duodenum Digesta <NA>
+343   33_8 Duodenum  Mucosa <NA>
+344   33_9  Jejunum Digesta <NA>
+345  33_11  Jejunum  Mucosa <NA>
+346  33_12    Ileum Digesta <NA>
+347  33_14    Ileum  Mucosa <NA>
+348  33_15    Colon Digesta <NA>
+349  33_17    Colon  Mucosa <NA>
+350  33_18   Caecum Digesta <NA>
+351   33_2   Caecum  Mucosa <NA>
+352   34_1  Stomach Digesta <NA>
+353   34_3  Stomach  Mucosa    1
+354   34_4  Stomach  Mucosa    2
+355   34_5  Stomach  Mucosa    3
+356   34_6 Duodenum Digesta <NA>
+357   34_8 Duodenum  Mucosa <NA>
+358   34_9  Jejunum Digesta <NA>
+359  34_11  Jejunum  Mucosa <NA>
+360  34_12    Ileum Digesta <NA>
+361  34_14    Ileum  Mucosa <NA>
+362  34_15    Colon Digesta <NA>
+363  34_17    Colon  Mucosa <NA>
+364  34_18   Caecum Digesta <NA>
+365   34_2   Caecum  Mucosa <NA>
+366   35_1  Stomach Digesta <NA>
+367   35_3  Stomach  Mucosa    1
+368   35_4  Stomach  Mucosa    2
+369   35_5  Stomach  Mucosa    3
+370   35_6 Duodenum Digesta <NA>
+371   35_8 Duodenum  Mucosa <NA>
+372   35_9  Jejunum Digesta <NA>
+373  35_11  Jejunum  Mucosa <NA>
+374  35_12    Ileum Digesta <NA>
+375  35_14    Ileum  Mucosa <NA>
+376  35_15    Colon Digesta <NA>
+377  35_17    Colon  Mucosa <NA>
+378  35_18   Caecum Digesta <NA>
+379   35_2   Caecum  Mucosa <NA>
+380   36_1  Stomach Digesta <NA>
+381   36_3  Stomach  Mucosa    1
+382   36_4  Stomach  Mucosa    2
+383   36_5  Stomach  Mucosa    3
+384   36_6 Duodenum Digesta <NA>
+385   36_8 Duodenum  Mucosa <NA>
+386   36_9  Jejunum Digesta <NA>
+387  36_11  Jejunum  Mucosa <NA>
+388  36_12    Ileum Digesta <NA>
+389  36_14    Ileum  Mucosa <NA>
+390  36_15    Colon Digesta <NA>
+391  36_17    Colon  Mucosa <NA>
+392  36_18   Caecum Digesta <NA>
+393   36_2   Caecum  Mucosa <NA>
+394   37_1  Stomach Digesta <NA>
+395   37_3  Stomach  Mucosa    1
+396   37_4  Stomach  Mucosa    2
+397   37_5  Stomach  Mucosa    3
+398   37_6 Duodenum Digesta <NA>
+399   37_8 Duodenum  Mucosa <NA>
+400   37_9  Jejunum Digesta <NA>
+401  37_11  Jejunum  Mucosa <NA>
+402  37_12    Ileum Digesta <NA>
+403  37_14    Ileum  Mucosa <NA>
+404  37_15    Colon Digesta <NA>
+405  37_17    Colon  Mucosa <NA>
+406  37_18   Caecum Digesta <NA>
+407   37_2   Caecum  Mucosa <NA>
+408   38_1  Stomach Digesta <NA>
+409   38_3  Stomach  Mucosa    1
+410   38_4  Stomach  Mucosa    2
+411   38_5  Stomach  Mucosa    3
+412   38_6 Duodenum Digesta <NA>
+413   38_8 Duodenum  Mucosa <NA>
+414   38_9  Jejunum Digesta <NA>
+415  38_11  Jejunum  Mucosa <NA>
+416  38_12    Ileum Digesta <NA>
+417  38_14    Ileum  Mucosa <NA>
+418  38_15    Colon Digesta <NA>
+419  38_17    Colon  Mucosa <NA>
+420  38_18   Caecum Digesta <NA>
+421   38_2   Caecum  Mucosa <NA>
+422   39_1  Stomach Digesta <NA>
+423   39_3  Stomach  Mucosa    1
+424   39_4  Stomach  Mucosa    2
+425   39_5  Stomach  Mucosa    3
+426   39_6 Duodenum Digesta <NA>
+427   39_8 Duodenum  Mucosa <NA>
+428   39_9  Jejunum Digesta <NA>
+429  39_11  Jejunum  Mucosa <NA>
+430  39_12    Ileum Digesta <NA>
+431  39_14    Ileum  Mucosa <NA>
+432  39_15    Colon Digesta <NA>
+433  39_17    Colon  Mucosa <NA>
+434  39_18   Caecum Digesta <NA>
+435   39_2   Caecum  Mucosa <NA>
+436   40_1  Stomach Digesta <NA>
+437   40_3  Stomach  Mucosa    1
+438   40_4  Stomach  Mucosa    2
+439   40_5  Stomach  Mucosa    3
+440   40_6 Duodenum Digesta <NA>
+441   40_8 Duodenum  Mucosa <NA>
+442   40_9  Jejunum Digesta <NA>
+443  40_11  Jejunum  Mucosa <NA>
+444  40_12    Ileum Digesta <NA>
+445  40_14    Ileum  Mucosa <NA>
+446  40_15    Colon Digesta <NA>
+447  40_17    Colon  Mucosa <NA>
+448  40_18   Caecum Digesta <NA>
+449   40_2   Caecum  Mucosa <NA>
+450   41_1  Stomach Digesta <NA>
+451   41_3  Stomach  Mucosa    1
+452   41_4  Stomach  Mucosa    2
+453   41_5  Stomach  Mucosa    3
+454   41_6 Duodenum Digesta <NA>
+455   41_8 Duodenum  Mucosa <NA>
+456   41_9  Jejunum Digesta <NA>
+457  41_11  Jejunum  Mucosa <NA>
+458  41_12    Ileum Digesta <NA>
+459  41_14    Ileum  Mucosa <NA>
+460  41_15    Colon Digesta <NA>
+461  41_17    Colon  Mucosa <NA>
+462  41_18   Caecum Digesta <NA>
+463   41_2   Caecum  Mucosa <NA>
+464   42_1  Stomach Digesta <NA>
+465   42_3  Stomach  Mucosa    1
+466   42_4  Stomach  Mucosa    2
+467   42_5  Stomach  Mucosa    3
+468   42_6 Duodenum Digesta <NA>
+469   42_8 Duodenum  Mucosa <NA>
+470   42_9  Jejunum Digesta <NA>
+471  42_11  Jejunum  Mucosa <NA>
+472  42_12    Ileum Digesta <NA>
+473  42_14    Ileum  Mucosa <NA>
+474  42_15    Colon Digesta <NA>
+475  42_17    Colon  Mucosa <NA>
+476  42_18   Caecum Digesta <NA>
+477   42_2   Caecum  Mucosa <NA>
+478   43_1  Stomach Digesta <NA>
+479   43_3  Stomach  Mucosa    1
+480   43_4  Stomach  Mucosa    2
+481   43_5  Stomach  Mucosa    3
+482   43_6 Duodenum Digesta <NA>
+483   43_8 Duodenum  Mucosa <NA>
+484   43_9  Jejunum Digesta <NA>
+485  43_11  Jejunum  Mucosa <NA>
+486  43_12    Ileum Digesta <NA>
+487  43_14    Ileum  Mucosa <NA>
+488  43_15    Colon Digesta <NA>
+489  43_17    Colon  Mucosa <NA>
+490  43_18   Caecum Digesta <NA>
+491   43_2   Caecum  Mucosa <NA>
+492   44_1  Stomach Digesta <NA>
+493   44_3  Stomach  Mucosa    1
+494   44_4  Stomach  Mucosa    2
+495   44_5  Stomach  Mucosa    3
+496   44_6 Duodenum Digesta <NA>
+497   44_8 Duodenum  Mucosa <NA>
+498   44_9  Jejunum Digesta <NA>
+499  44_11  Jejunum  Mucosa <NA>
+500  44_12    Ileum Digesta <NA>
+501  44_14    Ileum  Mucosa <NA>
+502  44_15    Colon Digesta <NA>
+503  44_17    Colon  Mucosa <NA>
+504  44_18   Caecum Digesta <NA>
+505   44_2   Caecum  Mucosa <NA>
+506   45_1  Stomach Digesta <NA>
+507   45_3  Stomach  Mucosa    1
+508   45_4  Stomach  Mucosa    2
+509   45_5  Stomach  Mucosa    3
+510   45_6 Duodenum Digesta <NA>
+511   45_8 Duodenum  Mucosa <NA>
+512   45_9  Jejunum Digesta <NA>
+513  45_11  Jejunum  Mucosa <NA>
+514  45_12    Ileum Digesta <NA>
+515  45_14    Ileum  Mucosa <NA>
+516  45_15    Colon Digesta <NA>
+517  45_17    Colon  Mucosa <NA>
+518  45_18   Caecum Digesta <NA>
+519   45_2   Caecum  Mucosa <NA>
+520   46_1  Stomach Digesta <NA>
+521   46_3  Stomach  Mucosa    1
+522   46_4  Stomach  Mucosa    2
+523   46_5  Stomach  Mucosa    3
+524   46_6 Duodenum Digesta <NA>
+525   46_8 Duodenum  Mucosa <NA>
+526   46_9  Jejunum Digesta <NA>
+527  46_11  Jejunum  Mucosa <NA>
+528  46_12    Ileum Digesta <NA>
+529  46_14    Ileum  Mucosa <NA>
+530  46_15    Colon Digesta <NA>
+531  46_17    Colon  Mucosa <NA>
+532  46_18   Caecum Digesta <NA>
+533   46_2   Caecum  Mucosa <NA>
+534   47_1  Stomach Digesta <NA>
+535   47_3  Stomach  Mucosa    1
+536   47_4  Stomach  Mucosa    2
+537   47_5  Stomach  Mucosa    3
+538   47_6 Duodenum Digesta <NA>
+539   47_8 Duodenum  Mucosa <NA>
+540   47_9  Jejunum Digesta <NA>
+541  47_11  Jejunum  Mucosa <NA>
+542  47_12    Ileum Digesta <NA>
+543  47_14    Ileum  Mucosa <NA>
+544  47_15    Colon Digesta <NA>
+545  47_17    Colon  Mucosa <NA>
+546  47_18   Caecum Digesta <NA>
+547   47_2   Caecum  Mucosa <NA>
+548   48_1  Stomach Digesta <NA>
+549   48_3  Stomach  Mucosa    1
+550   48_4  Stomach  Mucosa    2
+551   48_5  Stomach  Mucosa    3
+552   48_6 Duodenum Digesta <NA>
+553   48_8 Duodenum  Mucosa <NA>
+554   48_9  Jejunum Digesta <NA>
+555  48_11  Jejunum  Mucosa <NA>
+556  48_12    Ileum Digesta <NA>
+557  48_14    Ileum  Mucosa <NA>
+558  48_15    Colon Digesta <NA>
+559  48_17    Colon  Mucosa <NA>
+560  48_18   Caecum Digesta <NA>
+561   48_2   Caecum  Mucosa <NA>
+562   49_1  Stomach Digesta <NA>
+563   49_3  Stomach  Mucosa    1
+564   49_4  Stomach  Mucosa    2
+565   49_5  Stomach  Mucosa    3
+566   49_6 Duodenum Digesta <NA>
+567   49_8 Duodenum  Mucosa <NA>
+568   49_9  Jejunum Digesta <NA>
+569  49_11  Jejunum  Mucosa <NA>
+570  49_12    Ileum Digesta <NA>
+571  49_14    Ileum  Mucosa <NA>
+572  49_15    Colon Digesta <NA>
+573  49_17    Colon  Mucosa <NA>
+574  49_18   Caecum Digesta <NA>
+575   49_2   Caecum  Mucosa <NA>
+576   50_1  Stomach Digesta <NA>
+577   50_3  Stomach  Mucosa    1
+578   50_4  Stomach  Mucosa    2
+579   50_5  Stomach  Mucosa    3
+580   50_6 Duodenum Digesta <NA>
+581   50_8 Duodenum  Mucosa <NA>
+582   50_9  Jejunum Digesta <NA>
+583  50_11  Jejunum  Mucosa <NA>
+584  50_12    Ileum Digesta <NA>
+585  50_14    Ileum  Mucosa <NA>
+586  50_15    Colon Digesta <NA>
+587  50_17    Colon  Mucosa <NA>
+588  50_18   Caecum Digesta <NA>
+589   50_2   Caecum  Mucosa <NA>
+590   51_1  Stomach Digesta <NA>
+591   51_3  Stomach  Mucosa    1
+592   51_4  Stomach  Mucosa    2
+593   51_5  Stomach  Mucosa    3
+594   51_6 Duodenum Digesta <NA>
+595   51_8 Duodenum  Mucosa <NA>
+596   51_9  Jejunum Digesta <NA>
+597  51_11  Jejunum  Mucosa <NA>
+598  51_12    Ileum Digesta <NA>
+599  51_14    Ileum  Mucosa <NA>
+600  51_15    Colon Digesta <NA>
+601  51_17    Colon  Mucosa <NA>
+602  51_18   Caecum Digesta <NA>
+603   51_2   Caecum  Mucosa <NA>
+604   52_1  Stomach Digesta <NA>
+605   52_3  Stomach  Mucosa    1
+606   52_4  Stomach  Mucosa    2
+607   52_5  Stomach  Mucosa    3
+608   52_6 Duodenum Digesta <NA>
+609   52_8 Duodenum  Mucosa <NA>
+610   52_9  Jejunum Digesta <NA>
+611  52_11  Jejunum  Mucosa <NA>
+612  52_12    Ileum Digesta <NA>
+613  52_14    Ileum  Mucosa <NA>
+614  52_15    Colon Digesta <NA>
+615  52_17    Colon  Mucosa <NA>
+616  52_18   Caecum Digesta <NA>
+617   52_2   Caecum  Mucosa <NA>
+618   53_1  Stomach Digesta <NA>
+619   53_3  Stomach  Mucosa    1
+620   53_4  Stomach  Mucosa    2
+621   53_5  Stomach  Mucosa    3
+622   53_6 Duodenum Digesta <NA>
+623   53_8 Duodenum  Mucosa <NA>
+624   53_9  Jejunum Digesta <NA>
+625  53_11  Jejunum  Mucosa <NA>
+626  53_12    Ileum Digesta <NA>
+627  53_14    Ileum  Mucosa <NA>
+628  53_15    Colon Digesta <NA>
+629  53_17    Colon  Mucosa <NA>
+630  53_18   Caecum Digesta <NA>
+631   53_2   Caecum  Mucosa <NA>
+632   54_1  Stomach Digesta <NA>
+633   54_3  Stomach  Mucosa    1
+634   54_4  Stomach  Mucosa    2
+635   54_5  Stomach  Mucosa    3
+636   54_6 Duodenum Digesta <NA>
+637   54_8 Duodenum  Mucosa <NA>
+638   54_9  Jejunum Digesta <NA>
+639  54_11  Jejunum  Mucosa <NA>
+640  54_12    Ileum Digesta <NA>
+641  54_14    Ileum  Mucosa <NA>
+642  54_15    Colon Digesta <NA>
+643  54_17    Colon  Mucosa <NA>
+644  54_18   Caecum Digesta <NA>
+645   54_2   Caecum  Mucosa <NA>
+646   55_1  Stomach Digesta <NA>
+647   55_3  Stomach  Mucosa    1
+648   55_4  Stomach  Mucosa    2
+649   55_5  Stomach  Mucosa    3
+650   55_6 Duodenum Digesta <NA>
+651   55_8 Duodenum  Mucosa <NA>
+652   55_9  Jejunum Digesta <NA>
+653  55_11  Jejunum  Mucosa <NA>
+654  55_12    Ileum Digesta <NA>
+655  55_14    Ileum  Mucosa <NA>
+656  55_15    Colon Digesta <NA>
+657  55_17    Colon  Mucosa <NA>
+658  55_18   Caecum Digesta <NA>
+659   55_2   Caecum  Mucosa <NA>
+660   56_1  Stomach Digesta <NA>
+661   56_3  Stomach  Mucosa    1
+662   56_4  Stomach  Mucosa    2
+663   56_5  Stomach  Mucosa    3
+664   56_6 Duodenum Digesta <NA>
+665   56_8 Duodenum  Mucosa <NA>
+666   56_9  Jejunum Digesta <NA>
+667  56_11  Jejunum  Mucosa <NA>
+668  56_12    Ileum Digesta <NA>
+669  56_14    Ileum  Mucosa <NA>
+670  56_15    Colon Digesta <NA>
+671  56_17    Colon  Mucosa <NA>
+672  56_18   Caecum Digesta <NA>
+673   56_2   Caecum  Mucosa <NA>
 \end{verbatim}
 
 

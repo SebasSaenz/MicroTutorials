@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -139,26 +110,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Microtutorials</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">About</a>
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/SebasSaenz"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/SebasSaenz" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/SaenzJohanS"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/SaenzJohanS" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -180,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div class="quarto-title-meta-heading">Affiliation</div>
     
       <div class="quarto-title-meta-contents">
-      Johan S. Sáenz 
+      <p class="author">Johan S. Sáenz </p>
     </div>
       <div class="quarto-title-meta-contents">
           <p class="affiliation">
@@ -198,18 +172,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <p class="date">May 5, 2023</p>
       </div>
     </div>
+    
       
     </div>
     
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    </div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="qc_metaproteomics.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -218,28 +194,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">##libraries</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
-✔ tibble  3.1.8      ✔ dplyr   1.0.10
-✔ tidyr   1.2.1      ✔ stringr 1.5.0 
-✔ readr   2.1.3      ✔ forcats 0.5.2 
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at /Users/sebastiansaenz/Documents/github/MicroTutorials</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## input data</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_qc <span class="ot">&lt;-</span> <span class="fu">read.table</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"rawdata/summary.txt"</span>),</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_qc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="do">## input data</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df_qc <span class="ot">&lt;-</span> <span class="fu">read.table</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"rawdata/summary.txt"</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_qc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Raw file"                                 
  [2] "Experiment"                               
@@ -296,6 +260,693 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [53] "Label free norm param"                    </code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span><span class="fu">read.table</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"rawdata/metadata_metapro.txt"</span>),</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">sample=</span>Probenname) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sample=</span><span class="fu">str_replace_all</span>(sample, <span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">"_"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(Abschnitt,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">into=</span><span class="fu">c</span>(<span class="st">"region"</span>, <span class="st">"source"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep=</span><span class="st">" "</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> metadata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    sample   region  source     
+1      9_1  Stomach Digesta &lt;NA&gt;
+2      9_3  Stomach  Mucosa    1
+3      9_4  Stomach  Mucosa    2
+4      9_5  Stomach  Mucosa    3
+5      9_6 Duodenum Digesta &lt;NA&gt;
+6      9_8 Duodenum  Mucosa &lt;NA&gt;
+7      9_9  Jejunum Digesta &lt;NA&gt;
+8     9_11  Jejunum  Mucosa &lt;NA&gt;
+9     9_12    Ileum Digesta &lt;NA&gt;
+10    9_14    Ileum  Mucosa &lt;NA&gt;
+11    9_15    Colon Digesta &lt;NA&gt;
+12    9_17    Colon  Mucosa &lt;NA&gt;
+13    9_18   Caecum Digesta &lt;NA&gt;
+14     9_2   Caecum  Mucosa &lt;NA&gt;
+15    10_1  Stomach Digesta &lt;NA&gt;
+16    10_3  Stomach  Mucosa    1
+17    10_4  Stomach  Mucosa    2
+18    10_5  Stomach  Mucosa    3
+19    10_6 Duodenum Digesta &lt;NA&gt;
+20    10_8 Duodenum  Mucosa &lt;NA&gt;
+21    10_9  Jejunum Digesta &lt;NA&gt;
+22   10_11  Jejunum  Mucosa &lt;NA&gt;
+23   10_12    Ileum Digesta &lt;NA&gt;
+24   10_14    Ileum  Mucosa &lt;NA&gt;
+25   10_15    Colon Digesta &lt;NA&gt;
+26   10_17    Colon  Mucosa &lt;NA&gt;
+27   10_18   Caecum Digesta &lt;NA&gt;
+28    10_2   Caecum  Mucosa &lt;NA&gt;
+29    11_1  Stomach Digesta &lt;NA&gt;
+30    11_3  Stomach  Mucosa    1
+31    11_4  Stomach  Mucosa    2
+32    11_5  Stomach  Mucosa    3
+33    11_6 Duodenum Digesta &lt;NA&gt;
+34    11_8 Duodenum  Mucosa &lt;NA&gt;
+35    11_9  Jejunum Digesta &lt;NA&gt;
+36   11_11  Jejunum  Mucosa &lt;NA&gt;
+37   11_12    Ileum Digesta &lt;NA&gt;
+38   11_14    Ileum  Mucosa &lt;NA&gt;
+39   11_15    Colon Digesta &lt;NA&gt;
+40   11_17    Colon  Mucosa &lt;NA&gt;
+41   11_18   Caecum Digesta &lt;NA&gt;
+42    11_2   Caecum  Mucosa &lt;NA&gt;
+43    12_1  Stomach Digesta &lt;NA&gt;
+44    12_3  Stomach  Mucosa    1
+45    12_4  Stomach  Mucosa    2
+46    12_5  Stomach  Mucosa    3
+47    12_6 Duodenum Digesta &lt;NA&gt;
+48    12_8 Duodenum  Mucosa &lt;NA&gt;
+49    12_9  Jejunum Digesta &lt;NA&gt;
+50   12_11  Jejunum  Mucosa &lt;NA&gt;
+51   12_12    Ileum Digesta &lt;NA&gt;
+52   12_14    Ileum  Mucosa &lt;NA&gt;
+53   12_15    Colon Digesta &lt;NA&gt;
+54   12_17    Colon  Mucosa &lt;NA&gt;
+55   12_18   Caecum Digesta &lt;NA&gt;
+56    12_2   Caecum  Mucosa &lt;NA&gt;
+57    13_1  Stomach Digesta &lt;NA&gt;
+58    13_3  Stomach  Mucosa    1
+59    13_4  Stomach  Mucosa    2
+60    13_5  Stomach  Mucosa    3
+61    13_6 Duodenum Digesta &lt;NA&gt;
+62    13_8 Duodenum  Mucosa &lt;NA&gt;
+63    13_9  Jejunum Digesta &lt;NA&gt;
+64   13_11  Jejunum  Mucosa &lt;NA&gt;
+65   13_12    Ileum Digesta &lt;NA&gt;
+66   13_14    Ileum  Mucosa &lt;NA&gt;
+67   13_15    Colon Digesta &lt;NA&gt;
+68   13_17    Colon  Mucosa &lt;NA&gt;
+69   13_18   Caecum Digesta &lt;NA&gt;
+70    13_2   Caecum  Mucosa &lt;NA&gt;
+71    14_1  Stomach Digesta &lt;NA&gt;
+72    14_3  Stomach  Mucosa    1
+73    14_4  Stomach  Mucosa    2
+74    14_5  Stomach  Mucosa    3
+75    14_6 Duodenum Digesta &lt;NA&gt;
+76    14_8 Duodenum  Mucosa &lt;NA&gt;
+77    14_9  Jejunum Digesta &lt;NA&gt;
+78   14_11  Jejunum  Mucosa &lt;NA&gt;
+79   14_12    Ileum Digesta &lt;NA&gt;
+80   14_14    Ileum  Mucosa &lt;NA&gt;
+81   14_15    Colon Digesta &lt;NA&gt;
+82   14_17    Colon  Mucosa &lt;NA&gt;
+83   14_18   Caecum Digesta &lt;NA&gt;
+84    14_2   Caecum  Mucosa &lt;NA&gt;
+85    15_1  Stomach Digesta &lt;NA&gt;
+86    15_3  Stomach  Mucosa    1
+87    15_4  Stomach  Mucosa    2
+88    15_5  Stomach  Mucosa    3
+89    15_6 Duodenum Digesta &lt;NA&gt;
+90    15_8 Duodenum  Mucosa &lt;NA&gt;
+91    15_9  Jejunum Digesta &lt;NA&gt;
+92   15_11  Jejunum  Mucosa &lt;NA&gt;
+93   15_12    Ileum Digesta &lt;NA&gt;
+94   15_14    Ileum  Mucosa &lt;NA&gt;
+95   15_15    Colon Digesta &lt;NA&gt;
+96   15_17    Colon  Mucosa &lt;NA&gt;
+97   15_18   Caecum Digesta &lt;NA&gt;
+98    15_2   Caecum  Mucosa &lt;NA&gt;
+99    16_1  Stomach Digesta &lt;NA&gt;
+100   16_3  Stomach  Mucosa    1
+101   16_4  Stomach  Mucosa    2
+102   16_5  Stomach  Mucosa    3
+103   16_6 Duodenum Digesta &lt;NA&gt;
+104   16_8 Duodenum  Mucosa &lt;NA&gt;
+105   16_9  Jejunum Digesta &lt;NA&gt;
+106  16_11  Jejunum  Mucosa &lt;NA&gt;
+107  16_12    Ileum Digesta &lt;NA&gt;
+108  16_14    Ileum  Mucosa &lt;NA&gt;
+109  16_15    Colon Digesta &lt;NA&gt;
+110  16_17   Caecum  Mucosa &lt;NA&gt;
+111  16_18   Caecum Digesta &lt;NA&gt;
+112   16_2    Colon  Mucosa &lt;NA&gt;
+113   17_1  Stomach Digesta &lt;NA&gt;
+114   17_3  Stomach  Mucosa    1
+115   17_4  Stomach  Mucosa    2
+116   17_5  Stomach  Mucosa    3
+117   17_6 Duodenum Digesta &lt;NA&gt;
+118   17_8 Duodenum  Mucosa &lt;NA&gt;
+119   17_9  Jejunum Digesta &lt;NA&gt;
+120  17_11  Jejunum  Mucosa &lt;NA&gt;
+121  17_12    Ileum Digesta &lt;NA&gt;
+122  17_14    Ileum  Mucosa &lt;NA&gt;
+123  17_15    Colon Digesta &lt;NA&gt;
+124  17_17    Colon  Mucosa &lt;NA&gt;
+125  17_18   Caecum Digesta &lt;NA&gt;
+126   17_2   Caecum  Mucosa &lt;NA&gt;
+127   18_1  Stomach Digesta &lt;NA&gt;
+128   18_3  Stomach  Mucosa    1
+129   18_4  Stomach  Mucosa    2
+130   18_5  Stomach  Mucosa    3
+131   18_6 Duodenum Digesta &lt;NA&gt;
+132   18_8 Duodenum  Mucosa &lt;NA&gt;
+133   18_9  Jejunum Digesta &lt;NA&gt;
+134  18_11  Jejunum  Mucosa &lt;NA&gt;
+135  18_12    Ileum Digesta &lt;NA&gt;
+136  18_14    Ileum  Mucosa &lt;NA&gt;
+137  18_15    Colon Digesta &lt;NA&gt;
+138  18_17    Colon  Mucosa &lt;NA&gt;
+139  18_18   Caecum Digesta &lt;NA&gt;
+140   18_2   Caecum  Mucosa &lt;NA&gt;
+141   19_1  Stomach Digesta &lt;NA&gt;
+142   19_3  Stomach  Mucosa    1
+143   19_4  Stomach  Mucosa    2
+144   19_5  Stomach  Mucosa    3
+145   19_6 Duodenum Digesta &lt;NA&gt;
+146   19_8 Duodenum  Mucosa &lt;NA&gt;
+147   19_9  Jejunum Digesta &lt;NA&gt;
+148  19_11  Jejunum  Mucosa &lt;NA&gt;
+149  19_12    Ileum Digesta &lt;NA&gt;
+150  19_14    Ileum  Mucosa &lt;NA&gt;
+151  19_15    Colon Digesta &lt;NA&gt;
+152  19_17    Colon  Mucosa &lt;NA&gt;
+153  19_18   Caecum Digesta &lt;NA&gt;
+154   19_2   Caecum  Mucosa &lt;NA&gt;
+155   20_1  Stomach Digesta &lt;NA&gt;
+156   20_3  Stomach  Mucosa    1
+157   20_4  Stomach  Mucosa    2
+158   20_5  Stomach  Mucosa    3
+159   20_6 Duodenum Digesta &lt;NA&gt;
+160   20_8 Duodenum  Mucosa &lt;NA&gt;
+161   20_9  Jejunum Digesta &lt;NA&gt;
+162  20_11  Jejunum  Mucosa &lt;NA&gt;
+163  20_12    Ileum Digesta &lt;NA&gt;
+164  20_14    Ileum  Mucosa &lt;NA&gt;
+165  20_15    Colon Digesta &lt;NA&gt;
+166  20_17    Colon  Mucosa &lt;NA&gt;
+167  20_18   Caecum Digesta &lt;NA&gt;
+168   20_2   Caecum  Mucosa &lt;NA&gt;
+169   21_1  Stomach Digesta &lt;NA&gt;
+170   21_3  Stomach  Mucosa    1
+171   21_4  Stomach  Mucosa    2
+172   21_5  Stomach  Mucosa    3
+173   21_6 Duodenum Digesta &lt;NA&gt;
+174   21_8 Duodenum  Mucosa &lt;NA&gt;
+175   21_9  Jejunum Digesta &lt;NA&gt;
+176  21_11  Jejunum  Mucosa &lt;NA&gt;
+177  21_12    Ileum Digesta &lt;NA&gt;
+178  21_14    Ileum  Mucosa &lt;NA&gt;
+179  21_15    Colon Digesta &lt;NA&gt;
+180  21_17    Colon  Mucosa &lt;NA&gt;
+181  21_18   Caecum Digesta &lt;NA&gt;
+182   21_2   Caecum  Mucosa &lt;NA&gt;
+183   22_1  Stomach Digesta &lt;NA&gt;
+184   22_3  Stomach  Mucosa    1
+185   22_4  Stomach  Mucosa    2
+186   22_5  Stomach  Mucosa    3
+187   22_6 Duodenum Digesta &lt;NA&gt;
+188   22_8 Duodenum  Mucosa &lt;NA&gt;
+189   22_9  Jejunum Digesta &lt;NA&gt;
+190  22_11  Jejunum  Mucosa &lt;NA&gt;
+191  22_12    Ileum Digesta &lt;NA&gt;
+192  22_14    Ileum  Mucosa &lt;NA&gt;
+193  22_15    Colon Digesta &lt;NA&gt;
+194  22_17    Colon  Mucosa &lt;NA&gt;
+195  22_18   Caecum Digesta &lt;NA&gt;
+196   22_2   Caecum  Mucosa &lt;NA&gt;
+197  22_21 Duodenum  Mucosa &lt;NA&gt;
+198   23_1  Stomach Digesta &lt;NA&gt;
+199   23_3  Stomach  Mucosa    1
+200   23_4  Stomach  Mucosa    2
+201   23_5  Stomach  Mucosa    3
+202   23_6 Duodenum Digesta &lt;NA&gt;
+203   23_8 Duodenum  Mucosa &lt;NA&gt;
+204   23_9  Jejunum Digesta &lt;NA&gt;
+205  23_11  Jejunum  Mucosa &lt;NA&gt;
+206  23_12    Ileum Digesta &lt;NA&gt;
+207  23_14    Ileum  Mucosa &lt;NA&gt;
+208  23_15    Colon Digesta &lt;NA&gt;
+209  23_17    Colon  Mucosa &lt;NA&gt;
+210  23_18   Caecum Digesta &lt;NA&gt;
+211   23_2   Caecum  Mucosa &lt;NA&gt;
+212   24_1  Stomach Digesta &lt;NA&gt;
+213   24_3  Stomach  Mucosa    1
+214   24_4  Stomach  Mucosa    2
+215   24_5  Stomach  Mucosa    3
+216   24_6 Duodenum Digesta &lt;NA&gt;
+217   24_8 Duodenum  Mucosa &lt;NA&gt;
+218   24_9  Jejunum Digesta &lt;NA&gt;
+219  24_11  Jejunum  Mucosa &lt;NA&gt;
+220  24_12    Ileum Digesta &lt;NA&gt;
+221  24_14    Ileum  Mucosa &lt;NA&gt;
+222  24_15    Colon Digesta &lt;NA&gt;
+223  24_17    Colon  Mucosa &lt;NA&gt;
+224  24_18   Caecum Digesta &lt;NA&gt;
+225   24_2   Caecum  Mucosa &lt;NA&gt;
+226   25_1  Stomach Digesta &lt;NA&gt;
+227   25_3  Stomach  Mucosa    1
+228   25_4  Stomach  Mucosa    2
+229   25_5  Stomach  Mucosa    3
+230   25_6 Duodenum Digesta &lt;NA&gt;
+231   25_8 Duodenum  Mucosa &lt;NA&gt;
+232   25_9  Jejunum Digesta &lt;NA&gt;
+233  25_11  Jejunum  Mucosa &lt;NA&gt;
+234  25_12    Ileum Digesta &lt;NA&gt;
+235  25_14    Ileum  Mucosa &lt;NA&gt;
+236  25_15    Colon Digesta &lt;NA&gt;
+237  25_17    Colon  Mucosa &lt;NA&gt;
+238  25_18   Caecum Digesta &lt;NA&gt;
+239   25_2   Caecum  Mucosa &lt;NA&gt;
+240   26_1  Stomach Digesta &lt;NA&gt;
+241   26_3  Stomach  Mucosa    1
+242   26_4  Stomach  Mucosa    2
+243   26_5  Stomach  Mucosa    3
+244   26_6 Duodenum Digesta &lt;NA&gt;
+245   26_8 Duodenum  Mucosa &lt;NA&gt;
+246   26_9  Jejunum Digesta &lt;NA&gt;
+247  26_11  Jejunum  Mucosa &lt;NA&gt;
+248  26_12    Ileum Digesta &lt;NA&gt;
+249  26_14    Ileum  Mucosa &lt;NA&gt;
+250  26_15    Colon Digesta &lt;NA&gt;
+251  26_17    Colon  Mucosa &lt;NA&gt;
+252  26_18   Caecum Digesta &lt;NA&gt;
+253   26_2   Caecum  Mucosa &lt;NA&gt;
+254   27_1  Stomach Digesta &lt;NA&gt;
+255   27_3  Stomach  Mucosa    1
+256   27_4  Stomach  Mucosa    2
+257   27_5  Stomach  Mucosa    3
+258   27_6 Duodenum Digesta &lt;NA&gt;
+259   27_8 Duodenum  Mucosa &lt;NA&gt;
+260   27_9  Jejunum Digesta &lt;NA&gt;
+261  27_11  Jejunum  Mucosa &lt;NA&gt;
+262  27_12    Ileum Digesta &lt;NA&gt;
+263  27_14    Ileum  Mucosa &lt;NA&gt;
+264  27_15    Colon Digesta &lt;NA&gt;
+265  27_17    Colon  Mucosa &lt;NA&gt;
+266  27_18   Caecum Digesta &lt;NA&gt;
+267   27_2   Caecum  Mucosa &lt;NA&gt;
+268   28_1  Stomach Digesta &lt;NA&gt;
+269   28_3  Stomach  Mucosa    1
+270   28_4  Stomach  Mucosa    2
+271   28_5  Stomach  Mucosa    3
+272   28_6 Duodenum Digesta &lt;NA&gt;
+273   28_8 Duodenum  Mucosa &lt;NA&gt;
+274   28_9  Jejunum Digesta &lt;NA&gt;
+275  28_11  Jejunum  Mucosa &lt;NA&gt;
+276  28_12    Ileum Digesta &lt;NA&gt;
+277  28_14    Ileum  Mucosa &lt;NA&gt;
+278  28_15    Colon Digesta &lt;NA&gt;
+279  28_17    Colon  Mucosa &lt;NA&gt;
+280  28_18   Caecum Digesta &lt;NA&gt;
+281   28_2   Caecum  Mucosa &lt;NA&gt;
+282   29_1  Stomach Digesta &lt;NA&gt;
+283   29_3  Stomach  Mucosa    1
+284   29_4  Stomach  Mucosa    2
+285   29_5  Stomach  Mucosa    3
+286   29_6 Duodenum Digesta &lt;NA&gt;
+287   29_8 Duodenum  Mucosa &lt;NA&gt;
+288   29_9  Jejunum Digesta &lt;NA&gt;
+289  29_11  Jejunum  Mucosa &lt;NA&gt;
+290  29_12    Ileum Digesta &lt;NA&gt;
+291  29_14    Ileum  Mucosa &lt;NA&gt;
+292  29_15    Colon Digesta &lt;NA&gt;
+293  29_17    Colon  Mucosa &lt;NA&gt;
+294  29_18   Caecum Digesta &lt;NA&gt;
+295   29_2   Caecum  Mucosa &lt;NA&gt;
+296   30_1  Stomach Digesta &lt;NA&gt;
+297   30_3  Stomach  Mucosa    1
+298   30_4  Stomach  Mucosa    2
+299   30_5  Stomach  Mucosa    3
+300   30_6 Duodenum Digesta &lt;NA&gt;
+301   30_8 Duodenum  Mucosa &lt;NA&gt;
+302   30_9  Jejunum Digesta &lt;NA&gt;
+303  30_11  Jejunum  Mucosa &lt;NA&gt;
+304  30_12    Ileum Digesta &lt;NA&gt;
+305  30_14    Ileum  Mucosa &lt;NA&gt;
+306  30_15    Colon Digesta &lt;NA&gt;
+307  30_17    Colon  Mucosa &lt;NA&gt;
+308  30_18   Caecum Digesta &lt;NA&gt;
+309   30_2   Caecum  Mucosa &lt;NA&gt;
+310   31_1  Stomach Digesta &lt;NA&gt;
+311   31_3  Stomach  Mucosa    1
+312   31_4  Stomach  Mucosa    2
+313   31_5  Stomach  Mucosa    3
+314   31_6 Duodenum Digesta &lt;NA&gt;
+315   31_8 Duodenum  Mucosa &lt;NA&gt;
+316   31_9  Jejunum Digesta &lt;NA&gt;
+317  31_11  Jejunum  Mucosa &lt;NA&gt;
+318  31_12    Ileum Digesta &lt;NA&gt;
+319  31_14    Ileum  Mucosa &lt;NA&gt;
+320  31_15    Colon Digesta &lt;NA&gt;
+321  31_17    Colon  Mucosa &lt;NA&gt;
+322  31_18   Caecum Digesta &lt;NA&gt;
+323   31_2   Caecum  Mucosa &lt;NA&gt;
+324   32_1  Stomach Digesta &lt;NA&gt;
+325   32_3  Stomach  Mucosa    1
+326   32_4  Stomach  Mucosa    2
+327   32_5  Stomach  Mucosa    3
+328   32_6 Duodenum Digesta &lt;NA&gt;
+329   32_8 Duodenum  Mucosa &lt;NA&gt;
+330   32_9  Jejunum Digesta &lt;NA&gt;
+331  32_11  Jejunum  Mucosa &lt;NA&gt;
+332  32_12    Ileum Digesta &lt;NA&gt;
+333  32_14    Ileum  Mucosa &lt;NA&gt;
+334  32_15    Colon Digesta &lt;NA&gt;
+335  32_17    Colon  Mucosa &lt;NA&gt;
+336  32_18   Caecum Digesta &lt;NA&gt;
+337   32_2   Caecum  Mucosa &lt;NA&gt;
+338   33_1  Stomach Digesta &lt;NA&gt;
+339   33_3  Stomach  Mucosa    1
+340   33_4  Stomach  Mucosa    2
+341   33_5  Stomach  Mucosa    3
+342   33_6 Duodenum Digesta &lt;NA&gt;
+343   33_8 Duodenum  Mucosa &lt;NA&gt;
+344   33_9  Jejunum Digesta &lt;NA&gt;
+345  33_11  Jejunum  Mucosa &lt;NA&gt;
+346  33_12    Ileum Digesta &lt;NA&gt;
+347  33_14    Ileum  Mucosa &lt;NA&gt;
+348  33_15    Colon Digesta &lt;NA&gt;
+349  33_17    Colon  Mucosa &lt;NA&gt;
+350  33_18   Caecum Digesta &lt;NA&gt;
+351   33_2   Caecum  Mucosa &lt;NA&gt;
+352   34_1  Stomach Digesta &lt;NA&gt;
+353   34_3  Stomach  Mucosa    1
+354   34_4  Stomach  Mucosa    2
+355   34_5  Stomach  Mucosa    3
+356   34_6 Duodenum Digesta &lt;NA&gt;
+357   34_8 Duodenum  Mucosa &lt;NA&gt;
+358   34_9  Jejunum Digesta &lt;NA&gt;
+359  34_11  Jejunum  Mucosa &lt;NA&gt;
+360  34_12    Ileum Digesta &lt;NA&gt;
+361  34_14    Ileum  Mucosa &lt;NA&gt;
+362  34_15    Colon Digesta &lt;NA&gt;
+363  34_17    Colon  Mucosa &lt;NA&gt;
+364  34_18   Caecum Digesta &lt;NA&gt;
+365   34_2   Caecum  Mucosa &lt;NA&gt;
+366   35_1  Stomach Digesta &lt;NA&gt;
+367   35_3  Stomach  Mucosa    1
+368   35_4  Stomach  Mucosa    2
+369   35_5  Stomach  Mucosa    3
+370   35_6 Duodenum Digesta &lt;NA&gt;
+371   35_8 Duodenum  Mucosa &lt;NA&gt;
+372   35_9  Jejunum Digesta &lt;NA&gt;
+373  35_11  Jejunum  Mucosa &lt;NA&gt;
+374  35_12    Ileum Digesta &lt;NA&gt;
+375  35_14    Ileum  Mucosa &lt;NA&gt;
+376  35_15    Colon Digesta &lt;NA&gt;
+377  35_17    Colon  Mucosa &lt;NA&gt;
+378  35_18   Caecum Digesta &lt;NA&gt;
+379   35_2   Caecum  Mucosa &lt;NA&gt;
+380   36_1  Stomach Digesta &lt;NA&gt;
+381   36_3  Stomach  Mucosa    1
+382   36_4  Stomach  Mucosa    2
+383   36_5  Stomach  Mucosa    3
+384   36_6 Duodenum Digesta &lt;NA&gt;
+385   36_8 Duodenum  Mucosa &lt;NA&gt;
+386   36_9  Jejunum Digesta &lt;NA&gt;
+387  36_11  Jejunum  Mucosa &lt;NA&gt;
+388  36_12    Ileum Digesta &lt;NA&gt;
+389  36_14    Ileum  Mucosa &lt;NA&gt;
+390  36_15    Colon Digesta &lt;NA&gt;
+391  36_17    Colon  Mucosa &lt;NA&gt;
+392  36_18   Caecum Digesta &lt;NA&gt;
+393   36_2   Caecum  Mucosa &lt;NA&gt;
+394   37_1  Stomach Digesta &lt;NA&gt;
+395   37_3  Stomach  Mucosa    1
+396   37_4  Stomach  Mucosa    2
+397   37_5  Stomach  Mucosa    3
+398   37_6 Duodenum Digesta &lt;NA&gt;
+399   37_8 Duodenum  Mucosa &lt;NA&gt;
+400   37_9  Jejunum Digesta &lt;NA&gt;
+401  37_11  Jejunum  Mucosa &lt;NA&gt;
+402  37_12    Ileum Digesta &lt;NA&gt;
+403  37_14    Ileum  Mucosa &lt;NA&gt;
+404  37_15    Colon Digesta &lt;NA&gt;
+405  37_17    Colon  Mucosa &lt;NA&gt;
+406  37_18   Caecum Digesta &lt;NA&gt;
+407   37_2   Caecum  Mucosa &lt;NA&gt;
+408   38_1  Stomach Digesta &lt;NA&gt;
+409   38_3  Stomach  Mucosa    1
+410   38_4  Stomach  Mucosa    2
+411   38_5  Stomach  Mucosa    3
+412   38_6 Duodenum Digesta &lt;NA&gt;
+413   38_8 Duodenum  Mucosa &lt;NA&gt;
+414   38_9  Jejunum Digesta &lt;NA&gt;
+415  38_11  Jejunum  Mucosa &lt;NA&gt;
+416  38_12    Ileum Digesta &lt;NA&gt;
+417  38_14    Ileum  Mucosa &lt;NA&gt;
+418  38_15    Colon Digesta &lt;NA&gt;
+419  38_17    Colon  Mucosa &lt;NA&gt;
+420  38_18   Caecum Digesta &lt;NA&gt;
+421   38_2   Caecum  Mucosa &lt;NA&gt;
+422   39_1  Stomach Digesta &lt;NA&gt;
+423   39_3  Stomach  Mucosa    1
+424   39_4  Stomach  Mucosa    2
+425   39_5  Stomach  Mucosa    3
+426   39_6 Duodenum Digesta &lt;NA&gt;
+427   39_8 Duodenum  Mucosa &lt;NA&gt;
+428   39_9  Jejunum Digesta &lt;NA&gt;
+429  39_11  Jejunum  Mucosa &lt;NA&gt;
+430  39_12    Ileum Digesta &lt;NA&gt;
+431  39_14    Ileum  Mucosa &lt;NA&gt;
+432  39_15    Colon Digesta &lt;NA&gt;
+433  39_17    Colon  Mucosa &lt;NA&gt;
+434  39_18   Caecum Digesta &lt;NA&gt;
+435   39_2   Caecum  Mucosa &lt;NA&gt;
+436   40_1  Stomach Digesta &lt;NA&gt;
+437   40_3  Stomach  Mucosa    1
+438   40_4  Stomach  Mucosa    2
+439   40_5  Stomach  Mucosa    3
+440   40_6 Duodenum Digesta &lt;NA&gt;
+441   40_8 Duodenum  Mucosa &lt;NA&gt;
+442   40_9  Jejunum Digesta &lt;NA&gt;
+443  40_11  Jejunum  Mucosa &lt;NA&gt;
+444  40_12    Ileum Digesta &lt;NA&gt;
+445  40_14    Ileum  Mucosa &lt;NA&gt;
+446  40_15    Colon Digesta &lt;NA&gt;
+447  40_17    Colon  Mucosa &lt;NA&gt;
+448  40_18   Caecum Digesta &lt;NA&gt;
+449   40_2   Caecum  Mucosa &lt;NA&gt;
+450   41_1  Stomach Digesta &lt;NA&gt;
+451   41_3  Stomach  Mucosa    1
+452   41_4  Stomach  Mucosa    2
+453   41_5  Stomach  Mucosa    3
+454   41_6 Duodenum Digesta &lt;NA&gt;
+455   41_8 Duodenum  Mucosa &lt;NA&gt;
+456   41_9  Jejunum Digesta &lt;NA&gt;
+457  41_11  Jejunum  Mucosa &lt;NA&gt;
+458  41_12    Ileum Digesta &lt;NA&gt;
+459  41_14    Ileum  Mucosa &lt;NA&gt;
+460  41_15    Colon Digesta &lt;NA&gt;
+461  41_17    Colon  Mucosa &lt;NA&gt;
+462  41_18   Caecum Digesta &lt;NA&gt;
+463   41_2   Caecum  Mucosa &lt;NA&gt;
+464   42_1  Stomach Digesta &lt;NA&gt;
+465   42_3  Stomach  Mucosa    1
+466   42_4  Stomach  Mucosa    2
+467   42_5  Stomach  Mucosa    3
+468   42_6 Duodenum Digesta &lt;NA&gt;
+469   42_8 Duodenum  Mucosa &lt;NA&gt;
+470   42_9  Jejunum Digesta &lt;NA&gt;
+471  42_11  Jejunum  Mucosa &lt;NA&gt;
+472  42_12    Ileum Digesta &lt;NA&gt;
+473  42_14    Ileum  Mucosa &lt;NA&gt;
+474  42_15    Colon Digesta &lt;NA&gt;
+475  42_17    Colon  Mucosa &lt;NA&gt;
+476  42_18   Caecum Digesta &lt;NA&gt;
+477   42_2   Caecum  Mucosa &lt;NA&gt;
+478   43_1  Stomach Digesta &lt;NA&gt;
+479   43_3  Stomach  Mucosa    1
+480   43_4  Stomach  Mucosa    2
+481   43_5  Stomach  Mucosa    3
+482   43_6 Duodenum Digesta &lt;NA&gt;
+483   43_8 Duodenum  Mucosa &lt;NA&gt;
+484   43_9  Jejunum Digesta &lt;NA&gt;
+485  43_11  Jejunum  Mucosa &lt;NA&gt;
+486  43_12    Ileum Digesta &lt;NA&gt;
+487  43_14    Ileum  Mucosa &lt;NA&gt;
+488  43_15    Colon Digesta &lt;NA&gt;
+489  43_17    Colon  Mucosa &lt;NA&gt;
+490  43_18   Caecum Digesta &lt;NA&gt;
+491   43_2   Caecum  Mucosa &lt;NA&gt;
+492   44_1  Stomach Digesta &lt;NA&gt;
+493   44_3  Stomach  Mucosa    1
+494   44_4  Stomach  Mucosa    2
+495   44_5  Stomach  Mucosa    3
+496   44_6 Duodenum Digesta &lt;NA&gt;
+497   44_8 Duodenum  Mucosa &lt;NA&gt;
+498   44_9  Jejunum Digesta &lt;NA&gt;
+499  44_11  Jejunum  Mucosa &lt;NA&gt;
+500  44_12    Ileum Digesta &lt;NA&gt;
+501  44_14    Ileum  Mucosa &lt;NA&gt;
+502  44_15    Colon Digesta &lt;NA&gt;
+503  44_17    Colon  Mucosa &lt;NA&gt;
+504  44_18   Caecum Digesta &lt;NA&gt;
+505   44_2   Caecum  Mucosa &lt;NA&gt;
+506   45_1  Stomach Digesta &lt;NA&gt;
+507   45_3  Stomach  Mucosa    1
+508   45_4  Stomach  Mucosa    2
+509   45_5  Stomach  Mucosa    3
+510   45_6 Duodenum Digesta &lt;NA&gt;
+511   45_8 Duodenum  Mucosa &lt;NA&gt;
+512   45_9  Jejunum Digesta &lt;NA&gt;
+513  45_11  Jejunum  Mucosa &lt;NA&gt;
+514  45_12    Ileum Digesta &lt;NA&gt;
+515  45_14    Ileum  Mucosa &lt;NA&gt;
+516  45_15    Colon Digesta &lt;NA&gt;
+517  45_17    Colon  Mucosa &lt;NA&gt;
+518  45_18   Caecum Digesta &lt;NA&gt;
+519   45_2   Caecum  Mucosa &lt;NA&gt;
+520   46_1  Stomach Digesta &lt;NA&gt;
+521   46_3  Stomach  Mucosa    1
+522   46_4  Stomach  Mucosa    2
+523   46_5  Stomach  Mucosa    3
+524   46_6 Duodenum Digesta &lt;NA&gt;
+525   46_8 Duodenum  Mucosa &lt;NA&gt;
+526   46_9  Jejunum Digesta &lt;NA&gt;
+527  46_11  Jejunum  Mucosa &lt;NA&gt;
+528  46_12    Ileum Digesta &lt;NA&gt;
+529  46_14    Ileum  Mucosa &lt;NA&gt;
+530  46_15    Colon Digesta &lt;NA&gt;
+531  46_17    Colon  Mucosa &lt;NA&gt;
+532  46_18   Caecum Digesta &lt;NA&gt;
+533   46_2   Caecum  Mucosa &lt;NA&gt;
+534   47_1  Stomach Digesta &lt;NA&gt;
+535   47_3  Stomach  Mucosa    1
+536   47_4  Stomach  Mucosa    2
+537   47_5  Stomach  Mucosa    3
+538   47_6 Duodenum Digesta &lt;NA&gt;
+539   47_8 Duodenum  Mucosa &lt;NA&gt;
+540   47_9  Jejunum Digesta &lt;NA&gt;
+541  47_11  Jejunum  Mucosa &lt;NA&gt;
+542  47_12    Ileum Digesta &lt;NA&gt;
+543  47_14    Ileum  Mucosa &lt;NA&gt;
+544  47_15    Colon Digesta &lt;NA&gt;
+545  47_17    Colon  Mucosa &lt;NA&gt;
+546  47_18   Caecum Digesta &lt;NA&gt;
+547   47_2   Caecum  Mucosa &lt;NA&gt;
+548   48_1  Stomach Digesta &lt;NA&gt;
+549   48_3  Stomach  Mucosa    1
+550   48_4  Stomach  Mucosa    2
+551   48_5  Stomach  Mucosa    3
+552   48_6 Duodenum Digesta &lt;NA&gt;
+553   48_8 Duodenum  Mucosa &lt;NA&gt;
+554   48_9  Jejunum Digesta &lt;NA&gt;
+555  48_11  Jejunum  Mucosa &lt;NA&gt;
+556  48_12    Ileum Digesta &lt;NA&gt;
+557  48_14    Ileum  Mucosa &lt;NA&gt;
+558  48_15    Colon Digesta &lt;NA&gt;
+559  48_17    Colon  Mucosa &lt;NA&gt;
+560  48_18   Caecum Digesta &lt;NA&gt;
+561   48_2   Caecum  Mucosa &lt;NA&gt;
+562   49_1  Stomach Digesta &lt;NA&gt;
+563   49_3  Stomach  Mucosa    1
+564   49_4  Stomach  Mucosa    2
+565   49_5  Stomach  Mucosa    3
+566   49_6 Duodenum Digesta &lt;NA&gt;
+567   49_8 Duodenum  Mucosa &lt;NA&gt;
+568   49_9  Jejunum Digesta &lt;NA&gt;
+569  49_11  Jejunum  Mucosa &lt;NA&gt;
+570  49_12    Ileum Digesta &lt;NA&gt;
+571  49_14    Ileum  Mucosa &lt;NA&gt;
+572  49_15    Colon Digesta &lt;NA&gt;
+573  49_17    Colon  Mucosa &lt;NA&gt;
+574  49_18   Caecum Digesta &lt;NA&gt;
+575   49_2   Caecum  Mucosa &lt;NA&gt;
+576   50_1  Stomach Digesta &lt;NA&gt;
+577   50_3  Stomach  Mucosa    1
+578   50_4  Stomach  Mucosa    2
+579   50_5  Stomach  Mucosa    3
+580   50_6 Duodenum Digesta &lt;NA&gt;
+581   50_8 Duodenum  Mucosa &lt;NA&gt;
+582   50_9  Jejunum Digesta &lt;NA&gt;
+583  50_11  Jejunum  Mucosa &lt;NA&gt;
+584  50_12    Ileum Digesta &lt;NA&gt;
+585  50_14    Ileum  Mucosa &lt;NA&gt;
+586  50_15    Colon Digesta &lt;NA&gt;
+587  50_17    Colon  Mucosa &lt;NA&gt;
+588  50_18   Caecum Digesta &lt;NA&gt;
+589   50_2   Caecum  Mucosa &lt;NA&gt;
+590   51_1  Stomach Digesta &lt;NA&gt;
+591   51_3  Stomach  Mucosa    1
+592   51_4  Stomach  Mucosa    2
+593   51_5  Stomach  Mucosa    3
+594   51_6 Duodenum Digesta &lt;NA&gt;
+595   51_8 Duodenum  Mucosa &lt;NA&gt;
+596   51_9  Jejunum Digesta &lt;NA&gt;
+597  51_11  Jejunum  Mucosa &lt;NA&gt;
+598  51_12    Ileum Digesta &lt;NA&gt;
+599  51_14    Ileum  Mucosa &lt;NA&gt;
+600  51_15    Colon Digesta &lt;NA&gt;
+601  51_17    Colon  Mucosa &lt;NA&gt;
+602  51_18   Caecum Digesta &lt;NA&gt;
+603   51_2   Caecum  Mucosa &lt;NA&gt;
+604   52_1  Stomach Digesta &lt;NA&gt;
+605   52_3  Stomach  Mucosa    1
+606   52_4  Stomach  Mucosa    2
+607   52_5  Stomach  Mucosa    3
+608   52_6 Duodenum Digesta &lt;NA&gt;
+609   52_8 Duodenum  Mucosa &lt;NA&gt;
+610   52_9  Jejunum Digesta &lt;NA&gt;
+611  52_11  Jejunum  Mucosa &lt;NA&gt;
+612  52_12    Ileum Digesta &lt;NA&gt;
+613  52_14    Ileum  Mucosa &lt;NA&gt;
+614  52_15    Colon Digesta &lt;NA&gt;
+615  52_17    Colon  Mucosa &lt;NA&gt;
+616  52_18   Caecum Digesta &lt;NA&gt;
+617   52_2   Caecum  Mucosa &lt;NA&gt;
+618   53_1  Stomach Digesta &lt;NA&gt;
+619   53_3  Stomach  Mucosa    1
+620   53_4  Stomach  Mucosa    2
+621   53_5  Stomach  Mucosa    3
+622   53_6 Duodenum Digesta &lt;NA&gt;
+623   53_8 Duodenum  Mucosa &lt;NA&gt;
+624   53_9  Jejunum Digesta &lt;NA&gt;
+625  53_11  Jejunum  Mucosa &lt;NA&gt;
+626  53_12    Ileum Digesta &lt;NA&gt;
+627  53_14    Ileum  Mucosa &lt;NA&gt;
+628  53_15    Colon Digesta &lt;NA&gt;
+629  53_17    Colon  Mucosa &lt;NA&gt;
+630  53_18   Caecum Digesta &lt;NA&gt;
+631   53_2   Caecum  Mucosa &lt;NA&gt;
+632   54_1  Stomach Digesta &lt;NA&gt;
+633   54_3  Stomach  Mucosa    1
+634   54_4  Stomach  Mucosa    2
+635   54_5  Stomach  Mucosa    3
+636   54_6 Duodenum Digesta &lt;NA&gt;
+637   54_8 Duodenum  Mucosa &lt;NA&gt;
+638   54_9  Jejunum Digesta &lt;NA&gt;
+639  54_11  Jejunum  Mucosa &lt;NA&gt;
+640  54_12    Ileum Digesta &lt;NA&gt;
+641  54_14    Ileum  Mucosa &lt;NA&gt;
+642  54_15    Colon Digesta &lt;NA&gt;
+643  54_17    Colon  Mucosa &lt;NA&gt;
+644  54_18   Caecum Digesta &lt;NA&gt;
+645   54_2   Caecum  Mucosa &lt;NA&gt;
+646   55_1  Stomach Digesta &lt;NA&gt;
+647   55_3  Stomach  Mucosa    1
+648   55_4  Stomach  Mucosa    2
+649   55_5  Stomach  Mucosa    3
+650   55_6 Duodenum Digesta &lt;NA&gt;
+651   55_8 Duodenum  Mucosa &lt;NA&gt;
+652   55_9  Jejunum Digesta &lt;NA&gt;
+653  55_11  Jejunum  Mucosa &lt;NA&gt;
+654  55_12    Ileum Digesta &lt;NA&gt;
+655  55_14    Ileum  Mucosa &lt;NA&gt;
+656  55_15    Colon Digesta &lt;NA&gt;
+657  55_17    Colon  Mucosa &lt;NA&gt;
+658  55_18   Caecum Digesta &lt;NA&gt;
+659   55_2   Caecum  Mucosa &lt;NA&gt;
+660   56_1  Stomach Digesta &lt;NA&gt;
+661   56_3  Stomach  Mucosa    1
+662   56_4  Stomach  Mucosa    2
+663   56_5  Stomach  Mucosa    3
+664   56_6 Duodenum Digesta &lt;NA&gt;
+665   56_8 Duodenum  Mucosa &lt;NA&gt;
+666   56_9  Jejunum Digesta &lt;NA&gt;
+667  56_11  Jejunum  Mucosa &lt;NA&gt;
+668  56_12    Ileum Digesta &lt;NA&gt;
+669  56_14    Ileum  Mucosa &lt;NA&gt;
+670  56_15    Colon Digesta &lt;NA&gt;
+671  56_17    Colon  Mucosa &lt;NA&gt;
+672  56_18   Caecum Digesta &lt;NA&gt;
+673   56_2   Caecum  Mucosa &lt;NA&gt;</code></pre>
+</div>
+</div>
 
 
 
@@ -327,9 +978,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -341,7 +1006,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -377,24 +1059,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
