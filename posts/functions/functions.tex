@@ -195,7 +195,7 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, sharp corners, breakable, frame hidden, enhanced, interior hidden, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, sharp corners, frame hidden, breakable, boxrule=0pt]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -238,18 +238,34 @@ What are the different parts of a function?
 \end{Highlighting}
 \end{Shaded}
 
+Lets write a simple function to convert cm to meters. Affter running the
+function with the value 100, we get the result in meters.
+
+It is not common for beginers to write functions as we tend to use those
+pre-build in R or from other packages. However, learning to write
+function is important as we can solve some specific task.
+
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\#This function convert cm values to meters.}
 \NormalTok{cm\_to\_meters }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(cm) \{ }
 \NormalTok{  cm }\SpecialCharTok{/} \DecValTok{100}
 \NormalTok{\}}
 
-\CommentTok{\#This function convert cm values to meters.}
+\FunctionTok{cm\_to\_meters}\NormalTok{(}\DecValTok{100}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-The following list is compile with several function that we use during
-the microbiome data wrangling.
+\begin{verbatim}
+[1] 1
+\end{verbatim}
+
+The following list compile several functions, pre-build or from the
+Tidyverse package, that I usually use during microbiome data wrangling.
+Be aware that most of the information about the functions was taken from
+R-help and documentation. If you want to use the help function, write
+the question mark symbol before the function name (e. g
+?\textbf{\texttt{setwd()}}).
 
 \hypertarget{set-up-functions}{%
 \subsection{Set up functions}\label{set-up-functions}}
@@ -456,25 +472,68 @@ Example:
 \hypertarget{tidyverse-functions}{%
 \subsection{Tidyverse functions}\label{tidyverse-functions}}
 
-rename()
+\textbf{\texttt{rename()}} changes the names of individual variables
+using \texttt{new\_name\ =\ old\_name} syntax.
 
-separate()
+\textbf{\texttt{separate()}} can separate a character column into
+multiple columns with a regular expression or numeric locations.
 
-select()
+\textbf{\texttt{select()}} select (and optionally rename) variables in a
+data frame, using a concise mini-language that makes it easy to refer to
+variables based on their name (e.g.~\texttt{a:f} selects all columns
+from \texttt{a} on the left to \texttt{f} on the right). You can also
+use predicate functions like
+\href{http://127.0.0.1:9985/help/library/dplyr/help/is.numeric}{is.numeric}
+to select variables based on their properties.
 
-inner\_join() left\_join() right\_join()
+Data frames can be joined based on different vareiables that they
+shared. The mutating joins add columns from \texttt{y} to \texttt{x},
+matching rows based on the keys:
 
-filter()
+\begin{itemize}
+\item
+  \textbf{\texttt{inner\_join()}}: includes all rows in \texttt{x} and
+  \texttt{y}.
+\item
+  \textbf{\texttt{left\_join()}}: includes all rows in \texttt{x}.
+\item
+  \textbf{\texttt{right\_join()}}: includes all rows in \texttt{y}.
+\item
+  \textbf{\texttt{full\_join()}}: includes all rows in \texttt{x} or
+  \texttt{y}.
+\end{itemize}
 
-pivot\_longer()
+If a row in \texttt{x} matches multiple rows in \texttt{y}, all the rows
+in \texttt{y} will be returned once for each matching row in \texttt{x}.
 
-pivot\_wider()
+\hfill\break
+\textbf{\texttt{filter()}} function is used to subset a data frame,
+retaining all rows that satisfy your conditions. To be retained, the row
+must produce a value of \texttt{TRUE} for all conditions. Note that when
+a condition evaluates to \texttt{NA} the row will be dropped. Conditions
+acan be stablish using the logical and relational operators.
 
-group\_by()
+\textbf{\texttt{pivot\_longer()}} ``lengthens'' data, increasing the
+number of rows and decreasing the number of columns. The inverse
+transformation is \textbf{\texttt{pivot\_wider()}}
 
-summarize()
+\textbf{\texttt{group\_by()}} takes an existing data frame and converts
+it into a grouped data frame where operations are performed ``by
+group''. \textbf{\texttt{ungroup()}} removes grouping.
+\textbf{\texttt{group\_by()}} is usually cvombined with
+\textbf{\texttt{summarize()}} and \textbf{\texttt{mutate().}}
 
-mutate()
+\textbf{\texttt{summarize()}} creates a new data frame. It will have one
+(or more) rows for each combination of grouping variables; if there are
+no grouping variables, the output will have a single row summarising all
+observations in the input. It will contain one column for each grouping
+variable and one column for each of the summary statistics that you have
+specified.
+
+\textbf{\texttt{mutate()}} adds new variables and preserves existing
+ones; \texttt{transmute()} adds new variables and drops existing ones.
+New variables overwrite existing variables of the same name. Variables
+can be removed by setting their value to \texttt{NULL}.
 
 
 

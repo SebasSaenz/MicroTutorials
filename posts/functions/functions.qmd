@@ -30,21 +30,26 @@ What are the different parts of a function?
 
 -   **Function Body** − The function body contains all the code that defines what the function does.
 
-``` R
+``` r
 function_name <- function(arg_1, arg_2, …) {
    Function_body 
 }
 ```
 
-``` R
+Lets write a simple function to convert cm to meters. Affter running the function with the value 100, we get the result in meters.
+
+It is not common for beginers to write functions as we tend to use those pre-build in R or from other packages. However, learning to write function is important as we can solve some specific task.
+
+```{r}
+#This function convert cm values to meters.
 cm_to_meters <- function(cm) { 
   cm / 100
 }
 
-#This function convert cm values to meters.
+cm_to_meters(100)
 ```
 
-The following list is compile with several function that we use during the microbiome data wrangling.
+The following list compile several functions, pre-build or from the Tidyverse package, that I usually use during microbiome data wrangling. Be aware that most of the information about the functions was taken from R-help and documentation. If you want to use the help function, write the question mark symbol before the function name (e. g ?**`setwd()`**).
 
 ## Set up functions
 
@@ -149,7 +154,7 @@ The function **`scale_y_continuous()`** can be use to format the y-axis of a con
 
 Example:
 
-``` R
+``` r
 ggplot(data = data_clean) +
   geom_boxplot(x = groups,
                y = abundance) +
@@ -162,22 +167,31 @@ ggplot(data = data_clean) +
 
 ## Tidyverse functions
 
-rename()
+**`rename()`** changes the names of individual variables using `new_name = old_name` syntax.
 
-separate()
+**`separate()`** can separate a character column into multiple columns with a regular expression or numeric locations.
 
-select()
+**`select()`** select (and optionally rename) variables in a data frame, using a concise mini-language that makes it easy to refer to variables based on their name (e.g. `a:f` selects all columns from `a` on the left to `f` on the right). You can also use predicate functions like [is.numeric](http://127.0.0.1:9985/help/library/dplyr/help/is.numeric) to select variables based on their properties.
 
-inner_join() left_join() right_join()
+Data frames can be joined based on different vareiables that they shared. The mutating joins add columns from `y` to `x`, matching rows based on the keys:
 
-filter()
+-   **`inner_join()`**: includes all rows in `x` and `y`.
 
-pivot_longer()
+-   **`left_join()`**: includes all rows in `x`.
 
-pivot_wider()
+-   **`right_join()`**: includes all rows in `y`.
 
-group_by()
+-   **`full_join()`**: includes all rows in `x` or `y`.
 
-summarize()
+If a row in `x` matches multiple rows in `y`, all the rows in `y` will be returned once for each matching row in `x`.
 
-mutate()
+\
+**`filter()`** function is used to subset a data frame, retaining all rows that satisfy your conditions. To be retained, the row must produce a value of `TRUE` for all conditions. Note that when a condition evaluates to `NA` the row will be dropped. Conditions acan be stablish using the logical and relational operators.
+
+**`pivot_longer()`** "lengthens" data, increasing the number of rows and decreasing the number of columns. The inverse transformation is **`pivot_wider()`**
+
+**`group_by()`** takes an existing data frame and converts it into a grouped data frame where operations are performed "by group". **`ungroup()`** removes grouping. **`group_by()`** is usually cvombined with **`summarize()`** and **`mutate().`**
+
+**`summarize()`** creates a new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input. It will contain one column for each grouping variable and one column for each of the summary statistics that you have specified.
+
+**`mutate()`** adds new variables and preserves existing ones; `transmute()` adds new variables and drops existing ones. New variables overwrite existing variables of the same name. Variables can be removed by setting their value to `NULL`.

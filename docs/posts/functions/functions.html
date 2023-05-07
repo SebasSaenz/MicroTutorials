@@ -217,12 +217,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(arg_1, arg_2, …) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   Function_body </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cm_to_meters <span class="ot">&lt;-</span> <span class="cf">function</span>(cm) { </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  cm <span class="sc">/</span> <span class="dv">100</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#This function convert cm values to meters.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The following list is compile with several function that we use during the microbiome data wrangling.</p>
+<p>Lets write a simple function to convert cm to meters. Affter running the function with the value 100, we get the result in meters.</p>
+<p>It is not common for beginers to write functions as we tend to use those pre-build in R or from other packages. However, learning to write function is important as we can solve some specific task.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This function convert cm values to meters.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cm_to_meters <span class="ot">&lt;-</span> <span class="cf">function</span>(cm) { </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  cm <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cm_to_meters</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>The following list compile several functions, pre-build or from the Tidyverse package, that I usually use during microbiome data wrangling. Be aware that most of the information about the functions was taken from R-help and documentation. If you want to use the help function, write the question mark symbol before the function name (e. g ?<strong><code>setwd()</code></strong>).</p>
 <section id="set-up-functions" class="level2">
 <h2 class="anchored" data-anchor-id="set-up-functions">Set up functions</h2>
 <p><u>Get or Set Working Directory</u></p>
@@ -386,27 +394,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><u>Themes</u></p>
 <p><strong><code>theme()</code></strong> is a powerful way to customize the non-data components of your plots: i.e.&nbsp;titles, labels, fonts, background, gridlines, and legends. Themes can be used to give plots a consistent customized look. ggplot has several pre-build themes like: <strong><code>theme_classic()</code></strong> and <strong><code>theme_minimal()</code></strong></p>
 <p>Example:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_clean) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">x =</span> groups,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> abundance) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Relative abundance (%)"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Treatment"</span>) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_clean) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">x =</span> groups,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> abundance) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Relative abundance (%)"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="tidyverse-functions" class="level2">
 <h2 class="anchored" data-anchor-id="tidyverse-functions">Tidyverse functions</h2>
-<p>rename()</p>
-<p>separate()</p>
-<p>select()</p>
-<p>inner_join() left_join() right_join()</p>
-<p>filter()</p>
-<p>pivot_longer()</p>
-<p>pivot_wider()</p>
-<p>group_by()</p>
-<p>summarize()</p>
-<p>mutate()</p>
+<p><strong><code>rename()</code></strong> changes the names of individual variables using <code>new_name = old_name</code> syntax.</p>
+<p><strong><code>separate()</code></strong> can separate a character column into multiple columns with a regular expression or numeric locations.</p>
+<p><strong><code>select()</code></strong> select (and optionally rename) variables in a data frame, using a concise mini-language that makes it easy to refer to variables based on their name (e.g.&nbsp;<code>a:f</code> selects all columns from <code>a</code> on the left to <code>f</code> on the right). You can also use predicate functions like <a href="http://127.0.0.1:9985/help/library/dplyr/help/is.numeric">is.numeric</a> to select variables based on their properties.</p>
+<p>Data frames can be joined based on different vareiables that they shared. The mutating joins add columns from <code>y</code> to <code>x</code>, matching rows based on the keys:</p>
+<ul>
+<li><p><strong><code>inner_join()</code></strong>: includes all rows in <code>x</code> and <code>y</code>.</p></li>
+<li><p><strong><code>left_join()</code></strong>: includes all rows in <code>x</code>.</p></li>
+<li><p><strong><code>right_join()</code></strong>: includes all rows in <code>y</code>.</p></li>
+<li><p><strong><code>full_join()</code></strong>: includes all rows in <code>x</code> or <code>y</code>.</p></li>
+</ul>
+<p>If a row in <code>x</code> matches multiple rows in <code>y</code>, all the rows in <code>y</code> will be returned once for each matching row in <code>x</code>.</p>
+<p><br>
+<strong><code>filter()</code></strong> function is used to subset a data frame, retaining all rows that satisfy your conditions. To be retained, the row must produce a value of <code>TRUE</code> for all conditions. Note that when a condition evaluates to <code>NA</code> the row will be dropped. Conditions acan be stablish using the logical and relational operators.</p>
+<p><strong><code>pivot_longer()</code></strong> “lengthens” data, increasing the number of rows and decreasing the number of columns. The inverse transformation is <strong><code>pivot_wider()</code></strong></p>
+<p><strong><code>group_by()</code></strong> takes an existing data frame and converts it into a grouped data frame where operations are performed “by group”. <strong><code>ungroup()</code></strong> removes grouping. <strong><code>group_by()</code></strong> is usually cvombined with <strong><code>summarize()</code></strong> and <strong><code>mutate().</code></strong></p>
+<p><strong><code>summarize()</code></strong> creates a new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input. It will contain one column for each grouping variable and one column for each of the summary statistics that you have specified.</p>
+<p><strong><code>mutate()</code></strong> adds new variables and preserves existing ones; <code>transmute()</code> adds new variables and drops existing ones. New variables overwrite existing variables of the same name. Variables can be removed by setting their value to <code>NULL</code>.</p>
 
 
 </section>

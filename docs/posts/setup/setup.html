@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -144,6 +178,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#working-space-set-up" id="toc-working-space-set-up" class="nav-link active" data-scroll-target="#working-space-set-up"><strong>Working space set-up</strong></a></li>
+  <li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Folder structure</a></li>
+  <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory">Working directory</a></li>
+  <li><a href="#installing-and-loading-libraries" id="toc-installing-and-loading-libraries" class="nav-link" data-scroll-target="#installing-and-loading-libraries">Installing and loading libraries</a></li>
+  <li><a href="#load-files" id="toc-load-files" class="nav-link" data-scroll-target="#load-files">Load files</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="setup.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </nav>
@@ -159,6 +197,90 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="working-space-set-up" class="level1">
 <h1><strong>Working space set-up</strong></h1>
+<p>The most important thing to do before starting a new project is to set up the working space. In this blog I will describe the steps that I follow and work for me but it is not the only way. So if you find new ways to set-up your working space feel free to do it.</p>
+</section>
+<section id="folder-structure" class="level1">
+<h1>Folder structure</h1>
+<ol type="1">
+<li>First of all, you should create a main folder with the name of the project and inside, you should create three sub folders call: <strong>rawdata</strong>, <strong>code</strong> and <strong>figures</strong>. The names of the folders indicate the type of file that would be stored in each of them. Sometimes I also create a folder call <strong>processed_data</strong>, when I want to save intermediate files. The file in the raw data must not be modified during the analysis.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="folders.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>Next, You should move the raw data to the respective folder.</li>
+<li>After, You should create a new R script and then Save as… inside the <strong>code</strong> folder. I always give meaningful names to my files. Those names are based on the main goal of the script. For example if it is to create a bar plot, I name the file barplot.R</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="newfile.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</section>
+<section id="working-directory" class="level1">
+<h1>Working directory</h1>
+<ol start="4" type="1">
+<li><p>Following, You should open the new R script and use the symbol # to add some comments to the file. The # indicates that the line would not be run by R. The # is quite useful as you can add different comments to help you and other people to understand your code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Johan S. Sáenz</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Email: johan.saenzmedina@uni-hohenheim.de</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># info: script to create a barplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Then, you should select the working directory in the Session menu. You should select your project folder. You will notice that in the console the following code was printed: <strong><code>setwd("/Users/sebastiansaenz/Documents/github/MicroTutorials/project")</code></strong>. Copy the code and paste it in your script. Add a comment indicating that the following line is used to set up your working directory. The project folder would now be consider the root directory.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="wd.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Johan S. Sáenz</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Email: johan.saenzmedina@uni-hohenheim.de</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># info: script to create a barplot</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting working directory</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/Users/sebastiansaenz/Documents/github/MicroTutorials/project"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="installing-and-loading-libraries" class="level1">
+<h1>Installing and loading libraries</h1>
+<ol start="6" type="1">
+<li>R has several pre-build functions but other packages created by the community can be use as long as they are install and load. Now you can use the function <strong><code>install.packages()</code></strong> to install the packages that we would need for our analysis. This function should be use only once, because after the installation, the package will be available to be load even after closing the software. On the other hand, the function <strong><code>library()</code></strong> must be use every time a new R session is initiate. After installation you can comment out the <strong><code>#install.packages("tidyverse")</code>.</strong> The longer you work in R, more new packages you will add to your collection.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r R code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Johan S. Sáenz</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Email: johan.saenzmedina@uni-hohenheim.de</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># info: script to create a barplot</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting working directory</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/Users/sebastiansaenz/Documents/github/MicroTutorials/project"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># install libraries</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidyverse")</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># load libraries</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="load-files" class="level1">
+<h1>Load files</h1>
+<ol start="7" type="1">
+<li>Finally, you should load the files that you are going to use specifically in this script. For this we can use two functions, one pre-build in R (<strong><code>read.table()</code></strong>) and one from the Tidyverse package (<strong><code>read_tsv()</code></strong>). There are several function to load files in the R environment, some of them with broad purposes but also some for specific tasks. Lets clarify some things:</li>
+</ol>
+<ul>
+<li><p>The arrow (&lt;-) indicates that everything on the right would be store in the object on the left. After running this code, you will see that the left object is stored in the environment. You could run the code without assigning the function to an object, however this would not be store in the environment.</p></li>
+<li><p>The name of the object (e.g metadata) is short, meaningful and does not contain spaces.</p></li>
+<li><p>The name of the file is given inside “quotation” and additionally the complete path of the file is written. Remember that in this case <strong>project</strong> is our root directory, so wee need to declare the path including the <strong>rawdata</strong> folder.</p></li>
+<li><p>Different functions have different arguments. For example the <strong><code>read.table()</code></strong> needs the arguments <strong><code>header</code></strong> (assign the first row as header) and <strong><code>sep</code></strong> (declare how is the data frame separate: coma, space, tabs etc), otherwise the data frame will not load correctly. On the other had, <strong><code>read_tsv()</code></strong> is a specific function for loading files that are separate by tabs and the first row is the header, so it does not need any extra argument.</p></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load files</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"rawdata/metadata_metapro.txt"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>) <span class="co">#separation of columns by tabs</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>summary_file <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="at">file =</span> <span class="st">"rawdata/project/rawdata/summary.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At the end you can see that your script is accumulating code so do not forget to save it. Next time you open it, you only need to run it and you would be ready to start the analysis and wrangling of your data. The set up of your environment can get very complex because you can add more libraries, assign colours palettes to object, add new fonts and even creating whole themes (size, colours, fonts, scales) to standardize all your plots.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="script.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 
 
 </section>
