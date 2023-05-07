@@ -35,7 +35,7 @@ The most important thing to do before starting a new project is to set up the wo
 
 4.  Following, You should open the new R script and use the symbol \# to add some comments to the file. The \# indicates that the line would not be run by R. The \# is quite useful as you can add different comments to help you and other people to understand your code.
 
-    ``` R
+    ``` r
     # Author: Johan S. Sáenz
     # Email: johan.saenzmedina@uni-hohenheim.de
     # info: script to create a barplot
@@ -94,6 +94,6 @@ metadata <- read.table(file = "rawdata/metadata_metapro.txt",
 summary_file <- read_tsv(file = "rawdata/project/rawdata/summary.txt")
 ```
 
-At the end you can see that your script is accumulating code so do not forget to save it. Next time you open it, you only need to run it and you would be ready to start the analysis and wrangling of your data. The set up of your environment can get very complex because you can add more libraries, assign colours palettes to object, add new fonts and even creating whole themes (size, colours, fonts, scales) to standardize all your plots.
+At the end you can see that your script is accumulating code so do not forget to save it. Next time you open it, you only need to run it and you would be ready to start the analysis and wrangling of your data. The set up of your environment can get very complex because you can add more libraries, assign colours palettes to object, add new fonts and even creating whole themes (size, colours, fonts, scales) to standardize all your plots. 🙀
 
 ![](script.png){fig-align="center"}
