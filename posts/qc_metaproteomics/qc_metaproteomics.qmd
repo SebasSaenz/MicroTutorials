@@ -18,30 +18,195 @@ format:
     toc-location: left
 ---
 
+# Quality control of metapreotomics data
+
+## Set-up environment
+
 ```{r}
 #| warning: false
-##libraries
+## libraries
 library(tidyverse)
-library(here)
 
-## input data
-df_qc <- read.table(here::here("rawdata/summary.txt"),
-                   header = TRUE,
-                   sep="\t",
-                   check.names = FALSE)
 
-colnames(df_qc)
+# input data
+
+# Metaproteomics quality control data from MaxQuant
+df_qc <- read.table("../../project/rawdata/final_summary.tsv",
+                    header = TRUE,
+                    sep = "\t",
+                    check.names = FALSE)
+# Metadata
+metadata <- read.table("../../project/rawdata/metadata_metapro.txt",
+                       header = TRUE,
+                       sep = "\t"
+                       )
+```
+
+## Clean metadata
+
+```{r}
+#| warning: false
+
+metadata_clean <- metadata %>%
+  rename(sample = Probenname) %>%
+  mutate(sample = str_replace_all(sample, "\\.", "_")) %>%
+  separate(Abschnitt,
+    into = c("region", "source",
+      sep = " "
+    )
+  )
+```
+
+## Clean quality data
+
+```{r}
+clean_qc <- df_qc %>%
+  select(
+    "Raw file",
+    "Peptide Sequences Identified",
+    "MS/MS Identified",
+    "MS/MS Identified [%]"
+  ) %>%
+  rename(
+    sample = "Raw file",
+    peptide_identified = "Peptide Sequences Identified",
+    ms_identified = "MS/MS Identified",
+    ms_identified_perc = "MS/MS Identified [%]"
+  ) %>%
+  filter(sample != "Total")
+```
+
+## Create a summary table
+
+```{r}
+max(clean_qc$peptide_identified)
+
+sapply(clean_qc[2:4], mean)
+
+
+summary_table <- data.frame(
+  stats = c("Max", "Mean", "Min"),
+  peptide_identified = round(c(25687.0, 11420.1500, 472.00)),
+  ms_identified = round(c(28442.0, 13235.5000, 766.00)),
+  ms_identified_perc = round(c(29.9, 14.8755, 0.98), 2)
+)
+
+summary_table
+
+write.csv(summary_table, "../../project/rawdata/summary.csv")
+```
+
+## Pivot data
+
+```{r}
+pivoted_data <- clean_qc %>%
+  pivot_longer(-(sample), names_to = "qc", values_to = "value")
+
+head(pivoted_data)
+```
+
+## Plot the data
+
+```{r}
+
+ pivoted_data %>%
+  filter(qc=="peptide_identified") %>% 
+   ggplot(aes(x=value,
+             y=sample)) +
+  geom_bar(stat = "identity") +
+  geom_vline(aes(xintercept=mean(value)),
+              color="blue", linetype="dashed") +
+  scale_x_continuous(expand = c(0,0),
+                     limits = c(0, 29000),
+                     breaks=seq(0, 29000, by=3000)) +
+  labs(x="",
+       y="Number of identified peptides") +
+  theme_classic()
+ 
+ pivoted_data %>%
+   filter(qc=="peptide_identified") %>%
+  ggplot(aes(x=sample,
+             y=value)) +
+  geom_point(size=4)+
+  geom_hline(aes(yintercept=mean(value)),
+             color="blue", linetype="dashed") +
+  scale_y_continuous(expand = c(0,0),
+                     limits = c(0, 27000),
+                     breaks=seq(0, 27000, by=3000)) +
+  labs(x="",
+       y="Number of identified peptides") +
+  theme_classic()
 ```
 
 ```{r}
-#| warning: false
-metadata <-read.table(here::here("rawdata/metadata_metapro.txt"),
-           header = TRUE,
-           sep="\t") %>%
-  rename(sample=Probenname) %>%
-  mutate(sample=str_replace_all(sample, "\\.", "_"))%>%
-  separate(Abschnitt,
-           into=c("region", "source",
-           sep=" "))
- metadata
+ pivoted_data %>%
+  filter(qc=="peptide_identified") %>%
+  ggplot(aes(x="peptides",
+             y=value)) +
+  geom_boxplot(width = 0.3)+ 
+  geom_jitter(width = 0.1,
+              size = 3,
+              color = "red",
+              alpha = 0.6) +
+  scale_y_continuous(expand = c(0,0),
+                     limits = c(0, 29000),
+                     breaks=seq(0, 29000, by=3000)) +
+  labs(x="",
+       y="Number of identified peptides") +
+  theme_classic()
+```
+
+```{r}
+ pivoted_data %>%
+  filter(qc=="peptide_identified") %>%
+  inner_join(metadata_clean, by="sample") %>%
+  ggplot(aes(x=region,
+             y=value,
+             color=region)) +
+  geom_boxplot(width = 0.3,
+               outlier.shape = NA, 
+               show.legend = FALSE)+ 
+  geom_jitter(width= 0.1,
+              size=3, 
+              show.legend = FALSE,
+              alpha = 0.6) +
+  scale_y_continuous(expand = c(0,0),
+                     limits = c(0, 30000),
+                     breaks=seq(0, 30000, by=3000)) +
+  labs(x="",
+       y="Number of identified peptides") +
+  scale_color_manual(values = c("red", "blue")) +
+  theme_classic()
+```
+
+```{r}
+ pivoted_data %>%
+   inner_join(metadata_clean, 
+              by = "sample"
+              ) %>%
+   ggplot(aes(x = region,
+              y = value,
+              color = region
+              )
+          ) +
+   geom_boxplot(outlier.shape = NA, 
+                show.legend = FALSE
+                ) +
+   geom_jitter(size = 3,
+               show.legend = FALSE
+               ) +
+   scale_y_continuous(expand = c(0, 0),
+                      # limits = c(0, 27000),
+                      # breaks=seq(0, 27000, by=3000)
+                      ) +
+   labs(x = "",
+        y = "Number of identified peptides"
+        ) +
+   scale_color_manual(values = c("red", "blue")
+                      ) +
+   theme_classic() +
+   facet_wrap(~qc, 
+              scales = "free"
+              )
+
 ```

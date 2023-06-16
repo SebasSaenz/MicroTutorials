@@ -3,6 +3,7 @@ title: "Working space set-up"
 author: "Johan Sáenz"
 date: "05-04-2023"
 categories: [R, functions]
+logo: folders.png
 format:
    pdf:
     toc: true

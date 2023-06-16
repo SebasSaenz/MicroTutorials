@@ -180,775 +180,257 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#quality-control-of-metapreotomics-data" id="toc-quality-control-of-metapreotomics-data" class="nav-link active" data-scroll-target="#quality-control-of-metapreotomics-data">Quality control of metapreotomics data</a>
+  <ul class="collapse">
+  <li><a href="#set-up-environment" id="toc-set-up-environment" class="nav-link" data-scroll-target="#set-up-environment">Set-up environment</a></li>
+  <li><a href="#clean-metadata" id="toc-clean-metadata" class="nav-link" data-scroll-target="#clean-metadata">Clean metadata</a></li>
+  <li><a href="#clean-quality-data" id="toc-clean-quality-data" class="nav-link" data-scroll-target="#clean-quality-data">Clean quality data</a></li>
+  <li><a href="#create-a-summary-table" id="toc-create-a-summary-table" class="nav-link" data-scroll-target="#create-a-summary-table">Create a summary table</a></li>
+  <li><a href="#pivot-data" id="toc-pivot-data" class="nav-link" data-scroll-target="#pivot-data">Pivot data</a></li>
+  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data">Plot the data</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="qc_metaproteomics.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="qc_metaproteomics.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<section id="quality-control-of-metapreotomics-data" class="level1">
+<h1>Quality control of metapreotomics data</h1>
+<section id="set-up-environment" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-environment">Set-up environment</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">##libraries</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="do">## input data</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df_qc <span class="ot">&lt;-</span> <span class="fu">read.table</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"rawdata/summary.txt"</span>),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_qc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># input data</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Metaproteomics quality control data from MaxQuant</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df_qc <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"../../project/rawdata/final_summary.tsv"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Metadata</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"../../project/rawdata/metadata_metapro.txt"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="clean-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="clean-metadata">Clean metadata</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>metadata_clean <span class="ot">&lt;-</span> metadata <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">sample =</span> Probenname) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sample =</span> <span class="fu">str_replace_all</span>(sample, <span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">"_"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(Abschnitt,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"region"</span>, <span class="st">"source"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">" "</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="clean-quality-data" class="level2">
+<h2 class="anchored" data-anchor-id="clean-quality-data">Clean quality data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>clean_qc <span class="ot">&lt;-</span> df_qc <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Raw file"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Peptide Sequences Identified"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MS/MS Identified"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MS/MS Identified [%]"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample =</span> <span class="st">"Raw file"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">peptide_identified =</span> <span class="st">"Peptide Sequences Identified"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ms_identified =</span> <span class="st">"MS/MS Identified"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">ms_identified_perc =</span> <span class="st">"MS/MS Identified [%]"</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sample <span class="sc">!=</span> <span class="st">"Total"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-a-summary-table" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-summary-table">Create a summary table</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(clean_qc<span class="sc">$</span>peptide_identified)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Raw file"                                 
- [2] "Experiment"                               
- [3] "Fraction"                                 
- [4] "Enzyme"                                   
- [5] "Enzyme mode"                              
- [6] "Enzyme first search"                      
- [7] "Enzyme mode first search"                 
- [8] "Use enzyme first search"                  
- [9] "Variable modifications"                   
-[10] "Fixed modifications"                      
-[11] "Multi modifications"                      
-[12] "Variable modifications first search"      
-[13] "Use variable modifications first search"  
-[14] "Requantify"                               
-[15] "Multiplicity"                             
-[16] "Max. missed cleavages"                    
-[17] "Labels0"                                  
-[18] "LC-MS run type"                           
-[19] "Time-dependent recalibration"             
-[20] "MS"                                       
-[21] "MS/MS"                                    
-[22] "MS3"                                      
-[23] "MS/MS Submitted"                          
-[24] "MS/MS Submitted (SIL)"                    
-[25] "MS/MS Submitted (ISO)"                    
-[26] "MS/MS Submitted (PEAK)"                   
-[27] "MS/MS Identified"                         
-[28] "MS/MS Identified (SIL)"                   
-[29] "MS/MS Identified (ISO)"                   
-[30] "MS/MS Identified (PEAK)"                  
-[31] "MS/MS Identified [%]"                     
-[32] "MS/MS Identified (SIL) [%]"               
-[33] "MS/MS Identified (ISO) [%]"               
-[34] "MS/MS Identified (PEAK) [%]"              
-[35] "Peptide Sequences Identified"             
-[36] "Peaks"                                    
-[37] "Peaks Sequenced"                          
-[38] "Peaks Sequenced [%]"                      
-[39] "Peaks Repeatedly Sequenced"               
-[40] "Peaks Repeatedly Sequenced [%]"           
-[41] "Isotope Patterns"                         
-[42] "Isotope Patterns Sequenced"               
-[43] "Isotope Patterns Sequenced (z&gt;1)"         
-[44] "Isotope Patterns Sequenced [%]"           
-[45] "Isotope Patterns Sequenced (z&gt;1) [%]"     
-[46] "Isotope Patterns Repeatedly Sequenced"    
-[47] "Isotope Patterns Repeatedly Sequenced [%]"
-[48] "Recalibrated"                             
-[49] "Av. Absolute Mass Deviation [ppm]"        
-[50] "Mass Standard Deviation [ppm]"            
-[51] "Av. Absolute Mass Deviation [mDa]"        
-[52] "Mass Standard Deviation [mDa]"            
-[53] "Label free norm param"                    </code></pre>
+<pre><code>[1] 27841</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(clean_qc[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>], mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>peptide_identified      ms_identified ms_identified_perc 
+         10646.400          17453.600             26.159 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"Max"</span>, <span class="st">"Mean"</span>, <span class="st">"Min"</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">peptide_identified =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fl">25687.0</span>, <span class="fl">11420.1500</span>, <span class="fl">472.00</span>)),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ms_identified =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fl">28442.0</span>, <span class="fl">13235.5000</span>, <span class="fl">766.00</span>)),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ms_identified_perc =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fl">29.9</span>, <span class="fl">14.8755</span>, <span class="fl">0.98</span>), <span class="dv">2</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>summary_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  stats peptide_identified ms_identified ms_identified_perc
+1   Max              25687         28442              29.90
+2  Mean              11420         13236              14.88
+3   Min                472           766               0.98</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(summary_table, <span class="st">"../../project/rawdata/summary.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="pivot-data" class="level2">
+<h2 class="anchored" data-anchor-id="pivot-data">Pivot data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pivoted_data <span class="ot">&lt;-</span> clean_qc <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>(sample), <span class="at">names_to =</span> <span class="st">"qc"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pivoted_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  sample qc                    value
+  &lt;chr&gt;  &lt;chr&gt;                 &lt;dbl&gt;
+1 10_1   peptide_identified   642   
+2 10_1   ms_identified       1045   
+3 10_1   ms_identified_perc     1.96
+4 10_18  peptide_identified 24411   
+5 10_18  ms_identified      36628   
+6 10_18  ms_identified_perc    54.6 </code></pre>
+</div>
+</div>
+</section>
+<section id="plot-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="plot-the-data">Plot the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a> pivoted_data <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(qc<span class="sc">==</span><span class="st">"peptide_identified"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>value,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span>sample)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span><span class="fu">mean</span>(value)),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"blue"</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">29000</span>),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">29000</span>, <span class="at">by=</span><span class="dv">3000</span>)) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Number of identified peptides"</span>) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="qc_metaproteomics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a> pivoted_data <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(qc<span class="sc">==</span><span class="st">"peptide_identified"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>sample,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span>value)) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept=</span><span class="fu">mean</span>(value)),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">color=</span><span class="st">"blue"</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">27000</span>),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">27000</span>, <span class="at">by=</span><span class="dv">3000</span>)) <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Number of identified peptides"</span>) <span class="sc">+</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="qc_metaproteomics_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span><span class="fu">read.table</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"rawdata/metadata_metapro.txt"</span>),</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">sample=</span>Probenname) <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sample=</span><span class="fu">str_replace_all</span>(sample, <span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">"_"</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(Abschnitt,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">into=</span><span class="fu">c</span>(<span class="st">"region"</span>, <span class="st">"source"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep=</span><span class="st">" "</span>))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> metadata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    sample   region  source     
-1      9_1  Stomach Digesta &lt;NA&gt;
-2      9_3  Stomach  Mucosa    1
-3      9_4  Stomach  Mucosa    2
-4      9_5  Stomach  Mucosa    3
-5      9_6 Duodenum Digesta &lt;NA&gt;
-6      9_8 Duodenum  Mucosa &lt;NA&gt;
-7      9_9  Jejunum Digesta &lt;NA&gt;
-8     9_11  Jejunum  Mucosa &lt;NA&gt;
-9     9_12    Ileum Digesta &lt;NA&gt;
-10    9_14    Ileum  Mucosa &lt;NA&gt;
-11    9_15    Colon Digesta &lt;NA&gt;
-12    9_17    Colon  Mucosa &lt;NA&gt;
-13    9_18   Caecum Digesta &lt;NA&gt;
-14     9_2   Caecum  Mucosa &lt;NA&gt;
-15    10_1  Stomach Digesta &lt;NA&gt;
-16    10_3  Stomach  Mucosa    1
-17    10_4  Stomach  Mucosa    2
-18    10_5  Stomach  Mucosa    3
-19    10_6 Duodenum Digesta &lt;NA&gt;
-20    10_8 Duodenum  Mucosa &lt;NA&gt;
-21    10_9  Jejunum Digesta &lt;NA&gt;
-22   10_11  Jejunum  Mucosa &lt;NA&gt;
-23   10_12    Ileum Digesta &lt;NA&gt;
-24   10_14    Ileum  Mucosa &lt;NA&gt;
-25   10_15    Colon Digesta &lt;NA&gt;
-26   10_17    Colon  Mucosa &lt;NA&gt;
-27   10_18   Caecum Digesta &lt;NA&gt;
-28    10_2   Caecum  Mucosa &lt;NA&gt;
-29    11_1  Stomach Digesta &lt;NA&gt;
-30    11_3  Stomach  Mucosa    1
-31    11_4  Stomach  Mucosa    2
-32    11_5  Stomach  Mucosa    3
-33    11_6 Duodenum Digesta &lt;NA&gt;
-34    11_8 Duodenum  Mucosa &lt;NA&gt;
-35    11_9  Jejunum Digesta &lt;NA&gt;
-36   11_11  Jejunum  Mucosa &lt;NA&gt;
-37   11_12    Ileum Digesta &lt;NA&gt;
-38   11_14    Ileum  Mucosa &lt;NA&gt;
-39   11_15    Colon Digesta &lt;NA&gt;
-40   11_17    Colon  Mucosa &lt;NA&gt;
-41   11_18   Caecum Digesta &lt;NA&gt;
-42    11_2   Caecum  Mucosa &lt;NA&gt;
-43    12_1  Stomach Digesta &lt;NA&gt;
-44    12_3  Stomach  Mucosa    1
-45    12_4  Stomach  Mucosa    2
-46    12_5  Stomach  Mucosa    3
-47    12_6 Duodenum Digesta &lt;NA&gt;
-48    12_8 Duodenum  Mucosa &lt;NA&gt;
-49    12_9  Jejunum Digesta &lt;NA&gt;
-50   12_11  Jejunum  Mucosa &lt;NA&gt;
-51   12_12    Ileum Digesta &lt;NA&gt;
-52   12_14    Ileum  Mucosa &lt;NA&gt;
-53   12_15    Colon Digesta &lt;NA&gt;
-54   12_17    Colon  Mucosa &lt;NA&gt;
-55   12_18   Caecum Digesta &lt;NA&gt;
-56    12_2   Caecum  Mucosa &lt;NA&gt;
-57    13_1  Stomach Digesta &lt;NA&gt;
-58    13_3  Stomach  Mucosa    1
-59    13_4  Stomach  Mucosa    2
-60    13_5  Stomach  Mucosa    3
-61    13_6 Duodenum Digesta &lt;NA&gt;
-62    13_8 Duodenum  Mucosa &lt;NA&gt;
-63    13_9  Jejunum Digesta &lt;NA&gt;
-64   13_11  Jejunum  Mucosa &lt;NA&gt;
-65   13_12    Ileum Digesta &lt;NA&gt;
-66   13_14    Ileum  Mucosa &lt;NA&gt;
-67   13_15    Colon Digesta &lt;NA&gt;
-68   13_17    Colon  Mucosa &lt;NA&gt;
-69   13_18   Caecum Digesta &lt;NA&gt;
-70    13_2   Caecum  Mucosa &lt;NA&gt;
-71    14_1  Stomach Digesta &lt;NA&gt;
-72    14_3  Stomach  Mucosa    1
-73    14_4  Stomach  Mucosa    2
-74    14_5  Stomach  Mucosa    3
-75    14_6 Duodenum Digesta &lt;NA&gt;
-76    14_8 Duodenum  Mucosa &lt;NA&gt;
-77    14_9  Jejunum Digesta &lt;NA&gt;
-78   14_11  Jejunum  Mucosa &lt;NA&gt;
-79   14_12    Ileum Digesta &lt;NA&gt;
-80   14_14    Ileum  Mucosa &lt;NA&gt;
-81   14_15    Colon Digesta &lt;NA&gt;
-82   14_17    Colon  Mucosa &lt;NA&gt;
-83   14_18   Caecum Digesta &lt;NA&gt;
-84    14_2   Caecum  Mucosa &lt;NA&gt;
-85    15_1  Stomach Digesta &lt;NA&gt;
-86    15_3  Stomach  Mucosa    1
-87    15_4  Stomach  Mucosa    2
-88    15_5  Stomach  Mucosa    3
-89    15_6 Duodenum Digesta &lt;NA&gt;
-90    15_8 Duodenum  Mucosa &lt;NA&gt;
-91    15_9  Jejunum Digesta &lt;NA&gt;
-92   15_11  Jejunum  Mucosa &lt;NA&gt;
-93   15_12    Ileum Digesta &lt;NA&gt;
-94   15_14    Ileum  Mucosa &lt;NA&gt;
-95   15_15    Colon Digesta &lt;NA&gt;
-96   15_17    Colon  Mucosa &lt;NA&gt;
-97   15_18   Caecum Digesta &lt;NA&gt;
-98    15_2   Caecum  Mucosa &lt;NA&gt;
-99    16_1  Stomach Digesta &lt;NA&gt;
-100   16_3  Stomach  Mucosa    1
-101   16_4  Stomach  Mucosa    2
-102   16_5  Stomach  Mucosa    3
-103   16_6 Duodenum Digesta &lt;NA&gt;
-104   16_8 Duodenum  Mucosa &lt;NA&gt;
-105   16_9  Jejunum Digesta &lt;NA&gt;
-106  16_11  Jejunum  Mucosa &lt;NA&gt;
-107  16_12    Ileum Digesta &lt;NA&gt;
-108  16_14    Ileum  Mucosa &lt;NA&gt;
-109  16_15    Colon Digesta &lt;NA&gt;
-110  16_17   Caecum  Mucosa &lt;NA&gt;
-111  16_18   Caecum Digesta &lt;NA&gt;
-112   16_2    Colon  Mucosa &lt;NA&gt;
-113   17_1  Stomach Digesta &lt;NA&gt;
-114   17_3  Stomach  Mucosa    1
-115   17_4  Stomach  Mucosa    2
-116   17_5  Stomach  Mucosa    3
-117   17_6 Duodenum Digesta &lt;NA&gt;
-118   17_8 Duodenum  Mucosa &lt;NA&gt;
-119   17_9  Jejunum Digesta &lt;NA&gt;
-120  17_11  Jejunum  Mucosa &lt;NA&gt;
-121  17_12    Ileum Digesta &lt;NA&gt;
-122  17_14    Ileum  Mucosa &lt;NA&gt;
-123  17_15    Colon Digesta &lt;NA&gt;
-124  17_17    Colon  Mucosa &lt;NA&gt;
-125  17_18   Caecum Digesta &lt;NA&gt;
-126   17_2   Caecum  Mucosa &lt;NA&gt;
-127   18_1  Stomach Digesta &lt;NA&gt;
-128   18_3  Stomach  Mucosa    1
-129   18_4  Stomach  Mucosa    2
-130   18_5  Stomach  Mucosa    3
-131   18_6 Duodenum Digesta &lt;NA&gt;
-132   18_8 Duodenum  Mucosa &lt;NA&gt;
-133   18_9  Jejunum Digesta &lt;NA&gt;
-134  18_11  Jejunum  Mucosa &lt;NA&gt;
-135  18_12    Ileum Digesta &lt;NA&gt;
-136  18_14    Ileum  Mucosa &lt;NA&gt;
-137  18_15    Colon Digesta &lt;NA&gt;
-138  18_17    Colon  Mucosa &lt;NA&gt;
-139  18_18   Caecum Digesta &lt;NA&gt;
-140   18_2   Caecum  Mucosa &lt;NA&gt;
-141   19_1  Stomach Digesta &lt;NA&gt;
-142   19_3  Stomach  Mucosa    1
-143   19_4  Stomach  Mucosa    2
-144   19_5  Stomach  Mucosa    3
-145   19_6 Duodenum Digesta &lt;NA&gt;
-146   19_8 Duodenum  Mucosa &lt;NA&gt;
-147   19_9  Jejunum Digesta &lt;NA&gt;
-148  19_11  Jejunum  Mucosa &lt;NA&gt;
-149  19_12    Ileum Digesta &lt;NA&gt;
-150  19_14    Ileum  Mucosa &lt;NA&gt;
-151  19_15    Colon Digesta &lt;NA&gt;
-152  19_17    Colon  Mucosa &lt;NA&gt;
-153  19_18   Caecum Digesta &lt;NA&gt;
-154   19_2   Caecum  Mucosa &lt;NA&gt;
-155   20_1  Stomach Digesta &lt;NA&gt;
-156   20_3  Stomach  Mucosa    1
-157   20_4  Stomach  Mucosa    2
-158   20_5  Stomach  Mucosa    3
-159   20_6 Duodenum Digesta &lt;NA&gt;
-160   20_8 Duodenum  Mucosa &lt;NA&gt;
-161   20_9  Jejunum Digesta &lt;NA&gt;
-162  20_11  Jejunum  Mucosa &lt;NA&gt;
-163  20_12    Ileum Digesta &lt;NA&gt;
-164  20_14    Ileum  Mucosa &lt;NA&gt;
-165  20_15    Colon Digesta &lt;NA&gt;
-166  20_17    Colon  Mucosa &lt;NA&gt;
-167  20_18   Caecum Digesta &lt;NA&gt;
-168   20_2   Caecum  Mucosa &lt;NA&gt;
-169   21_1  Stomach Digesta &lt;NA&gt;
-170   21_3  Stomach  Mucosa    1
-171   21_4  Stomach  Mucosa    2
-172   21_5  Stomach  Mucosa    3
-173   21_6 Duodenum Digesta &lt;NA&gt;
-174   21_8 Duodenum  Mucosa &lt;NA&gt;
-175   21_9  Jejunum Digesta &lt;NA&gt;
-176  21_11  Jejunum  Mucosa &lt;NA&gt;
-177  21_12    Ileum Digesta &lt;NA&gt;
-178  21_14    Ileum  Mucosa &lt;NA&gt;
-179  21_15    Colon Digesta &lt;NA&gt;
-180  21_17    Colon  Mucosa &lt;NA&gt;
-181  21_18   Caecum Digesta &lt;NA&gt;
-182   21_2   Caecum  Mucosa &lt;NA&gt;
-183   22_1  Stomach Digesta &lt;NA&gt;
-184   22_3  Stomach  Mucosa    1
-185   22_4  Stomach  Mucosa    2
-186   22_5  Stomach  Mucosa    3
-187   22_6 Duodenum Digesta &lt;NA&gt;
-188   22_8 Duodenum  Mucosa &lt;NA&gt;
-189   22_9  Jejunum Digesta &lt;NA&gt;
-190  22_11  Jejunum  Mucosa &lt;NA&gt;
-191  22_12    Ileum Digesta &lt;NA&gt;
-192  22_14    Ileum  Mucosa &lt;NA&gt;
-193  22_15    Colon Digesta &lt;NA&gt;
-194  22_17    Colon  Mucosa &lt;NA&gt;
-195  22_18   Caecum Digesta &lt;NA&gt;
-196   22_2   Caecum  Mucosa &lt;NA&gt;
-197  22_21 Duodenum  Mucosa &lt;NA&gt;
-198   23_1  Stomach Digesta &lt;NA&gt;
-199   23_3  Stomach  Mucosa    1
-200   23_4  Stomach  Mucosa    2
-201   23_5  Stomach  Mucosa    3
-202   23_6 Duodenum Digesta &lt;NA&gt;
-203   23_8 Duodenum  Mucosa &lt;NA&gt;
-204   23_9  Jejunum Digesta &lt;NA&gt;
-205  23_11  Jejunum  Mucosa &lt;NA&gt;
-206  23_12    Ileum Digesta &lt;NA&gt;
-207  23_14    Ileum  Mucosa &lt;NA&gt;
-208  23_15    Colon Digesta &lt;NA&gt;
-209  23_17    Colon  Mucosa &lt;NA&gt;
-210  23_18   Caecum Digesta &lt;NA&gt;
-211   23_2   Caecum  Mucosa &lt;NA&gt;
-212   24_1  Stomach Digesta &lt;NA&gt;
-213   24_3  Stomach  Mucosa    1
-214   24_4  Stomach  Mucosa    2
-215   24_5  Stomach  Mucosa    3
-216   24_6 Duodenum Digesta &lt;NA&gt;
-217   24_8 Duodenum  Mucosa &lt;NA&gt;
-218   24_9  Jejunum Digesta &lt;NA&gt;
-219  24_11  Jejunum  Mucosa &lt;NA&gt;
-220  24_12    Ileum Digesta &lt;NA&gt;
-221  24_14    Ileum  Mucosa &lt;NA&gt;
-222  24_15    Colon Digesta &lt;NA&gt;
-223  24_17    Colon  Mucosa &lt;NA&gt;
-224  24_18   Caecum Digesta &lt;NA&gt;
-225   24_2   Caecum  Mucosa &lt;NA&gt;
-226   25_1  Stomach Digesta &lt;NA&gt;
-227   25_3  Stomach  Mucosa    1
-228   25_4  Stomach  Mucosa    2
-229   25_5  Stomach  Mucosa    3
-230   25_6 Duodenum Digesta &lt;NA&gt;
-231   25_8 Duodenum  Mucosa &lt;NA&gt;
-232   25_9  Jejunum Digesta &lt;NA&gt;
-233  25_11  Jejunum  Mucosa &lt;NA&gt;
-234  25_12    Ileum Digesta &lt;NA&gt;
-235  25_14    Ileum  Mucosa &lt;NA&gt;
-236  25_15    Colon Digesta &lt;NA&gt;
-237  25_17    Colon  Mucosa &lt;NA&gt;
-238  25_18   Caecum Digesta &lt;NA&gt;
-239   25_2   Caecum  Mucosa &lt;NA&gt;
-240   26_1  Stomach Digesta &lt;NA&gt;
-241   26_3  Stomach  Mucosa    1
-242   26_4  Stomach  Mucosa    2
-243   26_5  Stomach  Mucosa    3
-244   26_6 Duodenum Digesta &lt;NA&gt;
-245   26_8 Duodenum  Mucosa &lt;NA&gt;
-246   26_9  Jejunum Digesta &lt;NA&gt;
-247  26_11  Jejunum  Mucosa &lt;NA&gt;
-248  26_12    Ileum Digesta &lt;NA&gt;
-249  26_14    Ileum  Mucosa &lt;NA&gt;
-250  26_15    Colon Digesta &lt;NA&gt;
-251  26_17    Colon  Mucosa &lt;NA&gt;
-252  26_18   Caecum Digesta &lt;NA&gt;
-253   26_2   Caecum  Mucosa &lt;NA&gt;
-254   27_1  Stomach Digesta &lt;NA&gt;
-255   27_3  Stomach  Mucosa    1
-256   27_4  Stomach  Mucosa    2
-257   27_5  Stomach  Mucosa    3
-258   27_6 Duodenum Digesta &lt;NA&gt;
-259   27_8 Duodenum  Mucosa &lt;NA&gt;
-260   27_9  Jejunum Digesta &lt;NA&gt;
-261  27_11  Jejunum  Mucosa &lt;NA&gt;
-262  27_12    Ileum Digesta &lt;NA&gt;
-263  27_14    Ileum  Mucosa &lt;NA&gt;
-264  27_15    Colon Digesta &lt;NA&gt;
-265  27_17    Colon  Mucosa &lt;NA&gt;
-266  27_18   Caecum Digesta &lt;NA&gt;
-267   27_2   Caecum  Mucosa &lt;NA&gt;
-268   28_1  Stomach Digesta &lt;NA&gt;
-269   28_3  Stomach  Mucosa    1
-270   28_4  Stomach  Mucosa    2
-271   28_5  Stomach  Mucosa    3
-272   28_6 Duodenum Digesta &lt;NA&gt;
-273   28_8 Duodenum  Mucosa &lt;NA&gt;
-274   28_9  Jejunum Digesta &lt;NA&gt;
-275  28_11  Jejunum  Mucosa &lt;NA&gt;
-276  28_12    Ileum Digesta &lt;NA&gt;
-277  28_14    Ileum  Mucosa &lt;NA&gt;
-278  28_15    Colon Digesta &lt;NA&gt;
-279  28_17    Colon  Mucosa &lt;NA&gt;
-280  28_18   Caecum Digesta &lt;NA&gt;
-281   28_2   Caecum  Mucosa &lt;NA&gt;
-282   29_1  Stomach Digesta &lt;NA&gt;
-283   29_3  Stomach  Mucosa    1
-284   29_4  Stomach  Mucosa    2
-285   29_5  Stomach  Mucosa    3
-286   29_6 Duodenum Digesta &lt;NA&gt;
-287   29_8 Duodenum  Mucosa &lt;NA&gt;
-288   29_9  Jejunum Digesta &lt;NA&gt;
-289  29_11  Jejunum  Mucosa &lt;NA&gt;
-290  29_12    Ileum Digesta &lt;NA&gt;
-291  29_14    Ileum  Mucosa &lt;NA&gt;
-292  29_15    Colon Digesta &lt;NA&gt;
-293  29_17    Colon  Mucosa &lt;NA&gt;
-294  29_18   Caecum Digesta &lt;NA&gt;
-295   29_2   Caecum  Mucosa &lt;NA&gt;
-296   30_1  Stomach Digesta &lt;NA&gt;
-297   30_3  Stomach  Mucosa    1
-298   30_4  Stomach  Mucosa    2
-299   30_5  Stomach  Mucosa    3
-300   30_6 Duodenum Digesta &lt;NA&gt;
-301   30_8 Duodenum  Mucosa &lt;NA&gt;
-302   30_9  Jejunum Digesta &lt;NA&gt;
-303  30_11  Jejunum  Mucosa &lt;NA&gt;
-304  30_12    Ileum Digesta &lt;NA&gt;
-305  30_14    Ileum  Mucosa &lt;NA&gt;
-306  30_15    Colon Digesta &lt;NA&gt;
-307  30_17    Colon  Mucosa &lt;NA&gt;
-308  30_18   Caecum Digesta &lt;NA&gt;
-309   30_2   Caecum  Mucosa &lt;NA&gt;
-310   31_1  Stomach Digesta &lt;NA&gt;
-311   31_3  Stomach  Mucosa    1
-312   31_4  Stomach  Mucosa    2
-313   31_5  Stomach  Mucosa    3
-314   31_6 Duodenum Digesta &lt;NA&gt;
-315   31_8 Duodenum  Mucosa &lt;NA&gt;
-316   31_9  Jejunum Digesta &lt;NA&gt;
-317  31_11  Jejunum  Mucosa &lt;NA&gt;
-318  31_12    Ileum Digesta &lt;NA&gt;
-319  31_14    Ileum  Mucosa &lt;NA&gt;
-320  31_15    Colon Digesta &lt;NA&gt;
-321  31_17    Colon  Mucosa &lt;NA&gt;
-322  31_18   Caecum Digesta &lt;NA&gt;
-323   31_2   Caecum  Mucosa &lt;NA&gt;
-324   32_1  Stomach Digesta &lt;NA&gt;
-325   32_3  Stomach  Mucosa    1
-326   32_4  Stomach  Mucosa    2
-327   32_5  Stomach  Mucosa    3
-328   32_6 Duodenum Digesta &lt;NA&gt;
-329   32_8 Duodenum  Mucosa &lt;NA&gt;
-330   32_9  Jejunum Digesta &lt;NA&gt;
-331  32_11  Jejunum  Mucosa &lt;NA&gt;
-332  32_12    Ileum Digesta &lt;NA&gt;
-333  32_14    Ileum  Mucosa &lt;NA&gt;
-334  32_15    Colon Digesta &lt;NA&gt;
-335  32_17    Colon  Mucosa &lt;NA&gt;
-336  32_18   Caecum Digesta &lt;NA&gt;
-337   32_2   Caecum  Mucosa &lt;NA&gt;
-338   33_1  Stomach Digesta &lt;NA&gt;
-339   33_3  Stomach  Mucosa    1
-340   33_4  Stomach  Mucosa    2
-341   33_5  Stomach  Mucosa    3
-342   33_6 Duodenum Digesta &lt;NA&gt;
-343   33_8 Duodenum  Mucosa &lt;NA&gt;
-344   33_9  Jejunum Digesta &lt;NA&gt;
-345  33_11  Jejunum  Mucosa &lt;NA&gt;
-346  33_12    Ileum Digesta &lt;NA&gt;
-347  33_14    Ileum  Mucosa &lt;NA&gt;
-348  33_15    Colon Digesta &lt;NA&gt;
-349  33_17    Colon  Mucosa &lt;NA&gt;
-350  33_18   Caecum Digesta &lt;NA&gt;
-351   33_2   Caecum  Mucosa &lt;NA&gt;
-352   34_1  Stomach Digesta &lt;NA&gt;
-353   34_3  Stomach  Mucosa    1
-354   34_4  Stomach  Mucosa    2
-355   34_5  Stomach  Mucosa    3
-356   34_6 Duodenum Digesta &lt;NA&gt;
-357   34_8 Duodenum  Mucosa &lt;NA&gt;
-358   34_9  Jejunum Digesta &lt;NA&gt;
-359  34_11  Jejunum  Mucosa &lt;NA&gt;
-360  34_12    Ileum Digesta &lt;NA&gt;
-361  34_14    Ileum  Mucosa &lt;NA&gt;
-362  34_15    Colon Digesta &lt;NA&gt;
-363  34_17    Colon  Mucosa &lt;NA&gt;
-364  34_18   Caecum Digesta &lt;NA&gt;
-365   34_2   Caecum  Mucosa &lt;NA&gt;
-366   35_1  Stomach Digesta &lt;NA&gt;
-367   35_3  Stomach  Mucosa    1
-368   35_4  Stomach  Mucosa    2
-369   35_5  Stomach  Mucosa    3
-370   35_6 Duodenum Digesta &lt;NA&gt;
-371   35_8 Duodenum  Mucosa &lt;NA&gt;
-372   35_9  Jejunum Digesta &lt;NA&gt;
-373  35_11  Jejunum  Mucosa &lt;NA&gt;
-374  35_12    Ileum Digesta &lt;NA&gt;
-375  35_14    Ileum  Mucosa &lt;NA&gt;
-376  35_15    Colon Digesta &lt;NA&gt;
-377  35_17    Colon  Mucosa &lt;NA&gt;
-378  35_18   Caecum Digesta &lt;NA&gt;
-379   35_2   Caecum  Mucosa &lt;NA&gt;
-380   36_1  Stomach Digesta &lt;NA&gt;
-381   36_3  Stomach  Mucosa    1
-382   36_4  Stomach  Mucosa    2
-383   36_5  Stomach  Mucosa    3
-384   36_6 Duodenum Digesta &lt;NA&gt;
-385   36_8 Duodenum  Mucosa &lt;NA&gt;
-386   36_9  Jejunum Digesta &lt;NA&gt;
-387  36_11  Jejunum  Mucosa &lt;NA&gt;
-388  36_12    Ileum Digesta &lt;NA&gt;
-389  36_14    Ileum  Mucosa &lt;NA&gt;
-390  36_15    Colon Digesta &lt;NA&gt;
-391  36_17    Colon  Mucosa &lt;NA&gt;
-392  36_18   Caecum Digesta &lt;NA&gt;
-393   36_2   Caecum  Mucosa &lt;NA&gt;
-394   37_1  Stomach Digesta &lt;NA&gt;
-395   37_3  Stomach  Mucosa    1
-396   37_4  Stomach  Mucosa    2
-397   37_5  Stomach  Mucosa    3
-398   37_6 Duodenum Digesta &lt;NA&gt;
-399   37_8 Duodenum  Mucosa &lt;NA&gt;
-400   37_9  Jejunum Digesta &lt;NA&gt;
-401  37_11  Jejunum  Mucosa &lt;NA&gt;
-402  37_12    Ileum Digesta &lt;NA&gt;
-403  37_14    Ileum  Mucosa &lt;NA&gt;
-404  37_15    Colon Digesta &lt;NA&gt;
-405  37_17    Colon  Mucosa &lt;NA&gt;
-406  37_18   Caecum Digesta &lt;NA&gt;
-407   37_2   Caecum  Mucosa &lt;NA&gt;
-408   38_1  Stomach Digesta &lt;NA&gt;
-409   38_3  Stomach  Mucosa    1
-410   38_4  Stomach  Mucosa    2
-411   38_5  Stomach  Mucosa    3
-412   38_6 Duodenum Digesta &lt;NA&gt;
-413   38_8 Duodenum  Mucosa &lt;NA&gt;
-414   38_9  Jejunum Digesta &lt;NA&gt;
-415  38_11  Jejunum  Mucosa &lt;NA&gt;
-416  38_12    Ileum Digesta &lt;NA&gt;
-417  38_14    Ileum  Mucosa &lt;NA&gt;
-418  38_15    Colon Digesta &lt;NA&gt;
-419  38_17    Colon  Mucosa &lt;NA&gt;
-420  38_18   Caecum Digesta &lt;NA&gt;
-421   38_2   Caecum  Mucosa &lt;NA&gt;
-422   39_1  Stomach Digesta &lt;NA&gt;
-423   39_3  Stomach  Mucosa    1
-424   39_4  Stomach  Mucosa    2
-425   39_5  Stomach  Mucosa    3
-426   39_6 Duodenum Digesta &lt;NA&gt;
-427   39_8 Duodenum  Mucosa &lt;NA&gt;
-428   39_9  Jejunum Digesta &lt;NA&gt;
-429  39_11  Jejunum  Mucosa &lt;NA&gt;
-430  39_12    Ileum Digesta &lt;NA&gt;
-431  39_14    Ileum  Mucosa &lt;NA&gt;
-432  39_15    Colon Digesta &lt;NA&gt;
-433  39_17    Colon  Mucosa &lt;NA&gt;
-434  39_18   Caecum Digesta &lt;NA&gt;
-435   39_2   Caecum  Mucosa &lt;NA&gt;
-436   40_1  Stomach Digesta &lt;NA&gt;
-437   40_3  Stomach  Mucosa    1
-438   40_4  Stomach  Mucosa    2
-439   40_5  Stomach  Mucosa    3
-440   40_6 Duodenum Digesta &lt;NA&gt;
-441   40_8 Duodenum  Mucosa &lt;NA&gt;
-442   40_9  Jejunum Digesta &lt;NA&gt;
-443  40_11  Jejunum  Mucosa &lt;NA&gt;
-444  40_12    Ileum Digesta &lt;NA&gt;
-445  40_14    Ileum  Mucosa &lt;NA&gt;
-446  40_15    Colon Digesta &lt;NA&gt;
-447  40_17    Colon  Mucosa &lt;NA&gt;
-448  40_18   Caecum Digesta &lt;NA&gt;
-449   40_2   Caecum  Mucosa &lt;NA&gt;
-450   41_1  Stomach Digesta &lt;NA&gt;
-451   41_3  Stomach  Mucosa    1
-452   41_4  Stomach  Mucosa    2
-453   41_5  Stomach  Mucosa    3
-454   41_6 Duodenum Digesta &lt;NA&gt;
-455   41_8 Duodenum  Mucosa &lt;NA&gt;
-456   41_9  Jejunum Digesta &lt;NA&gt;
-457  41_11  Jejunum  Mucosa &lt;NA&gt;
-458  41_12    Ileum Digesta &lt;NA&gt;
-459  41_14    Ileum  Mucosa &lt;NA&gt;
-460  41_15    Colon Digesta &lt;NA&gt;
-461  41_17    Colon  Mucosa &lt;NA&gt;
-462  41_18   Caecum Digesta &lt;NA&gt;
-463   41_2   Caecum  Mucosa &lt;NA&gt;
-464   42_1  Stomach Digesta &lt;NA&gt;
-465   42_3  Stomach  Mucosa    1
-466   42_4  Stomach  Mucosa    2
-467   42_5  Stomach  Mucosa    3
-468   42_6 Duodenum Digesta &lt;NA&gt;
-469   42_8 Duodenum  Mucosa &lt;NA&gt;
-470   42_9  Jejunum Digesta &lt;NA&gt;
-471  42_11  Jejunum  Mucosa &lt;NA&gt;
-472  42_12    Ileum Digesta &lt;NA&gt;
-473  42_14    Ileum  Mucosa &lt;NA&gt;
-474  42_15    Colon Digesta &lt;NA&gt;
-475  42_17    Colon  Mucosa &lt;NA&gt;
-476  42_18   Caecum Digesta &lt;NA&gt;
-477   42_2   Caecum  Mucosa &lt;NA&gt;
-478   43_1  Stomach Digesta &lt;NA&gt;
-479   43_3  Stomach  Mucosa    1
-480   43_4  Stomach  Mucosa    2
-481   43_5  Stomach  Mucosa    3
-482   43_6 Duodenum Digesta &lt;NA&gt;
-483   43_8 Duodenum  Mucosa &lt;NA&gt;
-484   43_9  Jejunum Digesta &lt;NA&gt;
-485  43_11  Jejunum  Mucosa &lt;NA&gt;
-486  43_12    Ileum Digesta &lt;NA&gt;
-487  43_14    Ileum  Mucosa &lt;NA&gt;
-488  43_15    Colon Digesta &lt;NA&gt;
-489  43_17    Colon  Mucosa &lt;NA&gt;
-490  43_18   Caecum Digesta &lt;NA&gt;
-491   43_2   Caecum  Mucosa &lt;NA&gt;
-492   44_1  Stomach Digesta &lt;NA&gt;
-493   44_3  Stomach  Mucosa    1
-494   44_4  Stomach  Mucosa    2
-495   44_5  Stomach  Mucosa    3
-496   44_6 Duodenum Digesta &lt;NA&gt;
-497   44_8 Duodenum  Mucosa &lt;NA&gt;
-498   44_9  Jejunum Digesta &lt;NA&gt;
-499  44_11  Jejunum  Mucosa &lt;NA&gt;
-500  44_12    Ileum Digesta &lt;NA&gt;
-501  44_14    Ileum  Mucosa &lt;NA&gt;
-502  44_15    Colon Digesta &lt;NA&gt;
-503  44_17    Colon  Mucosa &lt;NA&gt;
-504  44_18   Caecum Digesta &lt;NA&gt;
-505   44_2   Caecum  Mucosa &lt;NA&gt;
-506   45_1  Stomach Digesta &lt;NA&gt;
-507   45_3  Stomach  Mucosa    1
-508   45_4  Stomach  Mucosa    2
-509   45_5  Stomach  Mucosa    3
-510   45_6 Duodenum Digesta &lt;NA&gt;
-511   45_8 Duodenum  Mucosa &lt;NA&gt;
-512   45_9  Jejunum Digesta &lt;NA&gt;
-513  45_11  Jejunum  Mucosa &lt;NA&gt;
-514  45_12    Ileum Digesta &lt;NA&gt;
-515  45_14    Ileum  Mucosa &lt;NA&gt;
-516  45_15    Colon Digesta &lt;NA&gt;
-517  45_17    Colon  Mucosa &lt;NA&gt;
-518  45_18   Caecum Digesta &lt;NA&gt;
-519   45_2   Caecum  Mucosa &lt;NA&gt;
-520   46_1  Stomach Digesta &lt;NA&gt;
-521   46_3  Stomach  Mucosa    1
-522   46_4  Stomach  Mucosa    2
-523   46_5  Stomach  Mucosa    3
-524   46_6 Duodenum Digesta &lt;NA&gt;
-525   46_8 Duodenum  Mucosa &lt;NA&gt;
-526   46_9  Jejunum Digesta &lt;NA&gt;
-527  46_11  Jejunum  Mucosa &lt;NA&gt;
-528  46_12    Ileum Digesta &lt;NA&gt;
-529  46_14    Ileum  Mucosa &lt;NA&gt;
-530  46_15    Colon Digesta &lt;NA&gt;
-531  46_17    Colon  Mucosa &lt;NA&gt;
-532  46_18   Caecum Digesta &lt;NA&gt;
-533   46_2   Caecum  Mucosa &lt;NA&gt;
-534   47_1  Stomach Digesta &lt;NA&gt;
-535   47_3  Stomach  Mucosa    1
-536   47_4  Stomach  Mucosa    2
-537   47_5  Stomach  Mucosa    3
-538   47_6 Duodenum Digesta &lt;NA&gt;
-539   47_8 Duodenum  Mucosa &lt;NA&gt;
-540   47_9  Jejunum Digesta &lt;NA&gt;
-541  47_11  Jejunum  Mucosa &lt;NA&gt;
-542  47_12    Ileum Digesta &lt;NA&gt;
-543  47_14    Ileum  Mucosa &lt;NA&gt;
-544  47_15    Colon Digesta &lt;NA&gt;
-545  47_17    Colon  Mucosa &lt;NA&gt;
-546  47_18   Caecum Digesta &lt;NA&gt;
-547   47_2   Caecum  Mucosa &lt;NA&gt;
-548   48_1  Stomach Digesta &lt;NA&gt;
-549   48_3  Stomach  Mucosa    1
-550   48_4  Stomach  Mucosa    2
-551   48_5  Stomach  Mucosa    3
-552   48_6 Duodenum Digesta &lt;NA&gt;
-553   48_8 Duodenum  Mucosa &lt;NA&gt;
-554   48_9  Jejunum Digesta &lt;NA&gt;
-555  48_11  Jejunum  Mucosa &lt;NA&gt;
-556  48_12    Ileum Digesta &lt;NA&gt;
-557  48_14    Ileum  Mucosa &lt;NA&gt;
-558  48_15    Colon Digesta &lt;NA&gt;
-559  48_17    Colon  Mucosa &lt;NA&gt;
-560  48_18   Caecum Digesta &lt;NA&gt;
-561   48_2   Caecum  Mucosa &lt;NA&gt;
-562   49_1  Stomach Digesta &lt;NA&gt;
-563   49_3  Stomach  Mucosa    1
-564   49_4  Stomach  Mucosa    2
-565   49_5  Stomach  Mucosa    3
-566   49_6 Duodenum Digesta &lt;NA&gt;
-567   49_8 Duodenum  Mucosa &lt;NA&gt;
-568   49_9  Jejunum Digesta &lt;NA&gt;
-569  49_11  Jejunum  Mucosa &lt;NA&gt;
-570  49_12    Ileum Digesta &lt;NA&gt;
-571  49_14    Ileum  Mucosa &lt;NA&gt;
-572  49_15    Colon Digesta &lt;NA&gt;
-573  49_17    Colon  Mucosa &lt;NA&gt;
-574  49_18   Caecum Digesta &lt;NA&gt;
-575   49_2   Caecum  Mucosa &lt;NA&gt;
-576   50_1  Stomach Digesta &lt;NA&gt;
-577   50_3  Stomach  Mucosa    1
-578   50_4  Stomach  Mucosa    2
-579   50_5  Stomach  Mucosa    3
-580   50_6 Duodenum Digesta &lt;NA&gt;
-581   50_8 Duodenum  Mucosa &lt;NA&gt;
-582   50_9  Jejunum Digesta &lt;NA&gt;
-583  50_11  Jejunum  Mucosa &lt;NA&gt;
-584  50_12    Ileum Digesta &lt;NA&gt;
-585  50_14    Ileum  Mucosa &lt;NA&gt;
-586  50_15    Colon Digesta &lt;NA&gt;
-587  50_17    Colon  Mucosa &lt;NA&gt;
-588  50_18   Caecum Digesta &lt;NA&gt;
-589   50_2   Caecum  Mucosa &lt;NA&gt;
-590   51_1  Stomach Digesta &lt;NA&gt;
-591   51_3  Stomach  Mucosa    1
-592   51_4  Stomach  Mucosa    2
-593   51_5  Stomach  Mucosa    3
-594   51_6 Duodenum Digesta &lt;NA&gt;
-595   51_8 Duodenum  Mucosa &lt;NA&gt;
-596   51_9  Jejunum Digesta &lt;NA&gt;
-597  51_11  Jejunum  Mucosa &lt;NA&gt;
-598  51_12    Ileum Digesta &lt;NA&gt;
-599  51_14    Ileum  Mucosa &lt;NA&gt;
-600  51_15    Colon Digesta &lt;NA&gt;
-601  51_17    Colon  Mucosa &lt;NA&gt;
-602  51_18   Caecum Digesta &lt;NA&gt;
-603   51_2   Caecum  Mucosa &lt;NA&gt;
-604   52_1  Stomach Digesta &lt;NA&gt;
-605   52_3  Stomach  Mucosa    1
-606   52_4  Stomach  Mucosa    2
-607   52_5  Stomach  Mucosa    3
-608   52_6 Duodenum Digesta &lt;NA&gt;
-609   52_8 Duodenum  Mucosa &lt;NA&gt;
-610   52_9  Jejunum Digesta &lt;NA&gt;
-611  52_11  Jejunum  Mucosa &lt;NA&gt;
-612  52_12    Ileum Digesta &lt;NA&gt;
-613  52_14    Ileum  Mucosa &lt;NA&gt;
-614  52_15    Colon Digesta &lt;NA&gt;
-615  52_17    Colon  Mucosa &lt;NA&gt;
-616  52_18   Caecum Digesta &lt;NA&gt;
-617   52_2   Caecum  Mucosa &lt;NA&gt;
-618   53_1  Stomach Digesta &lt;NA&gt;
-619   53_3  Stomach  Mucosa    1
-620   53_4  Stomach  Mucosa    2
-621   53_5  Stomach  Mucosa    3
-622   53_6 Duodenum Digesta &lt;NA&gt;
-623   53_8 Duodenum  Mucosa &lt;NA&gt;
-624   53_9  Jejunum Digesta &lt;NA&gt;
-625  53_11  Jejunum  Mucosa &lt;NA&gt;
-626  53_12    Ileum Digesta &lt;NA&gt;
-627  53_14    Ileum  Mucosa &lt;NA&gt;
-628  53_15    Colon Digesta &lt;NA&gt;
-629  53_17    Colon  Mucosa &lt;NA&gt;
-630  53_18   Caecum Digesta &lt;NA&gt;
-631   53_2   Caecum  Mucosa &lt;NA&gt;
-632   54_1  Stomach Digesta &lt;NA&gt;
-633   54_3  Stomach  Mucosa    1
-634   54_4  Stomach  Mucosa    2
-635   54_5  Stomach  Mucosa    3
-636   54_6 Duodenum Digesta &lt;NA&gt;
-637   54_8 Duodenum  Mucosa &lt;NA&gt;
-638   54_9  Jejunum Digesta &lt;NA&gt;
-639  54_11  Jejunum  Mucosa &lt;NA&gt;
-640  54_12    Ileum Digesta &lt;NA&gt;
-641  54_14    Ileum  Mucosa &lt;NA&gt;
-642  54_15    Colon Digesta &lt;NA&gt;
-643  54_17    Colon  Mucosa &lt;NA&gt;
-644  54_18   Caecum Digesta &lt;NA&gt;
-645   54_2   Caecum  Mucosa &lt;NA&gt;
-646   55_1  Stomach Digesta &lt;NA&gt;
-647   55_3  Stomach  Mucosa    1
-648   55_4  Stomach  Mucosa    2
-649   55_5  Stomach  Mucosa    3
-650   55_6 Duodenum Digesta &lt;NA&gt;
-651   55_8 Duodenum  Mucosa &lt;NA&gt;
-652   55_9  Jejunum Digesta &lt;NA&gt;
-653  55_11  Jejunum  Mucosa &lt;NA&gt;
-654  55_12    Ileum Digesta &lt;NA&gt;
-655  55_14    Ileum  Mucosa &lt;NA&gt;
-656  55_15    Colon Digesta &lt;NA&gt;
-657  55_17    Colon  Mucosa &lt;NA&gt;
-658  55_18   Caecum Digesta &lt;NA&gt;
-659   55_2   Caecum  Mucosa &lt;NA&gt;
-660   56_1  Stomach Digesta &lt;NA&gt;
-661   56_3  Stomach  Mucosa    1
-662   56_4  Stomach  Mucosa    2
-663   56_5  Stomach  Mucosa    3
-664   56_6 Duodenum Digesta &lt;NA&gt;
-665   56_8 Duodenum  Mucosa &lt;NA&gt;
-666   56_9  Jejunum Digesta &lt;NA&gt;
-667  56_11  Jejunum  Mucosa &lt;NA&gt;
-668  56_12    Ileum Digesta &lt;NA&gt;
-669  56_14    Ileum  Mucosa &lt;NA&gt;
-670  56_15    Colon Digesta &lt;NA&gt;
-671  56_17    Colon  Mucosa &lt;NA&gt;
-672  56_18   Caecum Digesta &lt;NA&gt;
-673   56_2   Caecum  Mucosa &lt;NA&gt;</code></pre>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a> pivoted_data <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(qc<span class="sc">==</span><span class="st">"peptide_identified"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">"peptides"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span>value)) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.3</span>)<span class="sc">+</span> </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"red"</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">29000</span>),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">29000</span>, <span class="at">by=</span><span class="dv">3000</span>)) <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Number of identified peptides"</span>) <span class="sc">+</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="qc_metaproteomics_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a> pivoted_data <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(qc<span class="sc">==</span><span class="st">"peptide_identified"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(metadata_clean, <span class="at">by=</span><span class="st">"sample"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>region,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span>value,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color=</span>region)) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.3</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">outlier.shape =</span> <span class="cn">NA</span>, </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span> </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span> <span class="fl">0.1</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">size=</span><span class="dv">3</span>, </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30000</span>),</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">30000</span>, <span class="at">by=</span><span class="dv">3000</span>)) <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Number of identified peptides"</span>) <span class="sc">+</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) <span class="sc">+</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="qc_metaproteomics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a> pivoted_data <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">inner_join</span>(metadata_clean, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">by =</span> <span class="st">"sample"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>              ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">y =</span> value,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> region</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>          ) <span class="sc">+</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>, </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                ) <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>                      <span class="co"># limits = c(0, 27000),</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>                      <span class="co"># breaks=seq(0, 27000, by=3000)</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>                      ) <span class="sc">+</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Number of identified peptides"</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>                      ) <span class="sc">+</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>   <span class="fu">facet_wrap</span>(<span class="sc">~</span>qc, </span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>              <span class="at">scales =</span> <span class="st">"free"</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>              )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="qc_metaproteomics_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

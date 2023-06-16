@@ -1,0 +1,14 @@
+{
+  "hash": "2b1bfd140fbd7d5572b9e8ddf52469e3",
+  "result": {
+    "markdown": "---\ntitle: \"Ordination plot- Beta diveristy\"\nauthor: \n  - name: Johan S. Sáenz \n    affiliations: University of Hohenheim\ndate: \"15-06-2023\"\ncategories: [R, functions]\nformat:\n   pdf:\n    toc: true\n    keep-tex: true\n    number-sections: true\n    colorlinks: true\n    fig-pos: 'h'\n    code-block-bg: true\n   html:\n    toc: true\n    toc-location: left\n---\n\n\n# Ordination analysis\n\nThis tutorial would describe how to perform a **Non-metric MultiDimensional Scaling (NMDS)** ordination analysis, based on the total protein groups identified in a metaproteomics experiment. NMDS is a distance-based ordination technique, which summarizes the differences or similarities between each pair of sample using any number of response variables. This technique is broadly use in Microbial ecology and metagenomic, metatrascriptomics, metaproteomics and metabolomic analysis. For more details on ordiantion analysis please read [Multivariate analyses in microbial ecology](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2121141/) and [NMDS](https://uw.pressbooks.pub/appliedmultivariatestatistics/chapter/nmds/#:~:text=Non%2Dmetric%20MultiDimensional%20Scaling%20(NMDS,ordination%20is%20actually%20based%20upon.).\n\nFor the following analysis we require two data frames 1) metadata describing each sample `metadata_metapro.txt` and 2) the intensity of the different protein groups across the samples `final_proteins.tsv`. The protein groups data frame was obtained running a set of metaproteomic raw files in the [iMetaLab](https://imetalab.ca) software.\n\n## Set up working space and load data\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# libraries ----------------------\nlibrary(tidyverse)\nlibrary(vegan)\n\n# data------------------\ndf_proteins <- read_tsv(\"../../project/rawdata/final_proteins.tsv\")\n\nmetadata <- read.table(file = \"../../project/rawdata/metadata_metapro.txt\",\n                       header = TRUE,\n                       sep = \"\\t\",\n                       check.names = FALSE)\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}
